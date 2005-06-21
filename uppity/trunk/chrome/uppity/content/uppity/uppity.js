@@ -3,27 +3,15 @@ var uppity={
 //so the variables are all terse.  a later version should see a 
 //revamp of this code but I'm proud to finally have written my first
 //firefox extension from scratch!
-goUp:function() {
-	try {
-	var l=getBrowser().contentWindow.location, 
-		L=false, h=l.href, s=l.protocol+'//',
-		d=l.pathname, i=d.indexOf('/'), j=d.lastIndexOf('/');
-	if (l.hash) {
-		L=h.replace(l.hash, '')
-	} else if (l.search) {
-		L=h.replace(l.search, '')
-	} else if ('/'==d) {
-		if (s.match('http'))i='www.';
-		if(s.match('ftp'))i='ftp.';
-		if(h.match(i))L=h.replace(i, '')
-	} else if(j+1==d.length) {
-		L='..'
+goUp:function(e) {
+	var URLs=this.getURLs(), URL;
+	if (0==URLs.length) return;
+	if (e) {
+		URL=URLs[e.target.value];
 	} else {
-		L='.'
+		URL=URLs[0];
 	}
-	dump('Uppity to: '+L+'\n');
-	if (L) l.assign(L);
-	} catch (e) { this.dumpErr(e); }
+	getBrowser().contentWindow.location.assign(URL);
 },
 
 getPref:function(type, name) {
@@ -71,8 +59,8 @@ saveOptions:function() {
 },
 
 dumpErr:function(e) {
-	var s='Error in mpwgen:\n';
-	s+='Line: '+e.lineNumber+'\n';
+	var s='Error in uppity:  ';
+	s+='Line: '+e.lineNumber+'  ';
 	s+=e.name+': '+e.message+'\n';
 	//s+='Stack:\n'+e.stack+'\n\n';
 	dump(s);
@@ -85,9 +73,71 @@ setSBButtonVis:function() {
 },
 
 turnOffSBButton:function() {
-	dump('buttonoff...\n');
 	this.setPref('bool', 'uppity.sb-icon', false);
 	this.setSBButtonVis();
+},
+
+showDropDown:function(e) {
+	var box=e.target;
+	//remove any existing entries
+	var children = box.childNodes;
+	for (var i=0; i<children.length; i++) {
+		var index = children[i].getAttribute("index");
+		if (index) box.removeChild(children[i]);
+	}
+
+	//create new entries
+	var URLs=this.getURLs(), m;
+	if (0==URLs.length) return false;
+	for (var i=0; i<URLs.length; i++) {
+		m=document.createElement("menuitem");
+		m.setAttribute('label', URLs[i]);
+		m.setAttribute('index', i);
+		m.setAttribute('value', i);
+		box.appendChild(m);
+	}
+},
+
+getURLs:function() {
+	var URLs=new Array(), loc=getBrowser().contentWindow.location;
+	try {
+	//check for validity
+	if ('about:'==loc.protocol) return URLs;
+
+	//get the URL
+	var path=loc.href;
+	//strip off the scheme and host
+	path=path.replace(/^.*:\/\/[^\/]*\//, '');
+	//and the trailing slash if there
+	path=path.replace(/\/$/, '');
+	var host=loc.host;
+	var scheme=loc.protocol+'//';
+	var emptyPath=(''==path);
+
+	//strip hash if there
+	if (path.indexOf('#')>0) {
+		path=path.replace(/#.*/, '');
+		URLs[URLs.length]=scheme+host+'/'+path;
+	}
+	//strip querystring if there
+	if (path.indexOf('?')>0) {
+		path=path.replace(/\?.*/, '');
+		URLs[URLs.length]=scheme+host+'/'+path;
+	}
+	//strip files/directories if there
+	while (path.indexOf('/')>0) {
+		path=path.replace(/\/[^\/]*$/, '');
+		URLs[URLs.length]=scheme+host+'/'+path+'/';
+	}
+	//host only
+	if (!emptyPath) URLs[URLs.length]=scheme+host+'/';
+	//strip subdomains if there
+	while (host.match(/\..*\./)) {
+		host=host.replace(/[^.]*\./, '');
+		URLs[URLs.length]=scheme+host+'/';
+	}
+	} catch (e) { this.dumpErr(e); }
+	return URLs;
 },
 
 }//close var uppity

@@ -5,10 +5,17 @@
 <script type='application/x-javascript' src='chrome://uppity/content/uppity.js'></script>
 
 <toolbarpalette id='BrowserToolbarPalette'>
-	<toolbarbutton id='tb-uppity' oncommand='uppity.goUp()' 
-		class='toolbarbutton-1'
-		label='Uppity' tooltiptext='Go Up 1 Level'
-	/>
+	<toolbarbutton id='tb-uppity' 
+		type="menu-button" 
+		class="toolbarbutton-1 chromeclass-toolbar-additional"
+		oncommand='uppity.goUp()' 
+		label='Uppity' tooltiptext='Go Up One Level'
+	>
+		<menupopup context=""
+			onpopupshowing="return uppity.showDropDown(event);"
+			oncommand="uppity.goUp(event); event.preventBubble();"
+		/>
+	</toolbarbutton>
 </toolbarpalette>
 
 <statusbar id='status-bar'>
