@@ -4,14 +4,15 @@ var uppity={
 //revamp of this code but I'm proud to finally have written my first
 //firefox extension from scratch!
 goUp:function() {
+	try {
 	var l=getBrowser().contentWindow.location, 
-		L=false, h=l.href, S='/', s=l.protocol+S+S,
-		d=l.pathname, i=d.indexOf(S), j=d.lastIndexOf(S);
+		L=false, h=l.href, s=l.protocol+'//',
+		d=l.pathname, i=d.indexOf('/'), j=d.lastIndexOf('/');
 	if (l.hash) {
 		L=h.replace(l.hash, '')
 	} else if (l.search) {
 		L=h.replace(l.search, '')
-	} else if (S==d) {
+	} else if ('/'==d) {
 		if (s.match('http'))i='www.';
 		if(s.match('ftp'))i='ftp.';
 		if(h.match(i))L=h.replace(i, '')
@@ -20,7 +21,9 @@ goUp:function() {
 	} else {
 		L='.'
 	}
+	dump('Uppity to: '+L+'\n');
 	if (L) l.assign(L);
+	} catch (e) { this.dumpErr(e); }
 },
 
 getPref:function(type, name) {
@@ -79,5 +82,12 @@ setSBButtonVis:function() {
 	var show=this.getPref('bool', 'uppity.sb-icon');
 	var sb=document.getElementById('status-bar-uppity');
 	sb.style.display=(show?'-moz-box':'none');
-}
+},
+
+turnOffSBButton:function() {
+	dump('buttonoff...\n');
+	this.setPref('bool', 'uppity.sb-icon', false);
+	this.setSBButtonVis();
+},
+
 }//close var uppity
