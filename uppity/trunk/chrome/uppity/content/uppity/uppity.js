@@ -57,9 +57,12 @@ loadOptions:function() {
 
 saveOptions:function() {
 	try {
-	setPref('bool', 'uppity.sb-icon'
-		(bool)window.document.getElementById('uppity-sb-icon').checked=this
+	this.setPref('bool', 'uppity.sb-icon',
+		Boolean(window.document.getElementById('uppity-sb-icon').checked)
 	);
+
+	//this might be a little dirty ....
+	window.opener.opener.uppity.setSBButtonVis();
 	} catch (e) { this.dumpErr(e) }
 	return true;
 },
@@ -72,4 +75,9 @@ dumpErr:function(e) {
 	dump(s);
 },
 
+setSBButtonVis:function() {
+	var show=this.getPref('bool', 'uppity.sb-icon');
+	var sb=document.getElementById('status-bar-uppity');
+	sb.style.display=(show?'-moz-box':'none');
+}
 }//close var uppity
