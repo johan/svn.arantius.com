@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://browser/skin/" type="text/css"?>
+
+<dialog id="mpwgen-options"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	title="Uppity - Options"
+	buttons="accept, cancel"
+	onload="uppity.loadOptions();"
+	ondialogaccept="uppity.saveOptions();"
+	persist="width height screenX screenY"
+>
+	<script type="application/x-javascript" src="chrome://uppity/content/uppity.js"></script>
+
+	<groupbox align="center" orient="horizontal">
+	<vbox>
+		<text value="Uppity" style="font-weight: bold; font-size: x-large;" />
+		<separator class="thin" />
+		<checkbox id='uppity-sb-icon' label='Button on status bar' checked='false' />
+	</vbox>
+	</groupbox>
+</dialog>

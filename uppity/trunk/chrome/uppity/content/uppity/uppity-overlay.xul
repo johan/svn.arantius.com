@@ -1,28 +1,32 @@
 <?xml version="1.0"?>
 <?xml-stylesheet href="chrome://uppity/skin/uppity-overlay.css" type="text/css"?> 
+<overlay id="uppity-overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
-<overlay id="uppityOverlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-
-<script type="application/x-javascript" src="chrome://uppity/content/uppity-overlay.js"></script>
-
-<!--
-<popup id="contentAreaContextMenu">
-  <menuitem id="uppity-command-context" label="Hello, world!" accesskey="H" 
-	  insertafter="context-stop" oncommand="hello();"/>
-</popup>
-
-
-<menupopup id="menu_ToolsPopup">
-	<menuitem insertafter="devToolsSeparator" label="Hello, world!"
-		accesskey="H" oncommand="hello();" />	
-</menupopup>
--->
+<script type="application/x-javascript" src="chrome://uppity/content/uppity.js"></script>
 
 <toolbarpalette id="BrowserToolbarPalette">
-	<toolbarbutton id="tb-uppity" oncommand="uppity()" 
+	<toolbarbutton id="tb-uppity" oncommand="uppity.goUp()" 
 		class="toolbarbutton-1"
-		label="Uppity" tooltiptext="Go Up 1 Level"/>
-	<!--	label="&vnkButton.label;" tooltiptext="&vnkButton.label;"/> -->
+		label="Uppity" tooltiptext="Go Up 1 Level"
+	/>
 </toolbarpalette>
+
+<statusbar id="status-bar">
+	<statusbarpanel id="status-bar-uppity" insertafter="livemark-button">
+		<image id="status-bar-uppity-image" width="16" height="16"
+			src="chrome://uppity/skin/sb-icon.png"
+			onclick="uppity.goUp();"
+		/>
+	</statusbarpanel>
+</statusbar>
+
+<script type="application/x-javascript">
+<![CDATA[
+window.addEventListener("load", function() {
+var sb=document.getElementById('status-bar-uppity');
+//sb.style.display='none';
+}, false); // end window.addEventListener("load"...)
+]]>
+</script>
 
 </overlay>

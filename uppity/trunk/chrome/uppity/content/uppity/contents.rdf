@@ -18,7 +18,7 @@
 	</RDF:Seq>
 
 	<RDF:Description RDF:about="urn:mozilla:package:uppity"
-		chrome:displayName="Uppity 0.0.1"
+		chrome:displayName="Uppity"
 		chrome:author=""
 		chrome:authorURL=""
 		chrome:name="uppity"
