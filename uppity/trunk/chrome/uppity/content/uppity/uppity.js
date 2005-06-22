@@ -88,7 +88,7 @@ showDropDown:function(e) {
 
 	//create new entries
 	var URLs=this.getURLs(), m;
-	if (0==URLs.length) return false;
+	if (0==URLs.length) return;// false;
 	for (var i=0; i<URLs.length; i++) {
 		m=document.createElement("menuitem");
 		m.setAttribute('label', URLs[i]);
@@ -96,6 +96,7 @@ showDropDown:function(e) {
 		m.setAttribute('value', i);
 		box.appendChild(m);
 	}
+	//return true;
 },
 
 getURLs:function() {
@@ -140,4 +141,51 @@ getURLs:function() {
 	return URLs;
 },
 
+/*
+setDisabled:function() {
+	var URLs=uppity.getURLs();
+	document.getElementById('uppity-caster').disabled=(0==URLs.length);
+},
+*/
 }//close var uppity
+
+window.addEventListener('load', function() {
+//turn on/off status bar button
+uppity.setSBButtonVis();
+
+/*
+//set listener for disabling buttons
+var uppityListener={
+//the actual work
+onLocationChange:function(aProgress, aRequest, aURI) {
+	var URLs=uppity.getURLs();
+	var cmd=document.getElementById('uppity-goUp-command');
+	if (cmd) {
+		cmd.disabled=(0==URLs.length?'true':'false');
+		dump(cmd.disabled);
+	}
+},
+
+//the junk to get the interface right
+QueryInterface: function(aIID) {
+	if (aIID.equals(Components.interfaces.nsIWebProgressListener) ||
+		aIID.equals(Components.interfaces.nsISupportsWeakReference) ||
+		aIID.equals(Components.interfaces.nsISupports)
+	) return this;
+	throw Components.results.NS_NOINTERFACE;
+},
+onStateChange:function() { return 0; },
+onProgressChange:function() { return 0; },
+onStatusChange:function() { return 0; },
+onSecurityChange:function() { return 0; },
+onLinkIconAvailable:function() { return 0; },
+}//close var uppityListener
+
+//register the listener
+gBrowser.addProgressListener(
+	uppityListener, 
+	Components.interfaces.nsIWebProgress.NOTIFY_STATE_DOCUMENT
+);
+*/
+
+}, false); // end window.addEventListener('load'...)

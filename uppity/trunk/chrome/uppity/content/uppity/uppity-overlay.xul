@@ -4,12 +4,19 @@
 
 <script type='application/x-javascript' src='chrome://uppity/content/uppity.js'></script>
 
+<!--
+<commandset id='mainCommandSet'>
+	<command id='uppity-goUp-command' oncommand='uppity.goUp()' disabled='false' />
+</commandset>
+-->
+
 <toolbarpalette id='BrowserToolbarPalette'>
 	<toolbarbutton id='tb-uppity' 
 		type="menu-button" 
 		class="toolbarbutton-1 chromeclass-toolbar-additional"
-		oncommand='uppity.goUp()' 
-		label='Uppity' tooltiptext='Go Up One Level'
+		oncommand="uppity.goUp(); event.preventBubble();"
+		label='Uppity'
+		tooltiptext='Go Up One Level'
 	>
 		<menupopup context=""
 			onpopupshowing="return uppity.showDropDown(event);"
@@ -19,10 +26,12 @@
 </toolbarpalette>
 
 <statusbar id='status-bar'>
-	<statusbarpanel id='status-bar-uppity' insertafter='livemark-button'>
+	<statusbarpanel id='status-bar-uppity' insertafter='livemark-button'
+		style='display: none;'
+	>
 		<image id='status-bar-uppity-image' width='16' height='16'
 			src='chrome://uppity/skin/sb-icon.png'
-			oncommand='uppity.goUp();'
+			onclick="uppity.goUp(); event.preventBubble();"
 			context='status-bar-uppity-context'
 		/>
 	</statusbarpanel>
@@ -40,13 +49,5 @@
 		oncommand='uppity.goUp();'
 	/>
 </keyset>
-
-<script type='application/x-javascript'>
-<![CDATA[
-window.addEventListener('load', function() {
-uppity.setSBButtonVis();
-}, false); // end window.addEventListener('load'...)
-]]>
-</script>
 
 </overlay>
