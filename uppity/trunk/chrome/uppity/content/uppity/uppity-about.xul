@@ -23,9 +23,11 @@
 		<text value="Home Page" class="url"
 			onclick="window.open('http://www.arantius.com/topic/arantius/firefox+extensions/'); window.close();"/>
 		<separator class="thin"/>
+		<text value="Graphics By:" style="font-weight: bold;"/>
+		<text value="Lee Netherton" />
 	</vbox>
-	<spring flex="11" style='padding-left: 20px;' />
-		<image src="chrome://uppity/skin/em-icon.png"/>
+	<spring flex="11" />
+		<image src="chrome://uppity/skin/em-icon.png" style='padding: 0 10px 0 20px;' />
 	</groupbox>
 
 	<hbox>
