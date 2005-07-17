@@ -1,9 +1,10 @@
 <?xml version="1.0"?>
+<!DOCTYPE window SYSTEM "chrome://uppity/locale/uppity.dtd">
 <?xml-stylesheet href="chrome://browser/skin/" type="text/css"?>
 
-<dialog id="mpwgen-options"
+<dialog id="uppity-options"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-	title="Uppity - Options"
+	title="&uppity.options;"
 	buttons="accept, cancel"
 	onload="uppity.loadOptions();"
 	ondialogaccept="uppity.saveOptions();"
@@ -15,7 +16,7 @@
 	<vbox>
 		<text value="Uppity" style="font-weight: bold; font-size: x-large;" />
 		<separator class="thin" />
-		<checkbox id='uppity-sb-icon' label='Button on status bar' checked='false' />
+		<checkbox id='uppity-sb-icon' label='&uppity.buttononbar;' checked='false' />
 	</vbox>
 	</groupbox>
 </dialog>
