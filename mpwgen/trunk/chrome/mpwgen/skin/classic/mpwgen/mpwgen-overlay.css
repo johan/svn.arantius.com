@@ -1,0 +1,6 @@
+#tb-mpwgen {
+  list-style-image: url("chrome://mpwgen/skin/tb-icon-large.png");
+}
+toolbar[iconsize="small"] #tb-mpwgen {
+  list-style-image: url("chrome://mpwgen/skin/tb-icon-small.png");
+}

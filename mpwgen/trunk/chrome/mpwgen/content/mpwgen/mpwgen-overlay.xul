@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://mpwgen/skin/mpwgen-overlay.css" type="text/css"?> 
+<overlay id="mpwgenOverlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+<script type="application/x-javascript" src="chrome://mpwgen/content/mpwgen.js"></script>
+
+<toolbarpalette id="BrowserToolbarPalette">
+	<toolbarbutton id="tb-mpwgen" oncommand="mpwgen.run()" 
+		class="toolbarbutton-1"
+		label="Magic Password" tooltiptext="Magic Password"
+	/>
+</toolbarpalette>
+
+</overlay>
