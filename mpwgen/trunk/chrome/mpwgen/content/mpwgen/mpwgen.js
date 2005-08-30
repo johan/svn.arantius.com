@@ -40,7 +40,7 @@ fillwindow:function(master, win) {
 		var els=win.document.getElementsByTagName('input');
 
 		for (j=0;j<els.length;j++) {
-			dump('El: '+els[j]+' '+els[j].name+'\n');
+			//dump('El: '+els[j]+' '+els[j].name+'\n');
 			if ( 'password'==String(els[j].type) || 'password'==String(els[j].name).toLowerCase() ) {
 				els[j].value=pass;
 				els[j].focus()
@@ -51,12 +51,14 @@ fillwindow:function(master, win) {
 				var txt='';
 				try {
 					var k=0, txtEl=els[j];
-					while (''==txtEl.textContent) {
+					while (true) {
 						txtEl=txtEl.parentNode;
-						if (k++>3) break;
+						if (k++>2) break; //this number is hard to tweak
+						if ('TR'==txtEl.tagName) break;
 					}
 					txt=txtEl.textContent;
 				} catch (e2) { this.dumpErr(e2) }
+				/**/
 				dump(els[j].name+' "'+txt+'" is email:\n'+
 					els[j].name.match(/e-?mail/i) 
 					+' '+els[j].value.match(/e-?mail/i) 
@@ -64,6 +66,7 @@ fillwindow:function(master, win) {
 					+' '+txt.match(/^([0-9a-zA-Z]+[-._+&])*[0-9a-zA-Z]+@([-0-9a-zA-Z]+[.])+[a-zA-Z]{2,6}$/)
 					+'\n'
 				);
+				/**/
 				if ( els[j].name.match(/e-?mail/i) || els[j].value.match(/e-?mail/i) 
 					|| txt.match(/e-?mail/i) 
 					//this expression came from: http://www.regexlib.com/REDetails.aspx?regexp_id=1012
