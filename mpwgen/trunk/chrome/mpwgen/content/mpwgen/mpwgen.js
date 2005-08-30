@@ -58,7 +58,7 @@ fillwindow:function(master, win) {
 					}
 					txt=txtEl.textContent;
 				} catch (e2) { this.dumpErr(e2) }
-				/**/
+				/*
 				dump(els[j].name+' "'+txt+'" is email:\n'+
 					els[j].name.match(/e-?mail/i) 
 					+' '+els[j].value.match(/e-?mail/i) 
