@@ -1,5 +1,4 @@
 #!/bin/sh
-rm -f mpwgen.xpi
-zip -9 mpwgen.xpi \
-  install.rdf \
-  `find chrome -type d -name .svn -prune -false -o -true -a -not -name '.svn'`
+rm -f uppity.xpi
+zip -9 uppity.xpi \
+  `find . -type d -name .svn -prune -false -o -true -a -not -name '.svn'`
