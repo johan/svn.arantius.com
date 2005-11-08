@@ -3,7 +3,7 @@
 	<Description about="urn:mozilla:install-manifest">
 		<em:id>{16cbd87c-eb99-4f5c-9825-83cf13ab7ff8}</em:id>
 		<em:name>Uppity</em:name>
-		<em:version>1.3</em:version>
+		<em:version>1.4</em:version>
 		<em:description>Navigate up one level (directory).</em:description>
 		<em:creator>Anthony Lieuallen</em:creator>
 		<em:homepageURL>http://www.arantius.com/article/arantius/uppity/</em:homepageURL>
@@ -12,20 +12,11 @@
 		<em:aboutURL>chrome://uppity/content/uppity-about.xul</em:aboutURL>
 		<em:optionsURL>chrome://uppity/content/uppity-options.xul</em:optionsURL>
 
-		<em:file>
-			<Description about="urn:mozilla:extension:file:uppity">
-				<em:package>content/uppity/</em:package>
-				<em:skin>skin/classic/uppity/</em:skin>
-				<em:locale>locale/en-US/uppity/</em:locale>
-				<em:locale>locale/fr/uppity/</em:locale>
-			</Description>
-		</em:file>
-
 		<em:targetApplication>
 			<Description>
 				<em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
-				<em:minVersion>1.0</em:minVersion>
-				<em:maxVersion>1.0+</em:maxVersion>
+				<em:minVersion>1.5</em:minVersion>
+				<em:maxVersion>1.5+</em:maxVersion>
 			</Description>
 		</em:targetApplication>
 	</Description>
