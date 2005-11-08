@@ -1,5 +1,5 @@
 <?xml version='1.0'?>
-<!DOCTYPE overlay SYSTEM "chrome://uppity/locale/uppity.dtd">
+<!DOCTYPE overlay SYSTEM "chrome://uppity/locale/overlay.dtd">
 <?xml-stylesheet href='chrome://uppity/skin/uppity-overlay.css' type='text/css'?> 
 <overlay id='uppity-overlay' xmlns='http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'>
 

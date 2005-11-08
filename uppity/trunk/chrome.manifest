@@ -5,4 +5,4 @@ skin	uppity	classic/1.0	skin/
 style	chrome://global/content/customizeToolbar.xul	chrome://uppity/skin/uppity-overlay.css
 
 locale	uppity	en-US	locale/en-US/
-locale	uppity	en-US	locale/fr/
+locale	uppity	fr	locale/fr/
