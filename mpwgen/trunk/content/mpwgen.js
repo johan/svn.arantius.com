@@ -43,7 +43,12 @@ fillwindow:function(master, win) {
 			//dump('El: '+els[j]+' '+els[j].name+'\n');
 			if ( 'password'==String(els[j].type) || 'password'==String(els[j].name).toLowerCase() ) {
 				els[j].value=pass;
-				els[j].focus()
+				els[j].focus();
+				//for any password field, disable autocomplete on it's form
+				if (this.getPref('bool', 'mpwgen.autoCompOff')) {
+					dump(els[j]);
+					els[j].form.setAttribute('autocomplete', 'off');
+				}
 			} else if ('text'==els[j].type) {
 				//try to find the text around this input, it might hint
 				//that this is for an email address even if it is
@@ -113,6 +118,7 @@ loadOptions:function() {
 	try {
 	window.document.getElementById('mpwgen-username').value=this.getPref('string', 'mpwgen.username');
 	window.document.getElementById('mpwgen-email').value=this.getPref('string', 'mpwgen.email');
+	window.document.getElementById('mpwgen-autoCompOff').checked=this.getPref('bool', 'mpwgen.autoCompOff');
 	} catch (e) { this.dumpErr(e) }
 	return true;
 },
@@ -121,6 +127,7 @@ saveOptions:function() {
 	try {
 	this.setPref('string', 'mpwgen.username', window.document.getElementById('mpwgen-username').value);
 	this.setPref('string', 'mpwgen.email', window.document.getElementById('mpwgen-email').value);
+	this.setPref('bool', 'mpwgen.autoCompOff', window.document.getElementById('mpwgen-autoCompOff').checked);
 	} catch (e) { this.dumpErr(e) }
 	return true;
 },
