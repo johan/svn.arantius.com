@@ -6,4 +6,3 @@ skin	tabcontrol	classic/1.0	skin/
 style	chrome://global/content/customizeToolbar.xul	chrome://tabcontrol/skin/tabcontrol-overlay.css
 
 locale	tabcontrol	en-US	locale/en-US/
-locale	tabcontrol	fr	locale/fr/
