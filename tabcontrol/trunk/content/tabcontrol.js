@@ -30,10 +30,10 @@ onTabAdd:function(aEvent) {
 
 removeTab:function(aTab) {
 	var tabToSelect=null;
-	var focusMode=gTabControl.getPref('int', 'extensions.tabcontrol.focusTab', 0);
+	var focusLeft=gTabControl.getPref('bool', 'tabcontrol.focusLeftOnClose', true);
 
 	//if we're set to, focus left tab
-	if (0==focusMode && aTab._tPos>0) {
+	if (focusLeft && aTab._tPos>0) {
 		tabToSelect=gBrowser.mTabContainer.childNodes[aTab._tPos-1];
 	}
 
@@ -81,16 +81,16 @@ setPref:function(aType, aName, aValue) {
 
 loadOptions:function() {
 	try {
-		window.document.getElementById('focusTab').selectedIndex=
-			gTabControl.getPref('int', 'extensions.tabcontrol.focusTab', 0);
+		window.document.getElementById('focusLeftOnClose').checked=
+			gTabControl.getPref('bool', 'tabcontrol.focusLeftOnClose', true);
 	} catch (e) {  }
 	return true;
 },
 
 saveOptions:function() {
 	try {
-		gTabControl.setPref('int', 'extensions.tabcontrol.focusTab',
-			window.document.getElementById('focusTab').selectedIndex
+		gTabControl.setPref('bool', 'tabcontrol.focusLeftOnClose',
+			window.document.getElementById('focusLeftOnClose').checked
 		);		
 	} catch (e) {  }
 	return true;

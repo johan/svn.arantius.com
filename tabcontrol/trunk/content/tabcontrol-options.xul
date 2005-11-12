@@ -17,23 +17,10 @@
 		<text value="Tab Control" style="font-weight: bold; font-size: x-large;" />
 		<separator class="thin" />
 
-		<row>
-			<hbox align="center" pack="end">
-				<label value="&focusTab.labelBegin;" control="focusTab"/>
-			</hbox>
-			<menulist id="focusTab" prefstring="extensions.tabcontrol.focusTab">
-				<menupopup>
-					<menuitem value="0" label="&focusTab.left;"/>
-					<menuitem value="1" label="&focusTab.right;"/>
-					<!--
-					<menuitem value="2" label="&focusTab.lastSelected;"/>
-					-->
-				</menupopup>
-			</menulist>
-			<hbox align="center" pack="end">
-				<label value="&focusTab.labelEnd;" control="focusTab"/>
-			</hbox>
-		</row>
+		<checkbox id='focusLeftOnClose' prefstring='tabcontrol.focusLeftOnClose'
+			label='Focus left tab when closing current tab'
+		/>
+		<separator class="thin" />
 
 	</vbox>
 	</groupbox>
