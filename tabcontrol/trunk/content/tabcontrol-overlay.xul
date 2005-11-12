@@ -9,7 +9,7 @@
 <toolbarpalette id='BrowserToolbarPalette'>
 	<toolbarbutton id='tb-tabcontrol' 
 		class="toolbarbutton-1"
-		oncommand="tabcontrol.test();"
+		oncommand="gTabControl.test();"
 		label='Tab Control'
 		tooltiptext='Tab Control'
 	/>
