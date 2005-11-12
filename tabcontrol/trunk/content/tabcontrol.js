@@ -25,6 +25,9 @@ onLoad:function() {
 	if ( gTabControl.getPref('bool', 'tabcontrol.doNotCloseWinOnHotkey', true) ) {
 		BrowserCloseTabOrWindow=gTabControl.BrowserCloseTabOrWindow;
 	}
+
+	//initial tab max width
+	gBrowser.mTabContainer.firstChild.maxWidth=350
 },
 
 onUnLoad:function() {
@@ -51,6 +54,9 @@ addTab:function(aURI, aReferrerURI, aCharset, aPostData) {
 	if (!gTabControl.getPref('bool', 'browser.tabs.loadInBackground', false)) {
 		gTabControl.selectTab(newTab);
 	}
+
+	//tab max width
+	newTab.maxWidth=350;
 },
 
 removeTab:function(aTab) {
