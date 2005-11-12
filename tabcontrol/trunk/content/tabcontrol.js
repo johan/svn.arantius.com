@@ -17,9 +17,9 @@ onLoad:function() {
 	gBrowser.origRemoveTab=gBrowser.removeTab;
 	gBrowser.removeTab=gTabControl.removeTab;
 
-	//mangle loadOneTab function
-	gBrowser.origLoadOneTab=gBrowser.loadOneTab;
-	gBrowser.loadOneTab=gTabControl.loadOneTab;
+	//mangle addTab function
+	gBrowser.origAddTab=gBrowser.addTab;
+	gBrowser.addTab=gTabControl.addTab;
 },
 
 onUnLoad:function() {
@@ -30,17 +30,23 @@ onUnLoad:function() {
 
 /****************************** TAB MANIPULATION *****************************/
 
-loadOneTab:function(aURI, aReferrerURI, aCharset, aPostData) {
+addTab:function(aURI, aReferrerURI, aCharset, aPostData) {
 	var posRight=gTabControl.getPref('bool', 'tabcontrol.posRightOnAdd', true);
 	var currTab=gBrowser.mCurrentTab;
 
 	//call the browser's real add tab function
-	var newTab=gBrowser.origLoadOneTab(aURI, aReferrerURI, aCharset, aPostData);
+	var newTab=gBrowser.origAddTab(aURI, aReferrerURI, aCharset, aPostData);
 
 	//shift the new tab into position
 	if (posRight && newTab.tPos!=currTab._tPos+1) {
 		gBrowser.moveTabTo(newTab, currTab._tPos+1);
 	}
+
+	//replicate broken focus-new-tab functionality
+	if (!gTabControl.getPref('bool', 'browser.tabs.loadInBackground', false)) {
+		gTabControl.selectTab(newTab);
+	}
+
 },
 
 removeTab:function(aTab) {
