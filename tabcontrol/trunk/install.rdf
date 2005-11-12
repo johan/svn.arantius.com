@@ -5,15 +5,17 @@
 		<em:name>Tab Control</em:name>
 		<em:version>0.1</em:version>
 		
-		<em:description>Take control of your tabs!</em:description>
 		<em:creator>Anthony Lieuallen</em:creator>
-		<em:homepageURL></em:homepageURL>
+		<em:homepageURL>http://www.arantius.com/article/arantius/tab+control/</em:homepageURL>
+		<em:description>Take control of your tabs!</em:description>
+		<em:contributor>Based on Tab Mix Plus</em:contributor>
+
 		<em:iconURL>chrome://tabcontrol/skin/em-icon.png</em:iconURL>
+		<em:optionsURL>chrome://tabcontrol/content/tabcontrol-options.xul</em:optionsURL>
 
 		<!--
 		<em:updateURL>http://www.arantius.com/misc/firefox-extensions/mine/updates.rdf</em:updateURL>
 		<em:aboutURL>chrome://tabcontrol/content/tabcontrol-about.xul</em:aboutURL>
-		<em:optionsURL>chrome://tabcontrol/content/tabcontrol-options.xul</em:optionsURL>
 		-->
 
 		<em:targetApplication>

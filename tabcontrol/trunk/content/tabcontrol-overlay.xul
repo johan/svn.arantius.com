@@ -3,6 +3,7 @@
 <?xml-stylesheet href='chrome://tabcontrol/skin/tabcontrol-overlay.css' type='text/css'?> 
 <overlay id='tabcontrol-overlay' xmlns='http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'>
 
+<script type='application/x-javascript' src='chrome://tabcontrol/content/tabcontrol-flst.js'></script>
 <script type='application/x-javascript' src='chrome://tabcontrol/content/tabcontrol.js'></script>
 
 <toolbarpalette id='BrowserToolbarPalette'>

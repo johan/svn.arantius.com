@@ -1,0 +1,7 @@
+<!ENTITY  focusTab.labelBegin          "When closing a tab focus:">
+<!ENTITY  focusTab.first               "first">
+<!ENTITY  focusTab.right               "right">
+<!ENTITY  focusTab.left                "left">
+<!ENTITY  focusTab.last                "last">
+<!ENTITY  focusTab.lastSelected        "last selected">
+<!ENTITY  focusTab.labelEnd            "tab">
