@@ -16,6 +16,10 @@ onLoad:function() {
 	//mangle removeTab function
 	gBrowser.origRemoveTab=gBrowser.removeTab;
 	gBrowser.removeTab=gTabControl.removeTab;
+
+	//mangle loadOneTab function
+	gBrowser.origLoadOneTab=gBrowser.loadOneTab;
+	gBrowser.loadOneTab=gTabControl.loadOneTab;
 },
 
 onUnLoad:function() {
@@ -24,15 +28,26 @@ onUnLoad:function() {
 	window.removeEventListener('unload', gTabControl.onUnLoad, false);
 },
 
-onTabAdd:function(aEvent) {
-	//eventually rearrange order here
+/****************************** TAB MANIPULATION *****************************/
+
+loadOneTab:function(aURI, aReferrerURI, aCharset, aPostData) {
+	var posRight=gTabControl.getPref('bool', 'tabcontrol.posRightOnAdd', true);
+	var currTab=gBrowser.mCurrentTab;
+
+	//call the browser's real add tab function
+	var newTab=gBrowser.origLoadOneTab(aURI, aReferrerURI, aCharset, aPostData);
+
+	//shift the new tab into position
+	if (posRight && newTab.tPos!=currTab._tPos+1) {
+		gBrowser.moveTabTo(newTab, currTab._tPos+1);
+	}
 },
 
 removeTab:function(aTab) {
 	var tabToSelect=null;
 	var focusLeft=gTabControl.getPref('bool', 'tabcontrol.focusLeftOnClose', true);
 
-	//if we're set to, focus left tab
+	//if we're configured to, get set to focus left tab
 	if (focusLeft && aTab._tPos>0) {
 		tabToSelect=gBrowser.mTabContainer.childNodes[aTab._tPos-1];
 	}
@@ -44,8 +59,12 @@ removeTab:function(aTab) {
 	if (null==tabToSelect) return;
 	
 	//set focus to the tab that we want
+	gTabControl.selectTab(tabToSelect);
+},
+
+selectTab:function(aTab) {
 	with (gBrowser) {
-		selectedTab=tabToSelect;
+		selectedTab=aTab;
 		mTabBox.selectedPanel=getBrowserForTab(mCurrentTab).parentNode;
 		mCurrentTab.selected = true;
 		updateCurrentBrowser();
@@ -83,15 +102,20 @@ loadOptions:function() {
 	try {
 		window.document.getElementById('focusLeftOnClose').checked=
 			gTabControl.getPref('bool', 'tabcontrol.focusLeftOnClose', true);
+		window.document.getElementById('posRightOnAdd').checked=
+			gTabControl.getPref('bool', 'tabcontrol.posRightOnAdd', true);
 	} catch (e) {  }
 	return true;
 },
 
 saveOptions:function() {
 	try {
-		gTabControl.setPref('bool', 'tabcontrol.focusLeftOnClose',
-			window.document.getElementById('focusLeftOnClose').checked
-		);		
+		gTabControl.setPref('bool', 'tabcontrol.posRightOnAdd',
+			window.document.getElementById('posRightOnAdd').checked
+		);
+		gTabControl.setPref('bool', 'tabcontrol.posRightOnAdd',
+			window.document.getElementById('posRightOnAdd').checked
+		);
 	} catch (e) {  }
 	return true;
 },

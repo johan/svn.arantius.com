@@ -8,7 +8,7 @@
 		<em:creator>Anthony Lieuallen</em:creator>
 		<em:homepageURL>http://www.arantius.com/article/arantius/tab+control/</em:homepageURL>
 		<em:description>Take control of your tabs!</em:description>
-		<em:contributor>Based on Tab Mix Plus</em:contributor>
+		<em:contributor>Based loosely on Tab Mix Plus</em:contributor>
 
 		<em:iconURL>chrome://tabcontrol/skin/em-icon.png</em:iconURL>
 		<em:optionsURL>chrome://tabcontrol/content/tabcontrol-options.xul</em:optionsURL>

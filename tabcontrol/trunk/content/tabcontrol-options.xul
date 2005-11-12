@@ -22,6 +22,11 @@
 		/>
 		<separator class="thin" />
 
+		<checkbox id='posRightOnAdd' prefstring='tabcontrol.posRightOnAdd'
+			label='Position new tabs to right of current tab'
+		/>
+		<separator class="thin" />
+
 	</vbox>
 	</groupbox>
 </dialog>
