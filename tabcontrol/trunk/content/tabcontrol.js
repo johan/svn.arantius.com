@@ -3,8 +3,6 @@ var gTabControl={
 
 prefObj: Components.classes['@mozilla.org/preferences-service;1']
 		.getService(Components.interfaces.nsIPrefBranch),
-//initialized onload
-tabCont: null, 
 
 /****************************** EVENT LISTENERS ******************************/
 
@@ -12,46 +10,45 @@ onLoad:function() {
 	//in options window, no getbrowser...
 	if ('undefined'==typeof getBrowser) return;
 
-	gTabControl.tabCont=getBrowser().mTabContainer;
-
 	//attach other listeners
 	window.addEventListener('unload', gTabControl.onUnLoad, false);
-	gTabControl.tabCont.addEventListener('DOMNodeInserted', gTabControl.onTabAdd, false);
-	gTabControl.tabCont.addEventListener('DOMNodeRemoved', gTabControl.onTabClose, false);
+
+	//mangle removeTab function
+	gBrowser.origRemoveTab=gBrowser.removeTab;
+	gBrowser.removeTab=gTabControl.removeTab;
 },
 
 onUnLoad:function() {
 	//remove our listeners
 	window.removeEventListener('load', gTabControl.onLoad, false);
 	window.removeEventListener('unload', gTabControl.onUnLoad, false);
-	gTabControl.tabCont.removeEventListener('DOMNodeInserted', gTabControl.onTabAdd, false);
-	gTabControl.tabCont.removeEventListener('DOMNodeRemoved', gTabControl.onTabClose, false);
 },
 
-//this function traps the case where we are adding a new tab
-//if prefs set to do so, then we move the new tab into a new place
 onTabAdd:function(aEvent) {
 	//eventually rearrange order here
 },
 
-//this function traps the case where we are closing the current tab
-//and sets the proper new selected tab
-onTabClose:function(aEvent) {
-	var tab=aEvent.target;
-
-	if (getBrowser().mCurrentTab._tPos!=tab._tPos) {
-		//whichever tab we removed was not the currently 
-		//selected one so no special case
-		return;
-	}
-
-	//for (i in tab) try { dump(i+'\t'+tab[i]+'\n'); }catch(e){}
+removeTab:function(aTab) {
+	var tabToSelect=null;
+	var focusMode=gTabControl.getPref('int', 'extensions.tabcontrol.focusTab', 0);
 
 	//if we're set to, focus left tab
-	if (0==gTabControl.getPref('int', 'extensions.tabcontrol.focusTab', 0)) {
-		//if we're closing the first tab, there is no left tab
-		if (0==tab._tPos) return;
-		window.getBrowser().selectedTab=gTabControl.tabCont.childNodes[tab._tPos-1];
+	if (0==focusMode && aTab._tPos>0) {
+		tabToSelect=gBrowser.mTabContainer.childNodes[aTab._tPos-1];
+	}
+
+	//call the browser's real remove tab function
+	gBrowser.origRemoveTab(aTab);
+
+	//skip the rest if we don't need to focus a custom tab
+	if (null==tabToSelect) return;
+	
+	//set focus to the tab that we want
+	with (gBrowser) {
+		selectedTab=tabToSelect;
+		mTabBox.selectedPanel=getBrowserForTab(mCurrentTab).parentNode;
+		mCurrentTab.selected = true;
+		updateCurrentBrowser();
 	}
 },
 
@@ -102,7 +99,7 @@ saveOptions:function() {
 /********************************* DEBUGGING *********************************/
 
 test:function() {
-	alert('tabcontrol test!\n'+this.tabCont);
+	alert('tabcontrol test!\n');
 },
 
 dumpErr:function(e) {
