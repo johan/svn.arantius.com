@@ -20,6 +20,11 @@ onLoad:function() {
 	//mangle addTab function
 	gBrowser.origAddTab=gBrowser.addTab;
 	gBrowser.addTab=gTabControl.addTab;
+
+	//conditionally mangle BrowserCloseTabOrWindow function
+	if ( gTabControl.getPref('bool', 'tabcontrol.doNotCloseWinOnHotkey', true) ) {
+		BrowserCloseTabOrWindow=gTabControl.BrowserCloseTabOrWindow;
+	}
 },
 
 onUnLoad:function() {
@@ -46,7 +51,6 @@ addTab:function(aURI, aReferrerURI, aCharset, aPostData) {
 	if (!gTabControl.getPref('bool', 'browser.tabs.loadInBackground', false)) {
 		gTabControl.selectTab(newTab);
 	}
-
 },
 
 removeTab:function(aTab) {
@@ -74,6 +78,16 @@ selectTab:function(aTab) {
 		mTabBox.selectedPanel=getBrowserForTab(mCurrentTab).parentNode;
 		mCurrentTab.selected = true;
 		updateCurrentBrowser();
+	}
+},
+
+BrowserCloseTabOrWindow:function() {
+	//NOPE!  only close tabs
+	if (gBrowser.localName == 'tabbrowser' && 
+		gBrowser.tabContainer.childNodes.length > 1
+	) {
+		gBrowser.removeCurrentTab();
+		return;
 	}
 },
 
@@ -106,22 +120,25 @@ setPref:function(aType, aName, aValue) {
 
 loadOptions:function() {
 	try {
-		window.document.getElementById('focusLeftOnClose').checked=
-			gTabControl.getPref('bool', 'tabcontrol.focusLeftOnClose', true);
-		window.document.getElementById('posRightOnAdd').checked=
-			gTabControl.getPref('bool', 'tabcontrol.posRightOnAdd', true);
+		var checks=window.document.getElementsByTagName('checkbox');
+		for (i in checks) {
+			checks[i].checked=gTabControl.getPref('bool',
+				'tabcontrol.'+checks[i].getAttribute('id'), true
+			);
+		}
 	} catch (e) {  }
 	return true;
 },
 
 saveOptions:function() {
 	try {
-		gTabControl.setPref('bool', 'tabcontrol.posRightOnAdd',
-			window.document.getElementById('posRightOnAdd').checked
-		);
-		gTabControl.setPref('bool', 'tabcontrol.posRightOnAdd',
-			window.document.getElementById('posRightOnAdd').checked
-		);
+		var checks=window.document.getElementsByTagName('checkbox');
+		for (i in checks) {
+			gTabControl.setPref('bool',
+				'tabcontrol.'+checks[i].getAttribute('id'), 
+				checks[i].checked
+			);
+		}
 	} catch (e) {  }
 	return true;
 },

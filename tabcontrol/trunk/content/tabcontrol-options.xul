@@ -27,6 +27,11 @@
 		/>
 		<separator class="thin" />
 
+		<checkbox id='doNotCloseWinOnHotkey' prefstring='tabcontrol.doNotCloseWinOnHotkey'
+			label='Do not close window with close tab hotkey'
+		/>
+		<separator class="thin" />
+
 	</vbox>
 	</groupbox>
 </dialog>
