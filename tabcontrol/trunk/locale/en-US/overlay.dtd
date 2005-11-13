@@ -11,6 +11,9 @@
 <!ENTITY divertedWindowOpen.some      "Allow resized popups open in new window">
 <!ENTITY divertedWindowOpen.none      "Allow all popups open in new window">
 
+<!ENTITY duplicateTabMenu.label       "Duplicate Tab">
+<!ENTITY duplicateTabMenu.accesskey   "D">
+
 <!ENTITY tabcontrol.options       "Tab Control Options">
 <!ENTITY tabcontrol.focusLeft     "Focus left tab when closing current tab">
 <!ENTITY tabcontrol.posRight      "Position new tabs to right of current tab">

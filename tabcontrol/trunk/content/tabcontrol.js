@@ -31,6 +31,19 @@ onLoad:function() {
 		gTabControl.getPref('int', 'tabcontrol.tabMinWidth');
 	gBrowser.mTabContainer.firstChild.maxWidth=
 		gTabControl.getPref('int', 'tabcontrol.tabMaxWidth');
+
+	//insert item to duplicate tab
+	var duplicateTabItem=document.createElement('menuitem');
+	// =( no entities in JS ..
+	//duplicateTabItem.setAttribute('label', '&duplicateTabMenu.label;');
+	//duplicateTabItem.setAttribute('accesskey', '&duplicateTabMenu.acceskey;');
+	duplicateTabItem.setAttribute('label', 'Duplicate Tab');
+	duplicateTabItem.setAttribute('accesskey', 'D');
+	duplicateTabItem.setAttribute('oncommand', 'gTabControl.duplicateTab(this);');
+	
+	var tabMenu=document
+		.getAnonymousElementByAttribute(gBrowser, 'anonid', 'tabContextMenu');
+	tabMenu.insertBefore(duplicateTabItem, tabMenu.firstChild);
 },
 
 onUnLoad:function() {
@@ -101,6 +114,25 @@ BrowserCloseTabOrWindow:function() {
 		gBrowser.removeCurrentTab();
 		return;
 	}
+},
+
+duplicateTab:function(aTab) {
+	if (aTab.localName!="tab") aTab=gBrowser.mCurrentTab;
+	var originalHistory=gBrowser.getBrowserForTab(aTab)
+		.webNavigation.sessionHistory;
+	
+	var newTab=gBrowser.addTab();
+	var newHistory=gBrowser.getBrowserForTab(newTab)
+		.webNavigation.sessionHistory;
+	newHistory.QueryInterface(Components.interfaces.nsISHistoryInternal);
+
+	if (newHistory.count>0) newHistory.PurgeHistory(newHistory.count);
+
+	for (var i=0; i<originalHistory.count; i++) {
+		newHistory.addEntry(originalHistory.getEntryAtIndex(i, false), true);
+	}
+	gBrowser.getBrowserForTab(newTab)
+		.webNavigation.gotoIndex(originalHistory.index);
 },
 
 /******************************** PREFERENCES ********************************/
