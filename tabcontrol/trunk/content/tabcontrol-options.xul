@@ -4,7 +4,7 @@
 
 <dialog id="tabcontrol-options"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-	title="Tab Control Options"
+	title="&tabcontrol.options;"
 	buttons="accept, cancel"
 	onload="gTabControl.loadOptions();"
 	ondialogaccept="gTabControl.saveOptions();"
@@ -18,17 +18,17 @@
 		<separator class="thin" />
 
 		<checkbox id='focusLeftOnClose' prefstring='tabcontrol.focusLeftOnClose'
-			label='Focus left tab when closing current tab'
+			label='&tabcontrol.focusLeft;'
 		/>
 		<separator class="thin" />
 
 		<checkbox id='posRightOnAdd' prefstring='tabcontrol.posRightOnAdd'
-			label='Position new tabs to right of current tab'
+			label='&tabcontrol.posRight;'
 		/>
 		<separator class="thin" />
 
 		<checkbox id='doNotCloseWinOnHotkey' prefstring='tabcontrol.doNotCloseWinOnHotkey'
-			label='Do not close window with close tab hotkey'
+			label='&tabcontrol.noCloseHotkey;'
 		/>
 		<separator class="thin" />
 
@@ -45,12 +45,12 @@
 		<separator class='thin' />
 
 		<hbox align='center'>
-			<label value='Tab width:' />
+			<label value='&tabcontrol.tabWidth;:' />
 
-			<label value='Min:' />
+			<label value='&tabcontrol.min;:' />
 			<textbox size='4' prefstring='tabcontrol.tabMinWidth' preftype='int' />
 
-			<label value='Max:' />
+			<label value='&tabcontrol.max;:' />
 			<textbox size='4' prefstring='tabcontrol.tabMaxWidth' preftype='int' />
 		</hbox>
 		<separator class='thin' />

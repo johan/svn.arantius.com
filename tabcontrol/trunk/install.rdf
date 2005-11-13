@@ -13,11 +13,6 @@
 		<em:iconURL>chrome://tabcontrol/skin/em-icon.png</em:iconURL>
 		<em:optionsURL>chrome://tabcontrol/content/tabcontrol-options.xul</em:optionsURL>
 
-		<!--
-		<em:updateURL>http://www.arantius.com/misc/firefox-extensions/mine/updates.rdf</em:updateURL>
-		<em:aboutURL>chrome://tabcontrol/content/tabcontrol-about.xul</em:aboutURL>
-		-->
-
 		<em:targetApplication>
 			<Description>
 				<em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
