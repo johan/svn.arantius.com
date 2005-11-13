@@ -7,11 +7,11 @@ prefObj: Components.classes['@mozilla.org/preferences-service;1']
 /****************************** EVENT LISTENERS ******************************/
 
 onLoad:function() {
-	//in options window, no getbrowser...
-	if ('undefined'==typeof getBrowser) return;
-
 	//attach other listeners
 	window.addEventListener('unload', gTabControl.onUnLoad, false);
+
+	//in options window, no gBrowser, no need to do the rest
+	if ('undefined'==typeof gBrowser) return;
 
 	//mangle removeTab function
 	gBrowser.origRemoveTab=gBrowser.removeTab;
@@ -22,7 +22,7 @@ onLoad:function() {
 	gBrowser.addTab=gTabControl.addTab;
 
 	//conditionally mangle BrowserCloseTabOrWindow function
-	if ( gTabControl.getPref('bool', 'tabcontrol.doNotCloseWinOnHotkey', true) ) {
+	if (gTabControl.getPref('bool', 'tabcontrol.doNotCloseWinOnHotkey')) {
 		BrowserCloseTabOrWindow=gTabControl.BrowserCloseTabOrWindow;
 	}
 
@@ -39,7 +39,7 @@ onUnLoad:function() {
 /****************************** TAB MANIPULATION *****************************/
 
 addTab:function(aURI, aReferrerURI, aCharset, aPostData) {
-	var posRight=gTabControl.getPref('bool', 'tabcontrol.posRightOnAdd', true);
+	var posRight=gTabControl.getPref('bool', 'tabcontrol.posRightOnAdd');
 	var currTab=gBrowser.mCurrentTab;
 
 	//call the browser's real add tab function
@@ -51,17 +51,19 @@ addTab:function(aURI, aReferrerURI, aCharset, aPostData) {
 	}
 
 	//replicate broken focus-new-tab functionality
-	if (!gTabControl.getPref('bool', 'browser.tabs.loadInBackground', false)) {
+	if (!gTabControl.getPref('bool', 'browser.tabs.loadInBackground')) {
 		gTabControl.selectTab(newTab);
 	}
 
 	//tab max width
 	newTab.maxWidth=350;
+
+	return newTab;
 },
 
 removeTab:function(aTab) {
 	var tabToSelect=null;
-	var focusLeft=gTabControl.getPref('bool', 'tabcontrol.focusLeftOnClose', true);
+	var focusLeft=gTabControl.getPref('bool', 'tabcontrol.focusLeftOnClose');
 
 	//if we're configured to, get set to focus left tab
 	if (focusLeft && aTab._tPos>0) {
@@ -99,7 +101,15 @@ BrowserCloseTabOrWindow:function() {
 
 /******************************** PREFERENCES ********************************/
 
-getPref:function(aType, aName, aDefault) {
+prefDefaults:{
+	'tabcontrol.focusLeftOnClose': true,
+	'tabcontrol.posRightOnAdd': true,
+	'tabcontrol.doNotCloseWinOnHotkey': true,
+	'tabcontrol.tabMinWidth': 30,
+	'tabcontrol.tabMaxWidth': 350,
+},
+
+getPref:function(aType, aName) {
 	try {
 		switch(aType) {
 		case 'bool':   return this.prefObj.getBoolPref(aName);
@@ -108,7 +118,7 @@ getPref:function(aType, aName, aDefault) {
 		default:       return this.prefObj.getCharPref(aName); 
 		}
 	} catch (e) { 
-		return(aDefault);
+		return gTabControl.prefDefaults[aName];
 	}
 	return '';
 },
@@ -125,27 +135,76 @@ setPref:function(aType, aName, aValue) {
 },
 
 loadOptions:function() {
-	try {
-		var checks=window.document.getElementsByTagName('checkbox');
-		for (i in checks) {
-			checks[i].checked=gTabControl.getPref('bool',
-				'tabcontrol.'+checks[i].getAttribute('id'), true
+	//checkboxes
+	var checks=window.document.getElementsByTagName('checkbox');
+	for (var i=0; checks[i]; i++) {
+		try {
+			checks[i].checked=gTabControl.getPref('bool', checks[i].getAttribute('prefstring'));
+		} catch (e) {  }
+	}
+
+	//dropdowns
+	var drops=window.document.getElementsByTagName('menulist');
+	for (var i=0; drops[i]; i++) {
+		try {
+			drops[i].selectedItem=drops[i].getElementsByAttribute(
+				'value',
+				gTabControl.getPref('int', drops[i].getAttribute('prefstring'))
+			)[0];
+		} catch (e) {  }
+	}
+
+	//textboxes
+	var texts=window.document.getElementsByTagName('textbox');
+	for (var i=0; texts[i]; i++) {
+		try {
+			texts[i].value=gTabControl.getPref(
+				texts[i].getAttribute('preftype'), 
+				texts[i].getAttribute('prefstring')
 			);
-		}
-	} catch (e) {  }
+		} catch (e) { alert(e) }
+	}
+
 	return true;
 },
 
 saveOptions:function() {
-	try {
-		var checks=window.document.getElementsByTagName('checkbox');
-		for (i in checks) {
-			gTabControl.setPref('bool',
+	//checkboxes
+	var checks=window.document.getElementsByTagName('checkbox');
+	for (var i=0; checks[i]; i++) {
+		try {
+			gTabControl.setPref(
+				'bool',
 				'tabcontrol.'+checks[i].getAttribute('id'), 
 				checks[i].checked
 			);
-		}
-	} catch (e) {  }
+		} catch (e) {  }
+	}
+
+	//dropdowns
+	var drops=window.document.getElementsByTagName('menulist');
+	for (var i=0; drops[i]; i++) {
+		try {
+			gTabControl.setPref(
+				'int', 
+				drops[i].getAttribute('prefstring'),
+				drops[i].selectedItem.value
+			);
+		} catch (e) {  }
+	}
+
+	//textboxes
+	var texts=window.document.getElementsByTagName('textbox');
+	for (var i=0; texts[i]; i++) {
+		try {
+			gTabControl.setPref(
+				texts[i].getAttribute('preftype'),
+				texts[i].getAttribute('prefstring'),
+				texts[i].value
+			);
+		} catch (e) {  }
+	}
+
 	return true;
 },
 

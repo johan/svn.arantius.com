@@ -5,3 +5,8 @@
 <!ENTITY  focusTab.last                "last">
 <!ENTITY  focusTab.lastSelected        "last selected">
 <!ENTITY  focusTab.labelEnd            "tab">
+
+<!ENTITY  divertedWindowOpen.label     "JavaScript popups:">
+<!ENTITY  divertedWindowOpen.all       "No additional settings">
+<!ENTITY  divertedWindowOpen.some      "Allow resized popups open in new window">
+<!ENTITY  divertedWindowOpen.none      "Allow all popups open in new window">

@@ -32,6 +32,28 @@
 		/>
 		<separator class="thin" />
 
+		<hbox align='center'>
+			<label value='&divertedWindowOpen.label;' control='divertedWindowOpen' />
+			<menulist prefstring='browser.link.open_newwindow.restriction'>
+				<menupopup>
+					<menuitem value='0' label='&divertedWindowOpen.all;' />
+					<menuitem value='2' label='&divertedWindowOpen.some;' />
+					<menuitem value='1' label='&divertedWindowOpen.none;' />
+				</menupopup>
+			</menulist>
+		</hbox>
+		<separator class='thin' />
+
+		<hbox align='center'>
+			<label value='Tab width:' />
+
+			<label value='Min:' />
+			<textbox size='4' prefstring='tabcontrol.tabMinWidth' preftype='int' />
+
+			<label value='Max:' />
+			<textbox size='4' prefstring='tabcontrol.tabMaxWidth' preftype='int' />
+		</hbox>
+		<separator class='thin' />
 	</vbox>
 	</groupbox>
 </dialog>
