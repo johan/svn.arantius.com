@@ -1,17 +1,7 @@
 <?xml version='1.0'?>
 <!DOCTYPE overlay SYSTEM "chrome://tabcontrol/locale/overlay.dtd">
-<?xml-stylesheet href='chrome://tabcontrol/skin/tabcontrol-overlay.css' type='text/css'?> 
-<overlay id='tabcontrol-overlay' xmlns='http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'>
+<overlay xmlns='http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'>
 
 <script type='application/x-javascript' src='chrome://tabcontrol/content/tabcontrol.js'></script>
-
-<toolbarpalette id='BrowserToolbarPalette'>
-	<toolbarbutton id='tb-tabcontrol' 
-		class="toolbarbutton-1"
-		oncommand="gTabControl.test();"
-		label='Tab Control'
-		tooltiptext='Tab Control'
-	/>
-</toolbarpalette>
 
 </overlay>

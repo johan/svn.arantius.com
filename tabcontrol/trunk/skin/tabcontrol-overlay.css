@@ -1,6 +1,0 @@
-#tb-tabcontrol {
-  list-style-image: url("chrome://tabcontrol/skin/tb-icon-large.png");
-}
-toolbar[iconsize="small"] #tb-tabcontrol {
-  list-style-image: url("chrome://tabcontrol/skin/tb-icon-small.png");
-}

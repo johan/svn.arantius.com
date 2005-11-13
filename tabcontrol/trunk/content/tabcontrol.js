@@ -210,10 +210,6 @@ saveOptions:function() {
 
 /********************************* DEBUGGING *********************************/
 
-test:function() {
-	alert('tabcontrol test!\n');
-},
-
 dumpErr:function(e) {
 	var s='Error in tabcontrol:  ';
 	s+='Line: '+e.lineNumber+'  ';
