@@ -26,8 +26,11 @@ onLoad:function() {
 		BrowserCloseTabOrWindow=gTabControl.BrowserCloseTabOrWindow;
 	}
 
-	//initial tab max width
-	gBrowser.mTabContainer.firstChild.maxWidth=350
+	//initial tab's width
+	gBrowser.mTabContainer.firstChild.minWidth=
+		gTabControl.getPref('int', 'tabcontrol.tabMinWidth');
+	gBrowser.mTabContainer.firstChild.maxWidth=
+		gTabControl.getPref('int', 'tabcontrol.tabMaxWidth');
 },
 
 onUnLoad:function() {
@@ -55,8 +58,9 @@ addTab:function(aURI, aReferrerURI, aCharset, aPostData) {
 		gTabControl.selectTab(newTab);
 	}
 
-	//tab max width
-	newTab.maxWidth=350;
+	//tab width
+	newTab.minWidth=gTabControl.getPref('int', 'tabcontrol.tabMinWidth');
+	newTab.maxWidth=gTabControl.getPref('int', 'tabcontrol.tabMaxWidth');
 
 	return newTab;
 },
