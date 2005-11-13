@@ -83,7 +83,9 @@ removeTab:function(aTab) {
 	var focusLeft=gTabControl.getPref('bool', 'tabcontrol.focusLeftOnClose');
 
 	//if we're configured to, get set to focus left tab
-	if (focusLeft && aTab._tPos>0) {
+	if (focusLeft && aTab._tPos>0 &&
+		gBrowser.mCurrentTab==aTab
+	) {
 		tabToSelect=gBrowser.mTabContainer.childNodes[aTab._tPos-1];
 	}
 
