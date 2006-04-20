@@ -3,8 +3,6 @@
 
 <script	type='application/x-javascript'	src='chrome://moretools/content/moretools.js'></script>
 
-<toolbaritem id="menubar-items">
-
 <menubar id='main-menubar'>
 	<menu id='more-tools-menu' label='More Tools' accesskey='M'
 		insertbefore='helpMenu'
@@ -17,7 +15,5 @@
 		</menupopup>
 	</menu>
 </menubar>
-
-</toolbaritem>
 
 </overlay>
