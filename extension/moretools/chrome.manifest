@@ -1,0 +1,3 @@
+content	moretools	content/
+overlay	chrome://browser/content/browser.xul	chrome://moretools/content/moretools-overlay.xul
+skin	moretools	classic/1.0	skin/

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+	<Description about="urn:mozilla:install-manifest">
+		<em:id>{9a7a67d3-3048-47fb-acde-d0f7ae51f86a}</em:id>
+		<em:name>More Tools Menu</em:name>
+		<em:version>1.0</em:version>
+		<em:description>Unclutter the "Tools" menu by moving new items to a "More Tools" menu.</em:description>
+		<em:creator>Anthony Lieuallen</em:creator>
+		<em:homepageURL>http://www.arantius.com/article/more+tools</em:homepageURL>
+		<em:updateURL>http://www.arantius.com/misc/firefox-extensions/mine/updates.rdf</em:updateURL>
+		<em:iconURL>chrome://moretools/skin/em-icon.png</em:iconURL>
+		<!-- <em:aboutURL>chrome://moretools/content/moretools-about.xul</em:aboutURL> -->
+
+		<em:targetApplication>
+			<Description>
+				<em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
+				<em:minVersion>1.5.0</em:minVersion>
+				<em:maxVersion>1.6</em:maxVersion>
+			</Description>
+		</em:targetApplication>
+	</Description>
+</RDF>
