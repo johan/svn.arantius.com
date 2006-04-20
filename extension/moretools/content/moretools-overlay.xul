@@ -1,6 +1,23 @@
 <?xml version='1.0'?>
-<overlay id='moretools-overlay' xmlns='http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'>
+<overlay id='moretools-overlay'	xmlns='http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'>
 
-<script type='application/x-javascript' src='chrome://moretools/content/moretools.js'></script>
+<script	type='application/x-javascript'	src='chrome://moretools/content/moretools.js'></script>
+
+<toolbaritem id="menubar-items">
+
+<menubar id='main-menubar'>
+	<menu id='more-tools-menu' label='More Tools' accesskey='M'
+		insertbefore='helpMenu'
+	>
+		<menupopup id='more-tools-menupopup' onpopupshowing=''>
+			<menuitem label='Created by More Tools Menu extension'
+				disabled='true'
+			/>
+			<menuseparator />
+		</menupopup>
+	</menu>
+</menubar>
+
+</toolbaritem>
 
 </overlay>
