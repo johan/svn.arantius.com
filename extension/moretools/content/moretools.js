@@ -1,34 +1,5 @@
 (function() {
 
-/*
-var toolsMenu=document.getElementById('menu_ToolsPopup');
-var toolsEls=[];
-
-function catchToolsInsert(event) {
-	var el=event.target;
-	if (el.parentNode==toolsMenu) {
-		dump('--------------------------------------------------------\n');
-		for (i in el) if ('string'==typeof el[i]) dump(i+': '+el[i]+'\n');
-
-		toolsEls[toolsEls.length]=el;
-		toolsMenu.removeChild(el);
-	}
-}
-
-function insertCaughtElements() {
-	var moreToolsMenu=document.getElementById('more-tools-menupopup');
-
-	// remove els from tools, ignore su
-	for (var i=0; toolsEls[i]; i++) {
-		moreToolsMenu.appendChild(toolsEls[i]);
-	}
-	toolsEls.length=0;
-}
-
-toolsMenu.addEventListener('DOMNodeInserted', catchToolsInsert, true);
-window.addEventListener('DOMContentLoaded', insertCaughtElements, true);
-*/
-
 var insertEvents=[];
 
 function catchInsertEvent(event) {
