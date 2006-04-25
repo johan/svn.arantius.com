@@ -3,7 +3,7 @@
 
 <dialog id="mpwgen-prompt-master"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-	title="Magic Password Generator"
+	title="&mpwgen.title;"
 	buttons="accept, cancel"
 	onload="window.document.getElementById('master-pw').focus();"
 	ondialogaccept="return window.opener.mpwgen.fillforms(window.document.getElementById('master-pw').value);"
@@ -11,7 +11,7 @@
 >
 	<groupbox align="center" orient="horizontal">
 		<vbox>
-			<text value="Master Password?" style="font-weight: bold; font-size: x-large;" />
+			<text value="&mpwgen.masterPrompt;" style="font-weight: bold; font-size: x-large;" />
 			<textbox type='password' id='master-pw' />
 		</vbox>
 		<spring flex="1" style='padding-left: 9px;' />

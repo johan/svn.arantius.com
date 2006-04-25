@@ -1,9 +1,10 @@
 <?xml version="1.0"?>
+<!DOCTYPE overlay SYSTEM "chrome://mpwgen/locale/overlay.dtd">
 <?xml-stylesheet href="chrome://browser/skin/" type="text/css"?>
 
 <dialog id="mpwgen-options"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-	title="Magic Password Generator - Options"
+	title="&mpwgen.title; - &mpwgen.options;"
 	buttons="accept, cancel"
 	onload="mpwgen.loadOptions();"
 	ondialogaccept="mpwgen.saveOptions();"
@@ -13,20 +14,20 @@
 
 	<groupbox align="center" orient="horizontal">
 	<vbox>
-		<text value="Magic Password Generator" style="font-weight: bold; font-size: x-large;" />
+		<text value="&mpwgen.title;" style="font-weight: bold; font-size: x-large;" />
 		<separator class="thin" />
 		
-		<label value="Username" control="mpwgen-username" flex="1" />
+		<label value="&mpwgen.username;" control="mpwgen-username" flex="1" />
 		<textbox id="mpwgen-username" prefstring="mpwgen.username" />
 		<separator class="thin" />
 
-		<label value="Email" control="mpwgen-email" flex="1" />
+		<label value="&mpwgen.email;" control="mpwgen-email" flex="1" />
 		<textbox id="mpwgen-email" prefstring="mpwgen.email" />
 		<separator class="thin" />
 
 		<hbox>
 			<checkbox id='mpwgen-autoCompOff' prefstring="mpwgen.autoCompOff" 
-				label="Disable password remembering"
+				label="&mpwgen.disablePasswordRemember;"
 			/>
 			<label value="" />
 		</hbox>

@@ -1,4 +1,5 @@
 <?xml version="1.0"?>
+<!DOCTYPE overlay SYSTEM "chrome://mpwgen/locale/overlay.dtd">
 <?xml-stylesheet href="chrome://mpwgen/skin/mpwgen-overlay.css" type="text/css"?> 
 <overlay id="mpwgenOverlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
@@ -7,7 +8,7 @@
 <toolbarpalette id="BrowserToolbarPalette">
 	<toolbarbutton id="tb-mpwgen" oncommand="mpwgen.run()" 
 		class="toolbarbutton-1"
-		label="Magic Password" tooltiptext="Magic Password"
+		label="&mpwgen.mpass;" tooltiptext="&mpwgen.mpass;"
 	/>
 </toolbarpalette>
 

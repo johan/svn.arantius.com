@@ -3,14 +3,13 @@
 	<Description about="urn:mozilla:install-manifest">
 		<em:id>{afb4d196-e762-4d4c-a74d-d5ac21475f62}</em:id>
 		<em:name>Magic Password Generator</em:name>
-		<em:version>1.2</em:version>
+		<em:version>1.2.1</em:version>
 		<em:description>Magically make custom passwords for each website.</em:description>
 		<em:creator>Anthony Lieuallen</em:creator>
 		
 		<em:homepageURL>http://www.arantius.com/article/arantius/magic+password+generator/</em:homepageURL>
 		<em:updateURL>http://www.arantius.com/misc/firefox-extensions/mine/updates.rdf</em:updateURL>
 		<em:iconURL>chrome://mpwgen/skin/em-icon.png</em:iconURL>
-		<em:aboutURL>chrome://mpwgen/content/mpwgen-about.xul</em:aboutURL>
 		<em:optionsURL>chrome://mpwgen/content/mpwgen-options.xul</em:optionsURL>
 
 		<em:targetApplication>
