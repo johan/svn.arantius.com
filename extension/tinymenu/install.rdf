@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+	<Description about="urn:mozilla:install-manifest">
+		<em:id>{d33c2f7c-b1e6-4d46-ab0e-be1f6d05c904}</em:id>
+		<em:name>Tiny Menu</em:name>
+		<em:version>1.1</em:version>
+		<em:description>Replace the standard menu bar with a tiny menu popup.</em:description>
+		<em:creator>Anthony Lieuallen</em:creator>
+		<em:homepageURL>http://www.arantius.com/article/arantius/tiny+menu/</em:homepageURL>
+		<em:updateURL>http://www.arantius.com/misc/firefox-extensions/mine/updates.rdf</em:updateURL>
+		<em:iconURL>chrome://tinymenu/skin/em-icon.png</em:iconURL>
+		<em:aboutURL>chrome://tinymenu/content/tinymenu-about.xul</em:aboutURL>
+
+		<em:targetApplication>
+			<Description>
+				<em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
+				<em:minVersion>1.0+</em:minVersion>
+				<em:maxVersion>1.6</em:maxVersion>
+			</Description>
+		</em:targetApplication>
+	</Description>
+</RDF>

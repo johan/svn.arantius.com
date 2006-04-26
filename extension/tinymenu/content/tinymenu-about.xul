@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://tinymenu/skin/tinymenu-about.css" type="text/css"?> 
+
+<!-- Original template by Jed Brown -->
+
+<window class="dialog"
+	title="Tiny Menu - About"
+	orient="vertical"
+	autostretch="always"
+	onload="sizeToContent()"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+	<groupbox align="center" orient="horizontal">
+	<vbox>
+		<text value="Tiny Menu" style="font-weight: bold; font-size: x-large;"/>
+		<text value="ver. 1.0"/>
+		<separator class="thin"/>
+		<text value="Created By:" style="font-weight: bold;"/>
+		<text value="Anthony Lieuallen" class="url"
+			onclick="window.open('http://www.arantius.com/'); window.close();"/>
+		<separator class="thin"/>
+		<text value="Home Page" class="url"
+			onclick="window.open('http://www.arantius.com/topic/arantius/firefox+extensions/'); window.close();"/>
+		<separator class="thin"/>
+		<text value="Icon from:" style="font-weight: bold;"/>
+		<text value="eXperience Crystal" class="url"
+			onclick="window.open('http://art.gnome.org/themes/icon/768/'); window.close();"/>
+		/>
+	</vbox>
+	<spring flex="11" />
+		<image src="chrome://tinymenu/skin/em-icon.png" style='padding: 0 10px 0 20px;' />
+	</groupbox>
+
+	<hbox>
+	<spacer flex="1"/>
+		<button label="Close" oncommand="window.close();"/>
+	</hbox>
+</window>

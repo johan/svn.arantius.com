@@ -1,0 +1,4 @@
+content	tinymenu	content/
+overlay	chrome://browser/content/browser.xul	chrome://tinymenu/content/tinymenu-overlay.xul
+skin	tinymenu	classic/1.0	skin/
+style	chrome://global/content/customizeToolbar.xul	chrome://tinymenu/skin/tinymenu-about.css
