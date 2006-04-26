@@ -1,7 +1,13 @@
 <?xml version='1.0'?>
-<!-- <?xml-stylesheet href='chrome://uppity/skin/uppity-overlay.css' type='text/css'?> -->
-<overlay id='uppity-overlay' xmlns='http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'>
-
+<!DOCTYPE window SYSTEM "chrome://tinymenu/locale/overlay.dtd">
+<overlay id='tinymenu-overlay' xmlns='http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'>
 <script type='application/x-javascript' src='chrome://tinymenu/content/tinymenu.js'></script>
+
+<menubar id='main-menubar'>
+	<menu id='tinymenu' label='&tinymenu.menu;' accesskey='&tinymenu.menuaccesskey;'>
+		<menupopup id='tinymenu-popup' onpopupshowing=''>
+		</menupopup>
+	</menu>
+</menubar>
 
 </overlay>

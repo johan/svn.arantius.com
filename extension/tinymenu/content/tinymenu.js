@@ -1,24 +1,19 @@
 window.addEventListener('load', function(){
 //find the main menu
 var menubar=document.getElementById('main-menubar');
-//create our sub menu
-var menusub=document.createElement('menupopup');
+//find our menu popup
+var menusub=document.getElementById('tinymenu-popup');
 
 //move each of the menus into the sub menu
 var el;
 while (el=menubar.childNodes[0]) {
-	menubar.removeChild(el);
+	if ('tinymenu'==el.id) break;
 
+	menubar.removeChild(el);
 	menusub.appendChild(el);
 }
 
-//create the main popup and put the sub menu in it
-var menupop=document.createElement('menu');
-menupop.setAttribute('id', 'tinymenu');
-menupop.setAttribute('label', 'Menu');
-menupop.setAttribute('accesskey', 'm');
+//put the new items in our menu popup
+var menupop=document.getElementById('tinymenu');
 menupop.appendChild(menusub);
-
-//put the popup menu in the menu bar
-menubar.appendChild(menupop);
 }, false);

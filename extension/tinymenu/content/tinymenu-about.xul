@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE window SYSTEM "chrome://tinymenu/locale/overlay.dtd">
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 <?xml-stylesheet href="chrome://tinymenu/skin/tinymenu-about.css" type="text/css"?> 
 
 <!-- Original template by Jed Brown -->
 
 <window class="dialog"
-	title="Tiny Menu - About"
+	title="&tinymenu.title; - &tinymenu.about;"
 	orient="vertical"
 	autostretch="always"
 	onload="sizeToContent()"
@@ -13,17 +14,17 @@
 
 	<groupbox align="center" orient="horizontal">
 	<vbox>
-		<text value="Tiny Menu" style="font-weight: bold; font-size: x-large;"/>
-		<text value="ver. 1.0"/>
+		<text value="&tinymenu.title;" style="font-weight: bold; font-size: x-large;"/>
+		<text value="ver. 1.1.1"/>
 		<separator class="thin"/>
-		<text value="Created By:" style="font-weight: bold;"/>
+		<text value="&tinymenu.createdby;:" style="font-weight: bold;"/>
 		<text value="Anthony Lieuallen" class="url"
 			onclick="window.open('http://www.arantius.com/'); window.close();"/>
 		<separator class="thin"/>
-		<text value="Home Page" class="url"
+		<text value="&tinymenu.homepage;" class="url"
 			onclick="window.open('http://www.arantius.com/topic/arantius/firefox+extensions/'); window.close();"/>
 		<separator class="thin"/>
-		<text value="Icon from:" style="font-weight: bold;"/>
+		<text value="&tinymenu.iconfrom;:" style="font-weight: bold;"/>
 		<text value="eXperience Crystal" class="url"
 			onclick="window.open('http://art.gnome.org/themes/icon/768/'); window.close();"/>
 		/>
