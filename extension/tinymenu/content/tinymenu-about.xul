@@ -10,6 +10,7 @@
 	orient="vertical"
 	autostretch="always"
 	onload="sizeToContent()"
+	buttons="close"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
 	<groupbox align="center" orient="horizontal">
@@ -35,6 +36,6 @@
 
 	<hbox>
 	<spacer flex="1"/>
-		<button label="Close" oncommand="window.close();"/>
+		<button label="&tinymenu.close;" oncommand="window.close();"/>
 	</hbox>
 </window>
