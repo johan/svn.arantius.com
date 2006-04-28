@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE window [
+<!ENTITY % tinymenuDTD SYSTEM "chrome://tinymenu/locale/overlay.dtd" >
+%tinymenuDTD;
+
+<!ENTITY % preferencesDTD SYSTEM "chrome://browser/locale/preferences/preferences.dtd">
+%preferencesDTD;
+<!ENTITY % browserDTD SYSTEM "chrome://browser/locale/browser.dtd" >
+%browserDTD;
+<!ENTITY % baseMenuOverlayDTD SYSTEM "chrome://browser/locale/baseMenuOverlay.dtd">
+%baseMenuOverlayDTD;
+]>
+
+<?xml-stylesheet href="chrome://browser/skin/" type="text/css"?>
+
+<dialog id="tinymenu-options"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	title="&tinymenu.title; - &prefWindow.titleWin;"
+	buttons="accept, cancel"
+	onload="tinymenu.loadOptions();"
+	ondialogaccept="tinymenu.saveOptions();"
+	persist="width height screenX screenY"
+>
+	<script type="application/x-javascript" src="chrome://tinymenu/content/tinymenu.js"></script>
+
+	<groupbox align="center" orient="vertical">
+		<vbox>
+			<text value="&tinymenu.title;" style="font-weight: bold; font-size: x-large;" />
+			<separator class="thin" />
+
+			<text value="&tinymenu.doNotCollapse;" />
+			<separator class="thin" />
+
+			<hbox>
+				<vbox>
+					<checkbox id='pref-file-menu' label='&fileMenu.label; &tinymenu.menu;' checked='false' />
+					<checkbox id='pref-edit-menu' label='&editMenu.label; &tinymenu.menu;' checked='false' />
+					<checkbox id='pref-view-menu' label='&viewMenu.label; &tinymenu.menu;' checked='false' />
+					<checkbox id='pref-go-menu' label='&goMenu.label; &tinymenu.menu;' checked='false' />
+				</vbox>
+				<vbox>
+					<checkbox id='pref-bookmarks-menu' label='&bookmarksMenu.label; &tinymenu.menu;' checked='false' />
+					<checkbox id='pref-tools-menu' label='&toolsMenu.label; &tinymenu.menu;' checked='false' />
+					<checkbox id='pref-helpMenu' label='&helpMenuWin.label; &tinymenu.menu;' checked='false' />
+				</vbox>
+			</hbox>
+			<separator class="thin" />
+
+		</vbox>
+
+		<vbox style='text-align: center;'>
+			<text value='&tinymenu.optionsMsg1;' />
+			<text value='&tinymenu.optionsMsg2;' />
+		</vbox>
+	</groupbox>
+</dialog>

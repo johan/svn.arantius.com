@@ -4,7 +4,9 @@
 <script type='application/x-javascript' src='chrome://tinymenu/content/tinymenu.js'></script>
 
 <menubar id='main-menubar'>
-	<menu id='tinymenu' label='&tinymenu.menu;' accesskey='&tinymenu.menuaccesskey;'>
+	<menu id='tinymenu' insertbefore='file-menu'
+		label='&tinymenu.menu;' accesskey='&tinymenu.menuaccesskey;'
+	>
 		<menupopup id='tinymenu-popup' onpopupshowing=''>
 		</menupopup>
 	</menu>

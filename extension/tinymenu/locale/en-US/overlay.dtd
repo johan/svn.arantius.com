@@ -6,3 +6,7 @@
 <!ENTITY tinymenu.iconfrom "Icon From:">
 <!ENTITY tinymenu.menu "Menu">
 <!ENTITY tinymenu.menuaccesskey "M">
+
+<!ENTITY tinymenu.doNotCollapse "Do NOT collapse:">
+<!ENTITY tinymenu.optionsMsg1 "Options effect only new windows.">
+<!ENTITY tinymenu.optionsMsg2 "(Restart Firefox to see changes.)">
