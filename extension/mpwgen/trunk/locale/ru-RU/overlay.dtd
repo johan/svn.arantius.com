@@ -1,0 +1,7 @@
+<!ENTITY mpwgen.title "Волшебный генератор паролей">
+<!ENTITY mpwgen.mpass "Пароль">
+<!ENTITY mpwgen.options "Настройки">
+<!ENTITY mpwgen.username "Имя пользователя">
+<!ENTITY mpwgen.email "E-mail">
+<!ENTITY mpwgen.disablePasswordRemember "Запретить запоминать пароли">
+<!ENTITY mpwgen.masterPrompt "Основной пароль?">

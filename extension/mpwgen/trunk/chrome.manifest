@@ -3,4 +3,7 @@ overlay	chrome://browser/content/browser.xul	chrome://mpwgen/content/mpwgen-over
 skin	mpwgen	classic/1.0	skin/
 style	chrome://global/content/customizeToolbar.xul	chrome://mpwgen/skin/mpwgen-overlay.css
 
-locale  mpwgen  en-US   locale/en-US/
+locale  tinymenu        en-US   locale/en-US/
+locale  tinymenu        es-AR   locale/es-AR/
+locale  tinymenu        pt-BR   locale/pt-BR/
+locale  tinymenu        ru-RU   locale/ru-RU/
