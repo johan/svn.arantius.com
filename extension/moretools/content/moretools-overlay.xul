@@ -1,10 +1,11 @@
 <?xml version='1.0'?>
+<!DOCTYPE window SYSTEM "chrome://moretools/locale/overlay.dtd">
 <overlay id='moretools-overlay'	xmlns='http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'>
 
 <script	type='application/x-javascript'	src='chrome://moretools/content/moretools.js'></script>
 
 <menubar id='main-menubar'>
-	<menu id='more-tools-menu' label='More Tools' accesskey='M'
+	<menu id='more-tools-menu' label='&moretools.label;' accesskey='&moretools.accesskey;'
 		insertbefore='helpMenu'
 	>
 		<menupopup id='more-tools-menupopup' onpopupshowing=''>
