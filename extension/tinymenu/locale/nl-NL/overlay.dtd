@@ -1,0 +1,11 @@
+<!ENTITY tinymenu.title "Tiny Menu">
+<!ENTITY tinymenu.about "Over">
+<!ENTITY tinymenu.close "Sluiten">
+<!ENTITY tinymenu.createdby "Gemaakt door:">
+<!ENTITY tinymenu.homepage "Homepage">
+<!ENTITY tinymenu.iconfrom "Pictogram door:">
+<!ENTITY tinymenu.menu "Menu">
+<!ENTITY tinymenu.menuaccesskey "M">
+<!ENTITY tinymenu.doNotCollapse "Niet inklappen:">
+<!ENTITY tinymenu.optionsMsg1 "Opties hebben alleen effect op nieuwe vensters.">
+<!ENTITY tinymenu.optionsMsg2 "(Herstart Firefox om de wijzigingen te zien.)">

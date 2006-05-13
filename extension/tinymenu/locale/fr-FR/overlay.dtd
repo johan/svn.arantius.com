@@ -1,7 +1,11 @@
 <!ENTITY tinymenu.title "Tiny Menu">
 <!ENTITY tinymenu.about "À propos">
+<!ENTITY tinymenu.close "Fermer">
 <!ENTITY tinymenu.createdby "Créée par">
 <!ENTITY tinymenu.homepage "Site web">
 <!ENTITY tinymenu.iconfrom "Icône de">
 <!ENTITY tinymenu.menu "Menu">
 <!ENTITY tinymenu.menuaccesskey "M">
+<!ENTITY tinymenu.doNotCollapse "Ne PAS reduire :">
+<!ENTITY tinymenu.optionsMsg1 "Les options affectent seulement les nouvelles fenêtres">
+<!ENTITY tinymenu.optionsMsg2 "(Redémarrer Firefox pour voir les changements)">

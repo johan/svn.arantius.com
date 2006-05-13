@@ -1,7 +1,11 @@
 <!ENTITY tinymenu.title "Tiny Menu">
 <!ENTITY tinymenu.about "Om">
+<!ENTITY tinymenu.close "Luk">
 <!ENTITY tinymenu.createdby "Skabt af">
 <!ENTITY tinymenu.homepage "Hjemmeside">
 <!ENTITY tinymenu.iconfrom "Ikon fra">
 <!ENTITY tinymenu.menu "Menu">
 <!ENTITY tinymenu.menuaccesskey "M">
+<!ENTITY tinymenu.doNotCollapse "Sammenklap ikke:">
+<!ENTITY tinymenu.optionsMsg1 "Indstillinger påvirker kun nye vinduer.">
+<!ENTITY tinymenu.optionsMsg2 "(Genstart Firefox for at se ændringer.)">
