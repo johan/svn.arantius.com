@@ -34,15 +34,15 @@
 
 			<hbox>
 				<vbox>
-					<checkbox id='pref-file-menu' label='&fileMenu.label; &tinymenu.menu;' checked='false' />
-					<checkbox id='pref-edit-menu' label='&editMenu.label; &tinymenu.menu;' checked='false' />
-					<checkbox id='pref-view-menu' label='&viewMenu.label; &tinymenu.menu;' checked='false' />
-					<checkbox id='pref-go-menu' label='&goMenu.label; &tinymenu.menu;' checked='false' />
+					<checkbox id='pref-file-menu' label='&fileMenu.label;' checked='false' />
+					<checkbox id='pref-edit-menu' label='&editMenu.label;' checked='false' />
+					<checkbox id='pref-view-menu' label='&viewMenu.label;' checked='false' />
+					<checkbox id='pref-go-menu' label='&goMenu.label;' checked='false' />
 				</vbox>
 				<vbox>
-					<checkbox id='pref-bookmarks-menu' label='&bookmarksMenu.label; &tinymenu.menu;' checked='false' />
-					<checkbox id='pref-tools-menu' label='&toolsMenu.label; &tinymenu.menu;' checked='false' />
-					<checkbox id='pref-helpMenu' label='&helpMenuWin.label; &tinymenu.menu;' checked='false' />
+					<checkbox id='pref-bookmarks-menu' label='&bookmarksMenu.label;' checked='false' />
+					<checkbox id='pref-tools-menu' label='&toolsMenu.label;' checked='false' />
+					<checkbox id='pref-helpMenu' label='&helpMenuWin.label;' checked='false' />
 				</vbox>
 			</hbox>
 			<separator class="thin" />

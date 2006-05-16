@@ -8,6 +8,8 @@ locale  tinymenu        de-DE   locale/de-DE/
 locale  tinymenu        en-US   locale/en-US/
 locale  tinymenu        es-ES   locale/es-ES/
 locale  tinymenu        fr-FR   locale/fr-FR/
+locale  tinymenu        it-IT   locale/it-IT/
+locale  tinymenu        nl-NL   locale/nl-NL/
 locale  tinymenu        pl-PL   locale/pl-PL/
 locale  tinymenu        pt-BR   locale/pt-BR/
 locale  tinymenu        ru-RU   locale/ru-RU/
