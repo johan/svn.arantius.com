@@ -2,4 +2,18 @@ content	moretools	content/
 overlay	chrome://browser/content/browser.xul	chrome://moretools/content/moretools-overlay.xul
 skin	moretools	classic/1.0	skin/
 
-locale  moretools    en-US    locale/en-US/
+locale moretools da-DK locale/da-DK/
+locale moretools de-DE locale/de-DE/
+locale moretools en-US locale/en-US/
+locale moretools es-AR locale/es-AR/
+locale moretools es-ES locale/es-ES/
+locale moretools fr-FR locale/fr-FR/
+locale moretools it-IT locale/it-IT/
+locale moretools ja-JP locale/ja-JP/
+locale moretools nb-NO locale/nb-NO/
+locale moretools nl-NL locale/nl-NL/
+locale moretools pl-PL locale/pl-PL/
+locale moretools pt-BR locale/pt-BR/
+locale moretools ru-RU locale/ru-RU/
+locale moretools uk-UA locale/uk-UA/
+locale moretools zh-CN locale/zh-CN/
