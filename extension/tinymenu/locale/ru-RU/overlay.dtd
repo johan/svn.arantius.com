@@ -1,11 +1,7 @@
 <!ENTITY tinymenu.title "Tiny Menu">
-<!ENTITY tinymenu.about "О расширении">
-<!ENTITY tinymenu.close "Закрыть">
-<!ENTITY tinymenu.createdby "Создано:">
-<!ENTITY tinymenu.homepage "Домашняя страница">
-<!ENTITY tinymenu.iconfrom "Иконка:">
 <!ENTITY tinymenu.menu "Меню">
 <!ENTITY tinymenu.menuaccesskey "м">
 <!ENTITY tinymenu.doNotCollapse "НЕ сворачивать">
 <!ENTITY tinymenu.optionsMsg1 "Только для новых окон.">
 <!ENTITY tinymenu.optionsMsg2 "(Необходимо перезагрузить Firefox.)">
+<!ENTITY tinymenu.version121 "Перевод версии 1.2.1">

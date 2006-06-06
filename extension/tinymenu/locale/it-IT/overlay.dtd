@@ -1,11 +1,7 @@
 <!ENTITY tinymenu.title "Tiny Menu">
-<!ENTITY tinymenu.about "Informazioni su...">
-<!ENTITY tinymenu.close "Chiudi">
-<!ENTITY tinymenu.createdby "Creata da:">
-<!ENTITY tinymenu.homepage "Pagina web">
-<!ENTITY tinymenu.iconfrom "Icona da:">
 <!ENTITY tinymenu.menu "Menu">
 <!ENTITY tinymenu.menuaccesskey "M">
 <!ENTITY tinymenu.doNotCollapse "NON contrarre:">
-<!ENTITY tinymenu.optionsMsg1 "Le opzioni hanno effetto solo sulle nuove finestre">
-<!ENTITY tinymenu.optionsMsg2 "(Riavvia Firefox per vedere i cambiamenti)">
+<!ENTITY tinymenu.optionsMsg1 "Le opzioni hanno effetto solo sulle nuove finestre.">
+<!ENTITY tinymenu.optionsMsg2 "(Riavvia Firefox per vedere i cambiamenti.)">
+<!ENTITY tinymenu.version121 "Versione 1.2.1 tradotta">
