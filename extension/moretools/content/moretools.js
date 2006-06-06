@@ -16,11 +16,15 @@ function mungeMenus(event) {
 
 	// for each insert event, find the element, and decide
 	// if we should do something with it
-	for (var i=0, el=null; el=insertEvents[i].target; i++) {
-		if (toolsMenu!=el.parentNode) continue;
-		// if we got here, the insert was to the tools menu.  move the element!
-		toolsMenu.removeChild(el);
-		moreToolsMenu.appendChild(el);
+	for (var i=0, event=null, el=null; event=insertEvents[i]; i++) {
+		try {
+			el=event.target;
+
+			if (toolsMenu!=el.parentNode) continue;
+			// if we got here, the insert was to the tools menu.  move the element!
+			toolsMenu.removeChild(el);
+			moreToolsMenu.appendChild(el);
+		} catch (e) { }
 	}
 }
 
