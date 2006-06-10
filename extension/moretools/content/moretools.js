@@ -1,35 +1,41 @@
 (function() {
 
-var insertEvents=[];
-
-function catchInsertEvent(event) {
-	// just cache the event.  if we try to access the object, we screw things up 
-	insertEvents[insertEvents.length]=event;
-}
-
-function mungeMenus(event) {
-	document.removeEventListener('DOMNodeInserted', catchInsertEvent, true);
-	window.removeEventListener('DOMContentLoaded', mungeMenus, true);
-
-	var toolsMenu=document.getElementById('menu_ToolsPopup');
-	var moreToolsMenu=document.getElementById('more-tools-menupopup');
-
-	// for each insert event, find the element, and decide
-	// if we should do something with it
-	for (var i=0, event=null, el=null; event=insertEvents[i]; i++) {
-		try {
-			el=event.target;
-
-			if (toolsMenu!=el.parentNode) continue;
-			// if we got here, the insert was to the tools menu.  move the element!
-			toolsMenu.removeChild(el);
-			moreToolsMenu.appendChild(el);
-		} catch (e) { }
+function flagInsertedElement(event) {
+	try {
+		var el=event.target;
+		// if this thing wasn't in the tools menu, forget it
+		if ('menu_ToolsPopup'!=el.parentNode.id) return;
+		// but if it was, flag it to get moved later
+		el.setAttribute('more-tools-to-move', true);
+	} catch (e) {
+		//dump('Error! '+e+'\n');
 	}
 }
 
-document.addEventListener('DOMNodeInserted', catchInsertEvent, true);
-window.addEventListener('DOMContentLoaded', mungeMenus, true);
+function mungeMenus(event) {
+	// clean up event listeners
+	document.removeEventListener('DOMNodeInserted', flagInsertedElement, true);
+	window.removeEventListener('DOMContentLoaded', mungeMenus, true);
 
+	// grab references for 'from' and 'to' points
+	var toolsMenu=document.getElementById('menu_ToolsPopup');
+	var moreToolsMenu=document.getElementById('more-tools-menupopup');
+
+	// find all the elements we flagged on insert
+	var elsToMove=document.getElementsByAttribute('more-tools-to-move', true);
+	// and for each one, move it
+	for (var i=0, el=null; el=elsToMove[i]; i++) {
+		try {
+			moreToolsMenu.appendChild(el);
+			toolsMenu.removeChild(el);
+			el.removeAttribute('more-tools-to-move');
+		} catch (e) {
+			//dump('Error! '+e+'\n');
+		}
+	}
+}
+
+document.addEventListener('DOMNodeInserted', flagInsertedElement, false);
+window.addEventListener('DOMContentLoaded', mungeMenus, false);
 
 })();
