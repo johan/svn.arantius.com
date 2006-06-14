@@ -3,15 +3,16 @@ overlay	chrome://browser/content/browser.xul	chrome://tinymenu/content/tinymenu-
 skin	tinymenu	classic/1.0	skin/
 style	chrome://global/content/customizeToolbar.xul	chrome://tinymenu/skin/tinymenu-about.css
 
-locale  tinymenu        da-DK   locale/da-DK/
-locale  tinymenu        de-DE   locale/de-DE/
-locale  tinymenu        en-US   locale/en-US/
-locale  tinymenu        es-ES   locale/es-ES/
-locale  tinymenu        fr-FR   locale/fr-FR/
-locale  tinymenu        it-IT   locale/it-IT/
-locale  tinymenu        nl-NL   locale/nl-NL/
-locale  tinymenu        pl-PL   locale/pl-PL/
-locale  tinymenu        pt-BR   locale/pt-BR/
-locale  tinymenu        ru-RU   locale/ru-RU/
-locale  tinymenu        zh-CN   locale/zh-CN/
-locale  tinymenu        zh-TW   locale/zh-TW/
+locale tinymenu da-DK locale/da-DK/
+locale tinymenu de-DE locale/de-DE/
+locale tinymenu en-US locale/en-US/
+locale tinymenu es-ES locale/es-ES/
+locale tinymenu fr-FR locale/fr-FR/
+locale tinymenu it-IT locale/it-IT/
+locale tinymenu nl-NL locale/nl-NL/
+locale tinymenu pl-PL locale/pl-PL/
+locale tinymenu pt-BR locale/pt-BR/
+locale tinymenu ru-RU locale/ru-RU/
+locale tinymenu sk-SK locale/sk-SK/
+locale tinymenu zh-CN locale/zh-CN/
+locale tinymenu zh-TW locale/zh-TW/

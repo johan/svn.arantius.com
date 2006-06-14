@@ -1,0 +1,7 @@
+<!ENTITY tinymenu.title "Tiny Menu">
+<!ENTITY tinymenu.menu "Menu">
+<!ENTITY tinymenu.menuaccesskey "M">
+<!ENTITY tinymenu.doNotCollapse "NEUZATVÁRAJTE tieto menu:">
+<!ENTITY tinymenu.optionsMsg1 "Tieto voľby budú mať efekt u nových okien.">
+<!ENTITY tinymenu.optionsMsg2 "(Reštartujte Firefox na zobrazenie zmien.)">
+<!ENTITY tinymenu.version121 "Verzia 1.2.1 SK">
