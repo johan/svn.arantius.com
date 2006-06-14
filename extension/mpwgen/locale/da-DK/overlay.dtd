@@ -1,0 +1,7 @@
+<!ENTITY mpwgen.title "Magic Password Generator">
+<!ENTITY mpwgen.mpass "Magisk kodeord">
+<!ENTITY mpwgen.options "Indstillinger">
+<!ENTITY mpwgen.username "Brugernavn">
+<!ENTITY mpwgen.email "Email">
+<!ENTITY mpwgen.disablePasswordRemember "Slå kodeords-historik fra">
+<!ENTITY mpwgen.masterPrompt "Hoved-kodeord?">

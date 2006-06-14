@@ -1,0 +1,7 @@
+<!ENTITY mpwgen.title "Magic Password Generator">
+<!ENTITY mpwgen.mpass "Magisch wachtwoord">
+<!ENTITY mpwgen.options "Opties">
+<!ENTITY mpwgen.username "Gebruikersnaam">
+<!ENTITY mpwgen.email "E-mail">
+<!ENTITY mpwgen.disablePasswordRemember "Schakel wachtwoord onthouden uit">
+<!ENTITY mpwgen.masterPrompt "Hoofdwachtwoord?">

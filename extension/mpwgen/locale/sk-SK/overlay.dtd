@@ -1,0 +1,7 @@
+<!ENTITY mpwgen.title "Magic Password Generator">
+<!ENTITY mpwgen.mpass "Magic Password">
+<!ENTITY mpwgen.options "Predvoľby">
+<!ENTITY mpwgen.username "Používateľské meno">
+<!ENTITY mpwgen.email "E-mail">
+<!ENTITY mpwgen.disablePasswordRemember "Vypnúť pamätanie si hesla">
+<!ENTITY mpwgen.masterPrompt "Hlavné heslo?">

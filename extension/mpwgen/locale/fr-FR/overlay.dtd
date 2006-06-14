@@ -1,0 +1,7 @@
+<!ENTITY mpwgen.title "Magic Password Generator">
+<!ENTITY mpwgen.mpass "Mot de passe magique">
+<!ENTITY mpwgen.options "Options">
+<!ENTITY mpwgen.username "Nom d&apos;utilisateur">
+<!ENTITY mpwgen.email "Courriel">
+<!ENTITY mpwgen.disablePasswordRemember "Ne pas mémoriser le mot de passe">
+<!ENTITY mpwgen.masterPrompt "Mot de passe principal ?">

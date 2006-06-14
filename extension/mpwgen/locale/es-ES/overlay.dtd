@@ -1,0 +1,7 @@
+<!ENTITY mpwgen.title "Generador mágico de contraseñas">
+<!ENTITY mpwgen.mpass "Contraseña mágica">
+<!ENTITY mpwgen.options "Opciones">
+<!ENTITY mpwgen.username "Nombre de usuario">
+<!ENTITY mpwgen.email "Email">
+<!ENTITY mpwgen.disablePasswordRemember "Recordar deshabilitar contraseñas">
+<!ENTITY mpwgen.masterPrompt "¿Contraseña maestra?">
