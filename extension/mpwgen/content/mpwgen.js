@@ -172,7 +172,6 @@ dumpErr:function(e) {
 },
 
 onload:function(event) {
-	dump('mpwgen onload...\n');
 	window.removeEventListener('load', mpwgen.onload, false);
 
 	document.getElementById("contentAreaContextMenu")
@@ -180,14 +179,7 @@ onload:function(event) {
 },
 
 popupshowing:function(event) {
-	/*	
-	for (i in gContextMenu) {
-		if ('function'==typeof gContextMenu[i]) continue;
-		dump(i+'\t'+gContextMenu[i]+'\n');
-	}
-	*/
 	var show=!('password'==gContextMenu.target.type);
-
 	document.getElementById("mpwgen-context").setAttribute('hidden', show);
 }
 
