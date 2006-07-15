@@ -12,4 +12,10 @@
 	/>
 </toolbarpalette>
 
+<popup id="contentAreaContextMenu">
+	<menuitem id="mpwgen-context" hidden="true" oncommand="mpwgen.run()"
+		label="&mpwgen.title;..." accesskey="&mpwgen.accesskey;" 
+	/>
+</popup>
+
 </overlay>

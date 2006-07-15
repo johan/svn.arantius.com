@@ -15,6 +15,13 @@ hash:function(s) {
 	return j;
 },
 
+oneElXpath:function(doc, exp) {
+	var result=doc.evaluate(
+		exp, doc, null, XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE, null
+	);
+	return result.snapshotItem(0);
+},
+
 fillforms:function(master) {
 	try {
 		var win=getBrowser().contentWindow;
@@ -28,9 +35,12 @@ fillforms:function(master) {
 
 fillwindow:function(master, win) {
 	try {
-		var host=String(
-			String(win.location.host).match(/[^.]*\.[^.]*$/)[0]
-		).toLowerCase();
+		var host='';
+		try {
+			host=String(
+				String(win.location.host).match(/[^.]*\.[^.]*$/)[0]
+			).toLowerCase();
+		} catch (e) { }
 		
 		var user=this.getPref('string', 'mpwgen.username');
 		var email=this.getPref('string', 'mpwgen.email');
@@ -39,50 +49,72 @@ fillwindow:function(master, win) {
 		var pass=this.hash(host+master),j;
 		var els=win.document.getElementsByTagName('input');
 
-		for (j=0;j<els.length;j++) {
-			//dump('El: '+els[j]+' '+els[j].name+'\n');
-			if ( 'password'==String(els[j].type) || 'password'==String(els[j].name).toLowerCase() ) {
-				els[j].value=pass;
-				els[j].focus();
-				//for any password field, disable autocomplete on it's form
+		for (var j=0, el; el=els[j]; j++) {
+			if ( 'password'==String(el.type) || 'password'==String(el.name).toLowerCase() ) {
+				el.value=pass;
+				el.focus();
+
+				//for any password field, disable autocomplete on its form
 				if (this.getPref('bool', 'mpwgen.autoCompOff')) {
-					dump(els[j]);
-					els[j].form.setAttribute('autocomplete', 'off');
+					el.form.setAttribute('autocomplete', 'off');
 				}
-			} else if ('text'==els[j].type) {
-				//try to find the text around this input, it might hint
-				//that this is for an email address even if it is
-				//called, i.e., username (how stupid!)
-				var txt='';
-				try {
-					var k=0, txtEl=els[j];
-					while (true) {
-						txtEl=txtEl.parentNode;
-						if (k++>2) break; //this number is hard to tweak
-						if ('TR'==txtEl.tagName) break;
+			} else if ('text'==el.type) {
+				userScore=0;
+				emailScore=0;
+
+				var label=null;
+
+				// find label text
+				if (''!=el.id) {
+					// if we have an id, try to find the label for it
+					label=this.oneElXpath(
+						win.document, '//label[@for="'+el.id+'"]'
+					);
+				}
+				if (''==el.id || !label) {
+					// try to find the label this el is in
+					label=el;
+					while (label && 'LABEL'!=label.tagName) {
+						label=label.parentNode;
 					}
-					txt=txtEl.textContent;
-				} catch (e2) { this.dumpErr(e2) }
-				/*
-				dump(els[j].name+' "'+txt+'" is email:\n'+
-					els[j].name.match(/e-?mail/i) 
-					+' '+els[j].value.match(/e-?mail/i) 
-					+' '+txt.match(/e-?mail/i) 
-					+' '+txt.match(/^([0-9a-zA-Z]+[-._+&])*[0-9a-zA-Z]+@([-0-9a-zA-Z]+[.])+[a-zA-Z]{2,6}$/)
-					+'\n'
-				);
-				/**/
-				if ( els[j].name.match(/e-?mail/i) || els[j].value.match(/e-?mail/i) 
-					|| txt.match(/e-?mail/i) 
-					//this expression came from: http://www.regexlib.com/REDetails.aspx?regexp_id=1012
-					|| txt.match(/\b([0-9a-zA-Z]+[-._+&])*[0-9a-zA-Z]+@([-0-9a-zA-Z]+[.])+[a-zA-Z]{2,6}\b/)
-				) {
-					els[j].value=email;
-				} else if (els[j].name.match(/(login|user|nick)(name)?/i)) {
-					els[j].value=user;
 				}
-			} else if ('submit'==els[j].type || 'image'==els[j].type) {
-				//dump('Form: '+els[j].form.name+' Len: '+els[j].form.length+'\n');
+
+				var txt='';
+				if (label) {
+					// if we have a label, use its text
+					txt=label.textContent;
+				} else {
+					try {
+						// if we don't, try to find some surrounding text
+						var tmpid='mpwgen'+String(Math.random()).substr(2);
+						var tmptxt=win.document.createTextNode(tmpid);
+
+						// put in our temp text to look for
+						el.appendChild(tmptxt);
+
+						// look for 20 chars before that marker
+						var txt=win.document.body.textContent
+							.replace(/[ \t\n\r]+/g, ' ');
+						var pos=txt.indexOf(tmpid);
+						txt=txt.substring(pos-20, pos);
+
+						// remove our marker
+						el.removeChild(tmptxt);
+					} catch (e) { this.dumpErr(e); }
+				}
+
+				//dump('EL: '+el.name+'\nTEXT: '+txt+'\n');
+				if (txt.match(/\b(e-?mail)\b/i)) {
+					el.value=email;
+				} else if (txt.match(/\b(user ?name|log ?in|id)\b/i)) {
+					el.value=user;
+				} else if (el.name.match(/e-?mail/i) || 'e'==el.name) {
+					el.value=email;
+				} else if (el.name.match(/username|login|id/i)) {
+					el.value=user;
+				}
+			} else if ('submit'==el.type || 'image'==el.type) {
+				// ??
 			}
 		}
 	} catch (e) { this.dumpErr(e) }
@@ -139,4 +171,26 @@ dumpErr:function(e) {
 	dump(s);
 },
 
+onload:function(event) {
+	dump('mpwgen onload...\n');
+	window.removeEventListener('load', mpwgen.onload, false);
+
+	document.getElementById("contentAreaContextMenu")
+		.addEventListener("popupshowing", mpwgen.popupshowing, false);
+},
+
+popupshowing:function(event) {
+	/*	
+	for (i in gContextMenu) {
+		if ('function'==typeof gContextMenu[i]) continue;
+		dump(i+'\t'+gContextMenu[i]+'\n');
+	}
+	*/
+	var show=!('password'==gContextMenu.target.type);
+
+	document.getElementById("mpwgen-context").setAttribute('hidden', show);
+}
+
 }//end mpwgen object
+
+window.addEventListener('load', mpwgen.onload, false);
