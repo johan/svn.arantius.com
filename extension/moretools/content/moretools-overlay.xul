@@ -5,13 +5,11 @@
 <script	type='application/x-javascript'	src='chrome://moretools/content/moretools.js'></script>
 
 <menubar id='main-menubar'>
-	<menu id='more-tools-menu' label='&moretools.label;' accesskey='&moretools.accesskey;'
-		insertbefore='helpMenu'
+	<menu id='more-tools-menu' insertbefore='helpMenu'
+		label='&moretools.label;' accesskey='&moretools.accesskey;'
 	>
 		<menupopup id='more-tools-menupopup' onpopupshowing=''>
-			<menuitem label='Created by More Tools Menu extension'
-				disabled='true'
-			/>
+			<menuitem label='&moretools.createdby;' disabled='true' />
 			<menuseparator />
 		</menupopup>
 	</menu>
