@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE overlay SYSTEM "chrome://mpwgen/locale/overlay.dtd">
-<?xml-stylesheet href="chrome://mpwgen/skin/mpwgen-overlay.css" type="text/css"?> 
+<?xml-stylesheet href="chrome://mpwgen/skin/mpwgen-overlay.css" type="text/css"?>
 <overlay id="mpwgenOverlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
 <script type="application/x-javascript" src="chrome://mpwgen/content/mpwgen.js"></script>
 
 <toolbarpalette id="BrowserToolbarPalette">
-	<toolbarbutton id="tb-mpwgen" oncommand="mpwgen.run()" 
+	<toolbarbutton id="tb-mpwgen" oncommand="mpwgen.run()"
 		class="toolbarbutton-1"
 		label="&mpwgen.mpass;" tooltiptext="&mpwgen.mpass;"
 	/>
@@ -14,7 +14,8 @@
 
 <popup id="contentAreaContextMenu">
 	<menuitem id="mpwgen-context" hidden="true" oncommand="mpwgen.run()"
-		label="&mpwgen.title;..." accesskey="&mpwgen.accesskey;" 
+		label="&mpwgen.title;..." accesskey="&mpwgen.accesskey;"
+		image="chrome://mpwgen/skin/tb-icon-small.png" class="menuitem-iconic"
 	/>
 </popup>
 
