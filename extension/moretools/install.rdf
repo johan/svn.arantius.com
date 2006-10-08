@@ -6,7 +6,7 @@
 		<em:version>1.0.2</em:version>
 		<em:description>Unclutter the "Tools" menu by moving new items to a "More Tools" menu.</em:description>
 		<em:creator>Anthony Lieuallen</em:creator>
-		<em:homepageURL>http://arantius.com/article/more-tools-menu</em:homepageURL>
+		<em:homepageURL>http://firefox-extensions.arantius.com/more+tools+menu</em:homepageURL>
 		<em:updateURL>http://arantius.com/misc/firefox-extensions/mine/updates.rdf</em:updateURL>
 		<em:iconURL>chrome://moretools/skin/em-icon.png</em:iconURL>
 
