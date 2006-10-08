@@ -7,7 +7,7 @@
 		<em:description>Magically make custom passwords for each website.</em:description>
 		<em:creator>Anthony Lieuallen</em:creator>
 		
-		<em:homepageURL>http://arantius.com/article/arantius/magic+password+generator/</em:homepageURL>
+		<em:homepageURL>http://firefox-extensions.arantius.com/magic+password+generator</em:homepageURL>
 		<em:updateURL>http://arantius.com/misc/firefox-extensions/mine/updates.rdf</em:updateURL>
 		<em:iconURL>chrome://mpwgen/skin/em-icon.png</em:iconURL>
 		<em:optionsURL>chrome://mpwgen/content/mpwgen-options.xul</em:optionsURL>
