@@ -106,7 +106,7 @@ fillwindow:function(master, win) {
 				//dump('EL: '+el.name+'\nTEXT: '+txt+'\n');
 				if (txt.match(/\b(e-?mail)\b/i)) {
 					el.value=email;
-				} else if (txt.match(/\b(user ?name|log ?in|id)\b/i)) {
+				} else if (txt.match(/\b((user|member) ?name|log ?in|id)\b/i)) {
 					el.value=user;
 				} else if (el.name.match(/e-?mail/i) || 'e'==el.name) {
 					el.value=email;
