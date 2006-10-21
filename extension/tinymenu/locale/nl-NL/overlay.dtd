@@ -1,7 +1,6 @@
 <!ENTITY tinymenu.title "Tiny Menu">
 <!ENTITY tinymenu.menu "Menu">
 <!ENTITY tinymenu.menuaccesskey "M">
-<!ENTITY tinymenu.doNotCollapse "Niet inklappen:">
+<!ENTITY tinymenu.doNotCollapse "Deze menu&apos;s NIET inklappen:">
 <!ENTITY tinymenu.optionsMsg1 "Opties hebben alleen effect op nieuwe vensters.">
 <!ENTITY tinymenu.optionsMsg2 "(Herstart Firefox om de wijzigingen te zien.)">
-<!ENTITY tinymenu.version121 "Versie 1.2.1 vertaald">
