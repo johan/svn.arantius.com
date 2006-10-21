@@ -1,4 +1,5 @@
 <!ENTITY mpwgen.title "Magic Password Generator">
+<!ENTITY mpwgen.accesskey "M">
 <!ENTITY mpwgen.mpass "Magisk kodeord">
 <!ENTITY mpwgen.options "Indstillinger">
 <!ENTITY mpwgen.username "Brugernavn">

@@ -1,4 +1,5 @@
 <!ENTITY mpwgen.title "Mágikus Jelszógenerátor">
+<!ENTITY mpwgen.accesskey "M">
 <!ENTITY mpwgen.mpass "Mágkus Jelszó">
 <!ENTITY mpwgen.options "Beállítások">
 <!ENTITY mpwgen.username "Felhasználónév">

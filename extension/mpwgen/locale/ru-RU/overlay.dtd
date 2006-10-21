@@ -1,4 +1,5 @@
 <!ENTITY mpwgen.title "Волшебный генератор паролей">
+<!ENTITY mpwgen.accesskey "В">
 <!ENTITY mpwgen.mpass "Пароль">
 <!ENTITY mpwgen.options "Настройки">
 <!ENTITY mpwgen.username "Имя пользователя">

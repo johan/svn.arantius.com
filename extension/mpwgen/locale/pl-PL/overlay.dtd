@@ -1,0 +1,8 @@
+<!ENTITY mpwgen.title "Magic Password Generator">
+<!ENTITY mpwgen.accesskey "M">
+<!ENTITY mpwgen.mpass "Magiczne Hasło">
+<!ENTITY mpwgen.options "Opcje">
+<!ENTITY mpwgen.username "Użytkownik">
+<!ENTITY mpwgen.email "Email">
+<!ENTITY mpwgen.disablePasswordRemember "Wyłącz Zapamiętywanie Haseł">
+<!ENTITY mpwgen.masterPrompt "Hasło Głowne?">

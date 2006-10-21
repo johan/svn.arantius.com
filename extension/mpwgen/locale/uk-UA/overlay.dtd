@@ -1,0 +1,8 @@
+<!ENTITY mpwgen.title "Magic Password Generator">
+<!ENTITY mpwgen.accesskey "М">
+<!ENTITY mpwgen.mpass "Пароль">
+<!ENTITY mpwgen.options "Налаштування">
+<!ENTITY mpwgen.username "Ім&apos;я користувача">
+<!ENTITY mpwgen.email "Електронна адреса">
+<!ENTITY mpwgen.disablePasswordRemember "Заборонити збереження паролей">
+<!ENTITY mpwgen.masterPrompt "Основний пароль?">

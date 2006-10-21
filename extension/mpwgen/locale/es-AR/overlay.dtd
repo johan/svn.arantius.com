@@ -1,4 +1,5 @@
 <!ENTITY mpwgen.title "Generador Mágico de Contraseñas">
+<!ENTITY mpwgen.accesskey "M">
 <!ENTITY mpwgen.mpass "Contraseña Mágica">
 <!ENTITY mpwgen.options "Opciones">
 <!ENTITY mpwgen.username "Nombre de Usuario">
