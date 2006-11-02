@@ -16,7 +16,7 @@ function mungeMenus(event) {
 
 	// for each insert event, find the element, and decide
 	// if we should do something with it
-	for (var i=0, event=null, el=null; event=insertEvents[i]; i++) {
+	for (var i=insertEvents.length-1, event=null, el=null; event=insertEvents[i]; i--) {
 		try {
 			el=event.target;
 
