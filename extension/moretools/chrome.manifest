@@ -8,6 +8,7 @@ locale moretools en-US locale/en-US/
 locale moretools es-AR locale/es-AR/
 locale moretools es-ES locale/es-ES/
 locale moretools fr-FR locale/fr-FR/
+locale moretools hr-HR locale/hr-HR/
 locale moretools it-IT locale/it-IT/
 locale moretools ja-JP locale/ja-JP/
 locale moretools lt-LT locale/lt-LT/
@@ -18,3 +19,4 @@ locale moretools pt-BR locale/pt-BR/
 locale moretools ru-RU locale/ru-RU/
 locale moretools uk-UA locale/uk-UA/
 locale moretools zh-CN locale/zh-CN/
+locale moretools zh-TW locale/zh-TW/
