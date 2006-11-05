@@ -4,6 +4,7 @@ style	chrome://global/content/customizeToolbar.xul	chrome://mpwgen/skin/mpwgen-o
 skin	mpwgen	classic/1.0	skin/
 
 locale mpwgen da-DK locale/da-DK/
+locale mpwgen de-DE locale/de-DE/
 locale mpwgen en-GB locale/en-GB/
 locale mpwgen en-US locale/en-US/
 locale mpwgen es-AR locale/es-AR/
@@ -12,6 +13,8 @@ locale mpwgen fr-FR locale/fr-FR/
 locale mpwgen hu-HU locale/hu-HU/
 locale mpwgen it-IT locale/it-IT/
 locale mpwgen nl-NL locale/nl-NL/
+locale mpwgen pl-PL locale/pl-PL/
 locale mpwgen pt-BR locale/pt-BR/
 locale mpwgen ru-RU locale/ru-RU/
 locale mpwgen sk-SK locale/sk-SK/
+locale mpwgen uk-UA locale/uk-UA/
