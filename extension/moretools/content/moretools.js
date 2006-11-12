@@ -11,8 +11,13 @@ function mungeMenus(event) {
 	document.removeEventListener('DOMNodeInserted', catchInsertEvent, true);
 	window.removeEventListener('DOMContentLoaded', mungeMenus, true);
 
-	var toolsMenu=document.getElementById('menu_ToolsPopup');
+	var toolsMenu=
+		document.getElementById('menu_ToolsPopup') || // firefox
+		document.getElementById('taskPopup') ;        // thunderbird
+
 	var moreToolsMenu=document.getElementById('more-tools-menupopup');
+
+	var mungeFlag=false;
 
 	// for each insert event, find the element, and decide
 	// if we should do something with it
@@ -24,7 +29,15 @@ function mungeMenus(event) {
 			// if we got here, the insert was to the tools menu.  move the element!
 			toolsMenu.removeChild(el);
 			moreToolsMenu.appendChild(el);
+
+			mungeFlag=true;
 		} catch (e) { }
+	}
+
+	if (mungeFlag) {
+		// we did munge something into this menu; remove the label and separator
+		document.getElementById('more-tools-label').setAttribute('hidden', true);
+		document.getElementById('more-tools-sep').setAttribute('hidden', true);
 	}
 }
 

@@ -1,0 +1,19 @@
+<?xml version='1.0'?>
+<overlay id='moretools-tbfix-overlay' xmlns='http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'>
+
+<script	type='application/x-javascript'>
+<![CDATA[
+// thunderbird has no ID on the help menu, so we have to manually position ours
+// (And I can't get insertAfter='...' to work either?)
+
+window.addEventListener('load', function() {
+	var mtmenu=document.getElementById('more-tools-menu');
+	var menubar=mtmenu.parentNode;
+	menubar.removeChild(mtmenu);
+	var hmenu=document.getElementById('tasksMenu').nextSibling;
+
+	menubar.insertBefore(mtmenu, hmenu);
+}, false);
+]]>
+</script>
+</overlay>

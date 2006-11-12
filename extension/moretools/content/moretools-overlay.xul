@@ -1,18 +1,29 @@
 <?xml version='1.0'?>
 <!DOCTYPE window SYSTEM "chrome://moretools/locale/overlay.dtd">
-<overlay id='moretools-overlay'	xmlns='http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'>
+<overlay id='moretools-overlay' xmlns='http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'>
 
 <script	type='application/x-javascript'	src='chrome://moretools/content/moretools.js'></script>
 
+<!-- Firefox -->
 <menubar id='main-menubar'>
 	<menu id='more-tools-menu' insertbefore='helpMenu'
 		label='&moretools.label;' accesskey='&moretools.accesskey;'
 	>
 		<menupopup id='more-tools-menupopup' onpopupshowing=''>
-			<!--
-			<menuitem label='&moretools.createdby;' disabled='true' />
-			<menuseparator />
-			-->
+			<menuitem label='&moretools.createdby;' disabled='true' id='more-tools-label' />
+			<menuseparator id='more-tools-sep' />
+		</menupopup>
+	</menu>
+</menubar>
+
+<!-- Thunderbird -->
+<menubar id="mail-menubar">
+	<menu id='more-tools-menu' insertbefore='helpMenu'
+		label='&moretools.label;' accesskey='&moretools.accesskey;'
+	>
+		<menupopup id='more-tools-menupopup' onpopupshowing=''>
+			<menuitem label='&moretools.createdby;' disabled='true' id='more-tools-label' />
+			<menuseparator id='more-tools-sep' />
 		</menupopup>
 	</menu>
 </menubar>
