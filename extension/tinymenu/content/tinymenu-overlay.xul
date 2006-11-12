@@ -9,8 +9,8 @@
 		label='&tinymenu.menu;' accesskey='&tinymenu.menuaccesskey;'
 	>
 		<menupopup id='tinymenu-popup' onpopupshowing=''>
-			<menuitem 
-				label='&tinymenu.title; ...'
+			<menuitem label='&tinymenu.title; ...'
+				oncommand='window.openDialog("chrome://tinymenu/content/tinymenu-options.xul","","centerscreen");'
 			/>
 		</menupopup>
 	</menu>
