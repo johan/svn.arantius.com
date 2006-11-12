@@ -1,7 +1,10 @@
 content	tinymenu	content/
 overlay	chrome://browser/content/browser.xul	chrome://tinymenu/content/tinymenu-overlay.xul
-skin	tinymenu	classic/1.0	skin/
+overlay chrome://messenger/content/mailWindowOverlay.xul chrome://tinymenu/content/tinymenu-overlay.xul
+
 style	chrome://global/content/customizeToolbar.xul	chrome://tinymenu/skin/tinymenu-about.css
+
+skin	tinymenu	classic/1.0	skin/
 
 locale tinymenu da-DK locale/da-DK/
 locale tinymenu de-DE locale/de-DE/
