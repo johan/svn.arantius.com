@@ -15,11 +15,9 @@ initPref:function() {
 onLoad:function() {
 	tinymenu.initPref();
 
-	// don't execute in options window
-	if ('undefined'==typeof gBrowser) return;
-
 	//find the main menu
-	var menubar=document.getElementById('main-menubar');
+	var menubar=document.getElementById('main-menubar') || //firefox
+		document.getElementById('mail-menubar') ; //thunderbird
 	//find our menu popup
 	var menusub=document.getElementById('tinymenu-popup');
 
@@ -29,8 +27,11 @@ onLoad:function() {
 	for (var i=menubar.childNodes.length-1; i>=0; i--) {
 		el=menubar.childNodes[i];
 		
-		r=new RegExp('\\b'+el.id+'\\b');
-		if (r.exec(tinymenu.doNotCollapse)) continue;
+		// some thunderbird menus don't have IDs!
+		if (el.id) {
+			r=new RegExp('\\b'+el.id+'\\b');
+			if (r.exec(tinymenu.doNotCollapse)) continue;
+		}
 
 		menubar.removeChild(el);
 		menusub.insertBefore(el, menusub.firstChild);
@@ -77,4 +78,6 @@ saveOptions:function() {
 
 }//end var tinymenu
 
-window.addEventListener('load', tinymenu.onLoad, false);
+if ('undefined'==typeof gInOptions || !gInOptions) {
+	window.addEventListener('load', tinymenu.onLoad, false);
+}

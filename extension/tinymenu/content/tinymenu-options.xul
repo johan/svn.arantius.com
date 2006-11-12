@@ -22,6 +22,9 @@
 	ondialogaccept="tinymenu.saveOptions();"
 	persist="width height screenX screenY"
 >
+	<script type="application/x-javascript">
+	var gInOptions=true;
+	</script>
 	<script type="application/x-javascript" src="chrome://tinymenu/content/tinymenu.js"></script>
 
 	<groupbox align="center" orient="vertical">
