@@ -9,8 +9,10 @@
 		label='&moretools.label;' accesskey='&moretools.accesskey;'
 	>
 		<menupopup id='more-tools-menupopup' onpopupshowing=''>
+			<!--
 			<menuitem label='&moretools.createdby;' disabled='true' />
 			<menuseparator />
+			-->
 		</menupopup>
 	</menu>
 </menubar>
