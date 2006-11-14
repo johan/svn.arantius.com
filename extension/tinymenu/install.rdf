@@ -3,7 +3,7 @@
 	<Description about="urn:mozilla:install-manifest">
 		<em:id>{d33c2f7c-b1e6-4d46-ab0e-be1f6d05c904}</em:id>
 		<em:name>Tiny Menu</em:name>
-		<em:version>1.2.5</em:version>
+		<em:version>1.3</em:version>
 		<em:description>Replace the standard menu bar with a tiny menu popup.</em:description>
 		<em:creator>Anthony Lieuallen</em:creator>
 		<em:homepageURL>http://firefox-extensions.arantius.com/tiny+menu</em:homepageURL>
