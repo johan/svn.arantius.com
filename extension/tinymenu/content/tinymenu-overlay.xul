@@ -8,9 +8,9 @@
 	<menu id='tinymenu' insertbefore='file-menu'
 		label='&tinymenu.menu;' accesskey='&tinymenu.menuaccesskey;'
 	>
-		<menupopup id='tinymenu-popup' onpopupshowing=''>
+		<menupopup id='tinymenu-popup'>
 			<menuitem label='&tinymenu.title; ...'
-				oncommand='window.openDialog("chrome://tinymenu/content/tinymenu-options.xul","","centerscreen");'
+				oncommand='window.openDialog("chrome://tinymenu/content/tinymenu-options-ff.xul","","chrome,centerscreen");'
 			/>
 		</menupopup>
 	</menu>
@@ -21,7 +21,10 @@
 	<menu id='tinymenu' insertbefore='menu_File'
 		label='&tinymenu.menu;' accesskey='&tinymenu.menuaccesskey;'
 	>
-		<menupopup id='tinymenu-popup' onpopupshowing=''>
+		<menupopup id='tinymenu-popup'>
+			<menuitem label='&tinymenu.title; ...'
+				oncommand='window.openDialog("chrome://tinymenu/content/tinymenu-options-tb.xul","","chrome,centerscreen");'
+			/>
 		</menupopup>
 	</menu>
 </menubar>

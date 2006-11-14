@@ -1,0 +1,23 @@
+<?xml version='1.0'?>
+<overlay id='moretools-tbfix-overlay' xmlns='http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'>
+
+<script	type='application/x-javascript'>
+<![CDATA[
+// thunderbird has no ID on the help menu, or go menu
+// so fake it, and add them in
+gTinymenuTbFix=function() {
+	var menus=document.getElementById('mail-menubar').childNodes;
+
+	for (var i=0, menu=null; menu=menus[i]; i++) {
+		if (''!=menu.id) continue;
+
+		if (1==menu.getElementsByAttribute('id', 'goNextMenu').length) {
+			menu.id='menu_Go';
+		} else if (1==menu.getElementsByAttribute('id', 'menu_HelpPopup').length) {
+			menu.id='menu_Help';
+		}
+	}
+}
+]]>
+</script>
+</overlay>

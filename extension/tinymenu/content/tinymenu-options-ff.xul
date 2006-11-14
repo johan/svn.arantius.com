@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <!DOCTYPE window [
-<!ENTITY % tinymenuDTD SYSTEM "chrome://tinymenu/locale/overlay.dtd" >
+<!ENTITY % tinymenuDTD SYSTEM "chrome://tinymenu/locale/overlay.dtd">
 %tinymenuDTD;
 
 <!ENTITY % preferencesDTD SYSTEM "chrome://browser/locale/preferences/preferences.dtd">
@@ -26,6 +26,12 @@
 	var gInOptions=true;
 	</script>
 	<script type="application/x-javascript" src="chrome://tinymenu/content/tinymenu.js"></script>
+	<script type="application/x-javascript">
+	tinymenu.menuIds=[
+		'file-menu', 'edit-menu', 'view-menu', 'go-menu',
+		'bookmarks-menu', 'tools-menu', 'helpMenu'
+	];
+	</script>
 
 	<groupbox align="center" orient="vertical">
 		<vbox>

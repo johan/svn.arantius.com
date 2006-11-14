@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE dialog [
+<!ENTITY % tinymenuDTD SYSTEM "chrome://tinymenu/locale/overlay.dtd">
+%tinymenuDTD;
+
+<!ENTITY % preferencesDTD SYSTEM "chrome://messenger/locale/preferences/preferences.dtd">
+%preferencesDTD;
+<!ENTITY % utilityDTD SYSTEM "chrome://communicator/locale/utilityOverlay.dtd">
+%utilityDTD;
+<!ENTITY % messengerDTD SYSTEM "chrome://messenger/locale/messenger.dtd">
+%messengerDTD;
+]>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+
+<dialog id="tinymenu-options"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	title="&tinymenu.title; - &prefWindow.titleWin;"
+	buttons="accept, cancel"
+	onload="tinymenu.loadOptions();"
+	ondialogaccept="tinymenu.saveOptions();"
+	persist="width height screenX screenY"
+>
+	<script type="application/x-javascript">
+	var gInOptions=true;
+	</script>
+	<script type="application/x-javascript" src="chrome://tinymenu/content/tinymenu.js"></script>
+	<script type="application/x-javascript">
+	tinymenu.menuIds=[
+		'menu_File', 'menu_Edit', 'menu_View', 'menu_Go',
+		'messageMenu', 'tasksMenu', 'menu_Help'
+	];
+	</script>
+
+	<groupbox align="center" orient="vertical">
+		<vbox>
+			<text value="&tinymenu.title;" style="font-weight: bold; font-size: x-large;" />
+			<separator class="thin" />
+
+			<text value="&tinymenu.doNotCollapse;" />
+			<separator class="thin" />
+
+			<hbox>
+				<vbox>
+					<checkbox id='pref-menu_File' label='&fileMenu.label;' checked='false' />
+					<checkbox id='pref-menu_Edit' label='&editMenu.label;' checked='false' />
+					<checkbox id='pref-menu_View' label='&viewMenu.label;' checked='false' />
+					<checkbox id='pref-menu_Go' label='&goMenu.label;' checked='false' />
+				</vbox>
+				<vbox>
+					<checkbox id='pref-messageMenu' label='&msgsMenu.label;' checked='false' />
+					<checkbox id='pref-tasksMenu' label='&tasksMenu.label;' checked='false' />
+					<checkbox id='pref-menu_Help' label='&helpMenu.label;' checked='false' />
+				</vbox>
+			</hbox>
+			<separator class="thin" />
+
+		</vbox>
+
+		<vbox style='text-align: center;'>
+			<text value='&tinymenu.optionsMsg1;' />
+			<text value='&tinymenu.optionsMsg2;' />
+		</vbox>
+	</groupbox>
+</dialog>

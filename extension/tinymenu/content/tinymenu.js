@@ -1,9 +1,6 @@
 var tinymenu={
 
-menuIds:[
-	'file-menu', 'edit-menu', 'view-menu', 'go-menu',
-	'bookmarks-menu', 'tools-menu', 'helpMenu'
-],
+menuIds:[],
 doNotCollapse:'',
 
 initPref:function() {
@@ -15,15 +12,19 @@ initPref:function() {
 onLoad:function() {
 	tinymenu.initPref();
 
+	if ('function'==typeof gTinymenuTbFix) {
+		gTinymenuTbFix();
+	}
+
 	//find the main menu
 	var menubar=document.getElementById('main-menubar') || //firefox
 		document.getElementById('mail-menubar') ; //thunderbird
+	if (!menubar) return;
 	//find our menu popup
 	var menusub=document.getElementById('tinymenu-popup');
 
 	//move each of the menus into the sub menu
 	var el, r;
-	//while (el=menubar.childNodes[0]) {
 	for (var i=menubar.childNodes.length-1; i>=0; i--) {
 		el=menubar.childNodes[i];
 		
@@ -48,6 +49,7 @@ loadOptions:function() {
 	var r, id;
 	for (var i in tinymenu.menuIds) {
 		id=tinymenu.menuIds[i];
+		dump('Menu id '+id+'\n');
 
 		r=new RegExp('\\b'+id+'\\b');
 		document.getElementById('pref-'+id).checked=
