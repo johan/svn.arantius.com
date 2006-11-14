@@ -8,8 +8,8 @@ var earlyMoverCache=[];
 var toolsMenu=
 	document.getElementById('menu_ToolsPopup') || // firefox
 	document.getElementById('taskPopup') ;        // thunderbird
-
-var moreToolsMenu=null;
+// this one will almost certainly fail.  we'll deal with that gracefully later
+var moreToolsMenu=document.getElementById('more-tools-menupopup');
 
 var toolFlag=false;
 
@@ -21,7 +21,7 @@ function catchInsertEvent(event) {
 		return;
 	}
 
-	if (!moreToolsMenu) {
+	if (!moreToolsMenu || !toolsMenu) {
 		earlyMoverCache.push(el);
 	} else {
 		moveTool(el);
@@ -53,7 +53,17 @@ function moveTool(el) {
 function flushEarlyMovers() {
 	window.removeEventListener('DOMContentLoaded', flushEarlyMovers, false);
 
-	moreToolsMenu=document.getElementById('more-tools-menupopup');
+	// rebuild, in case early lookups failed
+	if (!toolsMenu) {
+		toolsMenu=
+			document.getElementById('menu_ToolsPopup') || // firefox
+			document.getElementById('taskPopup') ;        // thunderbird
+	}
+	if (!moreToolsMenu) {
+		moreToolsMenu=document.getElementById('more-tools-menupopup');
+	}
+
+	// now we can move, safely
 	for (var i=0, el=null; el=earlyMoverCache[i]; i++) {
 		moveTool(el);
 	}
