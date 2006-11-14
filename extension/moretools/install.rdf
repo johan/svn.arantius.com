@@ -3,7 +3,7 @@
 	<Description about="urn:mozilla:install-manifest">
 		<em:id>{9a7a67d3-3048-47fb-acde-d0f7ae51f86a}</em:id>
 		<em:name>More Tools Menu</em:name>
-		<em:version>1.0.6</em:version>
+		<em:version>1.1</em:version>
 		<em:description>Unclutter the "Tools" menu by moving new items to a "More Tools" menu.</em:description>
 		<em:creator>Anthony Lieuallen</em:creator>
 		<em:homepageURL>http://firefox-extensions.arantius.com/more+tools+menu</em:homepageURL>
@@ -14,7 +14,7 @@
 		<em:targetApplication>
 			<Description>
 				<em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
-				<em:minVersion>1.5</em:minVersion>
+				<em:minVersion>2.0</em:minVersion>
 				<em:maxVersion>2.0.0.*</em:maxVersion>
 			</Description>
 		</em:targetApplication>
