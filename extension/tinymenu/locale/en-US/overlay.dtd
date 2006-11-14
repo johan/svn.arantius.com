@@ -1,6 +1,7 @@
 <!ENTITY tinymenu.title "Tiny Menu">
 <!ENTITY tinymenu.menu "Menu">
 <!ENTITY tinymenu.menuaccesskey "M">
+<!ENTITY tinymenu.tinyaccesskey "Y">
 <!ENTITY tinymenu.doNotCollapse "Do NOT collapse these menus:">
 <!ENTITY tinymenu.optionsMsg1 "Options only effect new windows.">
 <!ENTITY tinymenu.optionsMsg2 "(Restart to see changes.)">

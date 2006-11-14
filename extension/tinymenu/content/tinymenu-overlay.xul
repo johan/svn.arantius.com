@@ -22,7 +22,7 @@
 		label='&tinymenu.menu;' accesskey='&tinymenu.menuaccesskey;'
 	>
 		<menupopup id='tinymenu-popup'>
-			<menuitem label='&tinymenu.title; ...'
+			<menuitem label='&tinymenu.title; ...' accesskey='&tinymenu.tinyaccesskey;'
 				oncommand='window.openDialog("chrome://tinymenu/content/tinymenu-options-tb.xul","","chrome,centerscreen");'
 			/>
 		</menupopup>
