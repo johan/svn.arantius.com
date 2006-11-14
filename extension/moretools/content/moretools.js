@@ -68,10 +68,10 @@ function flushEarlyMovers() {
 		moveTool(el);
 	}
 
-	// empty out the cache
+	// empty out the cache, save some memory
 	earlyMoverCache.length=0;
 
-	// if there was an earlier run, it probably failed.  try again in case
+	// if there was an earlier run, it probably failed this.  try again in case.
 	if (toolFlag) {
 		document.getElementById('more-tools-label').setAttribute('hidden', true);
 		document.getElementById('more-tools-sep').setAttribute('hidden', true);
