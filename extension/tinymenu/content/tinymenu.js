@@ -3,10 +3,22 @@ var tinymenu={
 menuIds:[],
 doNotCollapse:'',
 
+viewMode:null,
+iconFile:null,
+
 initPref:function() {
-	var prefService=Components.classes['@mozilla.org/preferences-service;1']
-		.getService(Components.interfaces.nsIPrefBranch);
-	tinymenu.doNotCollapse=prefService.getCharPref('tinymenu.doNotCollapse');
+	var prefs=Components.classes["@mozilla.org/preferences-service;1"]
+		.getService(Components.interfaces.nsIPrefService)
+		.getBranch("tinymenu.");
+
+	tinymenu.doNotCollapse=prefs.getCharPref('doNotCollapse');
+	tinymenu.viewMode=prefs.getCharPref('viewMode');
+	
+	try {
+		tinymenu.iconFile=prefs.getComplexValue(
+			'iconFile', Components.interfaces.nsILocalFile
+		);
+	} catch (e) {  }
 },
 
 onLoad:function() {
@@ -41,41 +53,98 @@ onLoad:function() {
 	//put the new items in our menu popup
 	var menupop=document.getElementById('tinymenu');
 	menupop.appendChild(menusub);
+
+	// if we're set to image mode, inject the image
+	if ('image'==tinymenu.viewMode) {
+//		// http://developer.mozilla.org/en/docs/Using_the_Stylesheet_Service
+//		var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"]
+//			.getService(Components.interfaces.nsIStyleSheetService);
+//		var ios = Components.classes["@mozilla.org/network/io-service;1"]
+//			.getService(Components.interfaces.nsIIOService);
+//		var uri = ios.newURI("chrome://tinymenu/content/icon.css", null, null);
+//		sss.loadAndRegisterSheet(uri, sss.AGENT_SHEET);
+
+		var m=document.getElementById('tinymenu');
+		m.style.backgroundImage='url('+tinymenu.uriForFile(tinymenu.iconFile)+')';
+		m.style.backgroundPosition='50% 50%';
+		m.style.backgroundRepeat='no-repeat';
+		m.style.minWidth='32px';
+		m.removeAttribute('label');
+
+		for (i in m.style) { dump(i+'\n') }
+	}
 },
 
 loadOptions:function() {
 	tinymenu.initPref();
 
+	// set checkboxes
 	var r, id;
 	for (var i in tinymenu.menuIds) {
 		id=tinymenu.menuIds[i];
-		dump('Menu id '+id+'\n');
-
 		r=new RegExp('\\b'+id+'\\b');
 		document.getElementById('pref-'+id).checked=
-			r.exec(tinymenu.doNotCollapse);
+			(null!=r.exec(tinymenu.doNotCollapse));
+	}
+
+	// set radio
+	if ('image'==tinymenu.viewMode) {
+		document.getElementById('view_text').setAttribute('selected', false);
+		document.getElementById('view_image').setAttribute('selected', true);
 	}
 },
 
 saveOptions:function() {
-	var opt='tinymenu';
-
+	// build doNotCollapse string
+	var doNotCollapse='tinymenu';
 	var r, id;
 	for (var i in tinymenu.menuIds) {
 		id=tinymenu.menuIds[i];
 
 		if (document.getElementById('pref-'+id).checked) {
-			opt+=' '+id;
+			doNotCollapse+=' '+id;
 		}
 	}
-	
-	if (tinymenu.doNotCollapse!=opt) {
-		tinymenu.doNotCollapse=opt;
+	tinymenu.doNotCollapse=doNotCollapse;
 
-		var prefService=Components.classes['@mozilla.org/preferences-service;1']
-			.getService(Components.interfaces.nsIPrefBranch);
-		prefService.setCharPref('tinymenu.doNotCollapse', opt);
+	// save all the bits
+	var prefs=Components.classes["@mozilla.org/preferences-service;1"]
+		.getService(Components.interfaces.nsIPrefService)
+		.getBranch("tinymenu.");
+
+	prefs.setCharPref('doNotCollapse', doNotCollapse);
+	prefs.setCharPref('viewMode', 
+		document.getElementById('view_image').getAttribute('selected')?
+		'image':'text'
+	);
+
+	if (tinymenu.iconFile &&
+		tinymenu.iconFile.QueryInterface(Components.interfaces.nsILocalFile)
+	) {
+		prefs.setComplexValue('iconFile', Components.interfaces.nsILocalFile, tinymenu.iconFile);
+	} else {
+		prefs.setCharPref('iconFile', '');
 	}
+},
+
+mimeForFile:function(file) {
+	var mime=Components.classes["@mozilla.org/mime;1"]
+		.getService().QueryInterface(Components.interfaces.nsIMIMEService);
+	try {
+		mime=mime.getTypeFromFile(file);
+	} catch (e) { 
+		mime='';
+	}
+
+	return mime;
+},
+
+uriForFile:function(file) {
+	var ioService=Components.classes["@mozilla.org/network/io-service;1"]
+		.getService(Components.interfaces.nsIIOService);
+	var fileHandler=ioService.getProtocolHandler("file")
+		.QueryInterface(Components.interfaces.nsIFileProtocolHandler);
+	return fileHandler.getURLSpecFromFile(file);
 }
 
 }//end var tinymenu

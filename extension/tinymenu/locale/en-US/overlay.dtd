@@ -5,3 +5,8 @@
 <!ENTITY tinymenu.doNotCollapse "Do NOT collapse these menus:">
 <!ENTITY tinymenu.optionsMsg1 "Options only effect new windows.">
 <!ENTITY tinymenu.optionsMsg2 "(Restart to see changes.)">
+<!ENTITY tinymenu.display "Display">
+<!ENTITY tinymenu.text "Text">
+<!ENTITY tinymenu.image "Image">
+<!ENTITY tinymenu.browse "Browse">
+<!ENTITY tinymenu.preview "Preview:">

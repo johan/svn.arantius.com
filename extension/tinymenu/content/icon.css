@@ -1,0 +1,11 @@
+menu#tinymenu {
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+}
+menu#tinymenu > label {
+	visibility: hidden;
+}
+
+/*
+#navigator-toolbox * { background-color: red !important; }
+*/

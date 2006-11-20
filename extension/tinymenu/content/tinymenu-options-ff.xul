@@ -12,55 +12,20 @@
 %baseMenuOverlayDTD;
 ]>
 
-<?xml-stylesheet href="chrome://browser/skin/" type="text/css"?>
+<overlay id='tinymenu-options-ff-overlay' xmlns='http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'>
 
-<dialog id="tinymenu-options"
-	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-	title="&tinymenu.title; - &prefWindow.titleWin;"
-	buttons="accept, cancel"
-	onload="tinymenu.loadOptions();"
-	ondialogaccept="tinymenu.saveOptions();"
-	persist="width height screenX screenY"
->
-	<script type="application/x-javascript">
-	var gInOptions=true;
-	</script>
-	<script type="application/x-javascript" src="chrome://tinymenu/content/tinymenu.js"></script>
-	<script type="application/x-javascript">
-	tinymenu.menuIds=[
-		'file-menu', 'edit-menu', 'view-menu', 'go-menu',
-		'bookmarks-menu', 'tools-menu', 'helpMenu'
-	];
-	</script>
+<hbox id='menu_choices'>
+	<vbox>
+		<checkbox id='pref-file-menu' label='&fileMenu.label;' checked='false' />
+		<checkbox id='pref-edit-menu' label='&editMenu.label;' checked='false' />
+		<checkbox id='pref-view-menu' label='&viewMenu.label;' checked='false' />
+		<checkbox id='pref-go-menu' label='&goMenu.label;' checked='false' />
+	</vbox>
+	<vbox>
+		<checkbox id='pref-bookmarks-menu' label='&bookmarksMenu.label;' checked='false' />
+		<checkbox id='pref-tools-menu' label='&toolsMenu.label;' checked='false' />
+		<checkbox id='pref-helpMenu' label='&helpMenuWin.label;' checked='false' />
+	</vbox>
+</hbox>
 
-	<groupbox align="center" orient="vertical">
-		<vbox>
-			<text value="&tinymenu.title;" style="font-weight: bold; font-size: x-large;" />
-			<separator class="thin" />
-
-			<text value="&tinymenu.doNotCollapse;" />
-			<separator class="thin" />
-
-			<hbox>
-				<vbox>
-					<checkbox id='pref-file-menu' label='&fileMenu.label;' checked='false' />
-					<checkbox id='pref-edit-menu' label='&editMenu.label;' checked='false' />
-					<checkbox id='pref-view-menu' label='&viewMenu.label;' checked='false' />
-					<checkbox id='pref-go-menu' label='&goMenu.label;' checked='false' />
-				</vbox>
-				<vbox>
-					<checkbox id='pref-bookmarks-menu' label='&bookmarksMenu.label;' checked='false' />
-					<checkbox id='pref-tools-menu' label='&toolsMenu.label;' checked='false' />
-					<checkbox id='pref-helpMenu' label='&helpMenuWin.label;' checked='false' />
-				</vbox>
-			</hbox>
-			<separator class="thin" />
-
-		</vbox>
-
-		<vbox style='text-align: center;'>
-			<text value='&tinymenu.optionsMsg1;' />
-			<text value='&tinymenu.optionsMsg2;' />
-		</vbox>
-	</groupbox>
-</dialog>
+</overlay>

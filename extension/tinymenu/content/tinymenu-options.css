@@ -1,0 +1,16 @@
+groupbox {
+	width: 100%;
+}
+
+#menu_choices {
+	min-height: 7em;
+}
+
+image#view_image_preview {
+	/*
+	width: 16px;
+	height: 16px;
+	*/
+
+	border: 1px outset white;
+}

@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE window [
+<!ENTITY % tinymenuDTD SYSTEM "chrome://tinymenu/locale/overlay.dtd">
+%tinymenuDTD;
+
+<!ENTITY % preferencesDTD SYSTEM "chrome://browser/locale/preferences/preferences.dtd">
+%preferencesDTD;
+<!ENTITY % browserDTD SYSTEM "chrome://browser/locale/browser.dtd" >
+%browserDTD;
+<!ENTITY % baseMenuOverlayDTD SYSTEM "chrome://browser/locale/baseMenuOverlay.dtd">
+%baseMenuOverlayDTD;
+]>
+
+<?xml-stylesheet href="chrome://browser/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://tinymenu/content/tinymenu-options.css" type="text/css"?>
+
+<dialog id="tinymenu-options"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	title="&tinymenu.title;"
+	buttons="accept, cancel"
+	persist="width height screenX screenY"
+	ondialogaccept="tinymenu.saveOptions();"
+>
+
+	<script type="application/x-javascript">
+	var gInOptions=true;
+	</script>
+	<script type="application/x-javascript" src="chrome://tinymenu/content/tinymenu.js"></script>
+	<script type="application/x-javascript" src="chrome://tinymenu/content/tinymenu-options.js"></script>
+
+	<vbox orient="vertical">
+		<text value="&tinymenu.title;" style="font-weight: bold; font-size: x-large;" />
+		<separator class="thin" />
+
+		<groupbox align="center">
+			<caption label="&tinymenu.doNotCollapse;" />
+			<separator class="thin" />
+
+			<hbox id='menu_choices' />
+
+			<separator class="thin" />
+
+			<vbox style='text-align: center;'>
+				<text value='&tinymenu.optionsMsg1;' />
+				<text value='&tinymenu.optionsMsg2;' />
+			</vbox>
+		</groupbox>
+
+		<groupbox>
+			<caption label="&tinymenu.display;" />
+
+			<radiogroup>
+				<radio id="view_text" label="&tinymenu.text;" selected="true" />
+				<hbox>
+					<radio id="view_image" label="&tinymenu.image;" />
+					<button label="&tinymenu.browse;" oncommand="browseImage();" />
+				</hbox>
+			</radiogroup>
+		</groupbox>
+	</vbox>
+</dialog>
