@@ -56,6 +56,9 @@ onLoad:function() {
 
 	// if we're set to image mode, inject the image
 	if ('image'==tinymenu.viewMode) {
+		// I'd MUCH rather do this.  But it doesn't work!  It doesn't apply
+		// to the current "page" so never really works for chrome.
+
 //		// http://developer.mozilla.org/en/docs/Using_the_Stylesheet_Service
 //		var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"]
 //			.getService(Components.interfaces.nsIStyleSheetService);
@@ -70,8 +73,6 @@ onLoad:function() {
 		m.style.backgroundRepeat='no-repeat';
 		m.style.minWidth='32px';
 		m.removeAttribute('label');
-
-		for (i in m.style) { dump(i+'\n') }
 	}
 },
 
