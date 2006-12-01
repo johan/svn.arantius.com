@@ -1,6 +1,7 @@
 <!ENTITY tinymenu.title "Tiny Menu">
 <!ENTITY tinymenu.menu "Меню">
 <!ENTITY tinymenu.menuaccesskey "м">
+<!ENTITY tinymenu.tinyaccesskey "Y">
 <!ENTITY tinymenu.doNotCollapse "НЕ сворачивать">
 <!ENTITY tinymenu.optionsMsg1 "Только для новых окон.">
 <!ENTITY tinymenu.optionsMsg2 "(Необходимо перезагрузить Firefox.)">
