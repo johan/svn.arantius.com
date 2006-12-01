@@ -3,5 +3,5 @@
 <!ENTITY tinymenu.menuaccesskey "P">
 <!ENTITY tinymenu.tinyaccesskey "Y">
 <!ENTITY tinymenu.doNotCollapse "NEUZATVÁRAJTE tieto ponuky:">
-<!ENTITY tinymenu.optionsMsg1 "Tieto voľby budú mať efekt u nových okien.">
-<!ENTITY tinymenu.optionsMsg2 "(Reštartujte Firefox na zobrazenie zmien.)">
+<!ENTITY tinymenu.optionsMsg1 "Zmeny sa prejavia na nových oknách.">
+<!ENTITY tinymenu.optionsMsg2 "(Zmeny sa prejavia po reštarte Firefoxu.)">

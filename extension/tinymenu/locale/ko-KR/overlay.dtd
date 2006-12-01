@@ -1,0 +1,7 @@
+<!ENTITY tinymenu.title "Tiny Menu">
+<!ENTITY tinymenu.menu "메뉴">
+<!ENTITY tinymenu.menuaccesskey "M">
+<!ENTITY tinymenu.tinyaccesskey "Y">
+<!ENTITY tinymenu.doNotCollapse "합치지 &apos;않을&apos; 메뉴:">
+<!ENTITY tinymenu.optionsMsg1 "설정은 새창에서부터 적용됩니다.">
+<!ENTITY tinymenu.optionsMsg2 "(다시 시작해도 바뀝니다.)">

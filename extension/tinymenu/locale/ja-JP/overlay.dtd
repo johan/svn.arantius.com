@@ -1,0 +1,7 @@
+<!ENTITY tinymenu.title "Tiny Menu">
+<!ENTITY tinymenu.menu "メニュー">
+<!ENTITY tinymenu.menuaccesskey "M">
+<!ENTITY tinymenu.tinyaccesskey "Y">
+<!ENTITY tinymenu.doNotCollapse "このメニューは小さくまとめない:">
+<!ENTITY tinymenu.optionsMsg1 "オプションのみ新規画面にエフェクトをかけます">
+<!ENTITY tinymenu.optionsMsg2 "(変更を有効にするにはリスタートしてください)">
