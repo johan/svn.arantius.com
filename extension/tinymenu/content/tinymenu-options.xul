@@ -39,13 +39,6 @@
 			<separator class="thin" />
 
 			<hbox id='menu_choices' />
-
-			<separator class="thin" />
-
-			<vbox style='text-align: center;'>
-				<text value='&tinymenu.optionsMsg1;' />
-				<text value='&tinymenu.optionsMsg2;' />
-			</vbox>
 		</groupbox>
 
 		<groupbox>
@@ -59,5 +52,13 @@
 				</hbox>
 			</radiogroup>
 		</groupbox>
+
+
+		<separator class="thin" />
+		<vbox style='text-align: center;'>
+			<text value='&tinymenu.optionsMsg1;' />
+			<text value='&tinymenu.optionsMsg2;' />
+		</vbox>
+		<separator class="thin" />
 	</vbox>
 </dialog>
