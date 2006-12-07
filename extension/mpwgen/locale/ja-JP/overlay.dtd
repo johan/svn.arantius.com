@@ -1,0 +1,8 @@
+<!ENTITY mpwgen.title "Magic Password Generator">
+<!ENTITY mpwgen.accesskey "M">
+<!ENTITY mpwgen.mpass "Magic Password">
+<!ENTITY mpwgen.options "オプション">
+<!ENTITY mpwgen.username "ユーザー名">
+<!ENTITY mpwgen.email "Email">
+<!ENTITY mpwgen.disablePasswordRemember "パスワードの保存を無効にします">
+<!ENTITY mpwgen.masterPrompt "マスターパスワード?">

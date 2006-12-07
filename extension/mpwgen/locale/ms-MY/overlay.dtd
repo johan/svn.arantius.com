@@ -1,0 +1,8 @@
+<!ENTITY mpwgen.title "Penjana Katalaluan Ajaib">
+<!ENTITY mpwgen.accesskey "M">
+<!ENTITY mpwgen.mpass "Katalaluan Ajaib">
+<!ENTITY mpwgen.options "Opsyen">
+<!ENTITY mpwgen.username "Nama pengguna">
+<!ENTITY mpwgen.email "Emel">
+<!ENTITY mpwgen.disablePasswordRemember "Lumpuhkan Meningat Katalaluan">
+<!ENTITY mpwgen.masterPrompt "Katalaluan Induk?">
