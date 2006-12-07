@@ -103,18 +103,29 @@ fillwindow:function(master, win) {
 					} catch (e) { this.dumpErr(e); }
 				}
 
-				//dump('EL: '+el.name+'\nTEXT: '+txt+'\n');
-				if (txt.match(/\b(e-?mail)\b/i)) {
+				if (
+					txt.match(/\b(e-?mail)\b/i)
+					&& ''!=email
+				) {
 					el.value=email;
-				} else if (txt.match(/\b((user|member) ?name|log ?in|id)\b/i)) {
+				} else if (
+					txt.match(/\b((user|member) ?name|log ?in|id)\b/i) 
+					&& ''!=user
+				) {
 					el.value=user;
-				} else if (el.name.match(/e-?mail/i) || 'e'==el.name) {
+				} else if (
+					(el.name.match(/e-?mail/i) || 'e'==el.name)
+					&& ''!=email
+				) {
 					el.value=email;
-				} else if (el.name.match(/username|login|id/i)) {
+				} else if (
+					el.name.match(/username|login|id/i)
+					&& ''!=user
+				) {
 					el.value=user;
 				}
 			} else if ('submit'==el.type || 'image'==el.type) {
-				// ??
+				el.focus();
 			}
 		}
 	} catch (e) { this.dumpErr(e) }
