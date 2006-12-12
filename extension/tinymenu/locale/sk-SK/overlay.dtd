@@ -5,3 +5,7 @@
 <!ENTITY tinymenu.doNotCollapse "NEUZATVÁRAJTE tieto ponuky:">
 <!ENTITY tinymenu.optionsMsg1 "Zmeny sa prejavia na nových oknách.">
 <!ENTITY tinymenu.optionsMsg2 "(Zmeny sa prejavia po reštarte Firefoxu.)">
+<!ENTITY tinymenu.display "Zobrazenie">
+<!ENTITY tinymenu.text "Text">
+<!ENTITY tinymenu.image "Obrázok">
+<!ENTITY tinymenu.browse "Prehliadať">

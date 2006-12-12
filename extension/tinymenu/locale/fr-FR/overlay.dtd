@@ -5,3 +5,7 @@
 <!ENTITY tinymenu.doNotCollapse "Ne PAS réduire ces menus :">
 <!ENTITY tinymenu.optionsMsg1 "Les options affectent seulement les nouvelles fenêtres">
 <!ENTITY tinymenu.optionsMsg2 "(Redémarrer Firefox pour voir les changements)">
+<!ENTITY tinymenu.display "Afficher">
+<!ENTITY tinymenu.text "texte">
+<!ENTITY tinymenu.image "Image">
+<!ENTITY tinymenu.browse "Parcourir">

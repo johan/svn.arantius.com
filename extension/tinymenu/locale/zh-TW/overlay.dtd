@@ -5,3 +5,7 @@
 <!ENTITY tinymenu.doNotCollapse "不收集以下的選單：">
 <!ENTITY tinymenu.optionsMsg1 "這些選項將只影響新增的視窗。">
 <!ENTITY tinymenu.optionsMsg2 "（除非重新啟動Firefox套用設定。）">
+<!ENTITY tinymenu.display "選單按鈕為">
+<!ENTITY tinymenu.text "文字">
+<!ENTITY tinymenu.image "小圖示">
+<!ENTITY tinymenu.browse "瀏覽...">

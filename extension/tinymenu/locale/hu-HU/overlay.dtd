@@ -5,3 +5,7 @@
 <!ENTITY tinymenu.doNotCollapse "Maradjon látható:">
 <!ENTITY tinymenu.optionsMsg1 "A változtatások új ablakokban lépnek érvénybe.">
 <!ENTITY tinymenu.optionsMsg2 "A változtatások a Firefox újraindítása után lépnek érvénybe.">
+<!ENTITY tinymenu.display "Menü megjelenítése mint:">
+<!ENTITY tinymenu.text "Szöveg">
+<!ENTITY tinymenu.image "Kép">
+<!ENTITY tinymenu.browse "Tallózás...">

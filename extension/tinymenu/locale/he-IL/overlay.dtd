@@ -5,3 +5,7 @@
 <!ENTITY tinymenu.doNotCollapse "אל תקבץ את התפריטים הבאים:">
 <!ENTITY tinymenu.optionsMsg1 "אפשרויות משפיעות רק על חלונות חדשים.">
 <!ENTITY tinymenu.optionsMsg2 "(אתחל דפדפן מחדש כדי לראות שינויים)">
+<!ENTITY tinymenu.display "הצג">
+<!ENTITY tinymenu.text "טקסט">
+<!ENTITY tinymenu.image "תמונה">
+<!ENTITY tinymenu.browse "דפדף">

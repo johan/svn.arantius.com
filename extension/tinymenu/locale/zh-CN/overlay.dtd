@@ -5,3 +5,7 @@
 <!ENTITY tinymenu.doNotCollapse "不隐藏下列选中的菜单项:">
 <!ENTITY tinymenu.optionsMsg1 "选项效果只能在新建窗口中体现。">
 <!ENTITY tinymenu.optionsMsg2 "(请重新启动浏览器。)">
+<!ENTITY tinymenu.display "Display">
+<!ENTITY tinymenu.text "Text">
+<!ENTITY tinymenu.image "Image">
+<!ENTITY tinymenu.browse "Browse">

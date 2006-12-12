@@ -5,3 +5,7 @@
 <!ENTITY tinymenu.doNotCollapse "НЕ сворачивать">
 <!ENTITY tinymenu.optionsMsg1 "Только для новых окон.">
 <!ENTITY tinymenu.optionsMsg2 "(Необходимо перезагрузить Firefox.)">
+<!ENTITY tinymenu.display "Отображать">
+<!ENTITY tinymenu.text "Текст">
+<!ENTITY tinymenu.image "Изображение">
+<!ENTITY tinymenu.browse "Обзор">

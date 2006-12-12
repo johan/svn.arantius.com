@@ -1,0 +1,11 @@
+<!ENTITY tinymenu.title "Tiny Menu">
+<!ENTITY tinymenu.menu "Menü">
+<!ENTITY tinymenu.menuaccesskey "M">
+<!ENTITY tinymenu.tinyaccesskey "Y">
+<!ENTITY tinymenu.doNotCollapse "Seçilen Menüler Gösterilecek">
+<!ENTITY tinymenu.optionsMsg1 "Ayarlar yeni pencerede etkili olacak">
+<!ENTITY tinymenu.optionsMsg2 "Değişikliklerin etkili olması için yeniden başlat">
+<!ENTITY tinymenu.display "Görünüm">
+<!ENTITY tinymenu.text "Yazı">
+<!ENTITY tinymenu.image "Resim">
+<!ENTITY tinymenu.browse "Araştır">
