@@ -19,7 +19,7 @@
 		<checkbox id='pref-file-menu' label='&fileMenu.label;' checked='false' />
 		<checkbox id='pref-edit-menu' label='&editMenu.label;' checked='false' />
 		<checkbox id='pref-view-menu' label='&viewMenu.label;' checked='false' />
-		<checkbox id='pref-go-menu' label='&goMenu.label;' checked='false' />
+		<checkbox id='pref-go-menu' label='&historyMenu.label;' checked='false' />
 	</vbox>
 	<vbox>
 		<checkbox id='pref-bookmarks-menu' label='&bookmarksMenu.label;' checked='false' />
