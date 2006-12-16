@@ -5,7 +5,7 @@
 <!ENTITY tinymenu.doNotCollapse "Sammenklap ikke disse menuer:">
 <!ENTITY tinymenu.optionsMsg1 "Indstillinger påvirker kun nye vinduer.">
 <!ENTITY tinymenu.optionsMsg2 "(Genstart Firefox for at se ændringer.)">
-<!ENTITY tinymenu.display "Display">
-<!ENTITY tinymenu.text "Text">
-<!ENTITY tinymenu.image "Image">
-<!ENTITY tinymenu.browse "Browse">
+<!ENTITY tinymenu.display "Vis">
+<!ENTITY tinymenu.text "Tekst">
+<!ENTITY tinymenu.image "Billede">
+<!ENTITY tinymenu.browse "Gennemse">
