@@ -4,11 +4,24 @@ const THUNDERBIRD_ID = "{3550f703-e582-4d05-9a08-453d09bdfdc6}";
 window.addEventListener("load", function() {
 	var appInfo=Components.classes["@mozilla.org/xre/app-info;1"]
 		.getService(Components.interfaces.nsIXULAppInfo);
-	
+	dump('Detected app id: '+appInfo.ID+'\n');
+	dump('n: '+navigator+'\n');
+	for (i in navigator) { dump(i+': '+navigator[i]+'\n'); }
+
 	if (FIREFOX_ID==appInfo.ID) {
 		// firefox
-		document.loadOverlay('chrome://tinymenu/content/tinymenu-options-ff.xul', overlayObserver);	
 
+		// the label changed, so show the proper one
+		var versionChecker=Components
+			.classes["@mozilla.org/xpcom/version-comparator;1"]
+			.getService(Components.interfaces.nsIVersionComparator);
+		if (versionChecker.compare(appInfo.version, "2.0") >= 0) {
+			document.loadOverlay('chrome://tinymenu/content/tinymenu-options-ff2.xul', overlayObserver);
+		} else {
+			document.loadOverlay('chrome://tinymenu/content/tinymenu-options-ff1.xul', overlayObserver);
+		}
+		
+		// the label changed, but not the ID, so always these IDs for firefox
 		tinymenu.menuIds=[
 			'file-menu', 'edit-menu', 'view-menu', 'go-menu',
 			'bookmarks-menu', 'tools-menu', 'helpMenu'
