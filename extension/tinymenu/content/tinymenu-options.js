@@ -4,9 +4,6 @@ const THUNDERBIRD_ID = "{3550f703-e582-4d05-9a08-453d09bdfdc6}";
 window.addEventListener("load", function() {
 	var appInfo=Components.classes["@mozilla.org/xre/app-info;1"]
 		.getService(Components.interfaces.nsIXULAppInfo);
-	dump('Detected app id: '+appInfo.ID+'\n');
-	dump('n: '+navigator+'\n');
-	for (i in navigator) { dump(i+': '+navigator[i]+'\n'); }
 
 	if (FIREFOX_ID==appInfo.ID) {
 		// firefox
