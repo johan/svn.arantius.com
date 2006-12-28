@@ -5,7 +5,3 @@ menu#tinymenu {
 menu#tinymenu > label {
 	visibility: hidden;
 }
-
-/*
-#navigator-toolbox * { background-color: red !important; }
-*/
