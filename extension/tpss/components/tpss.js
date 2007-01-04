@@ -49,7 +49,7 @@ var module={
 		if (!this.factoryLoaded) {
 			var loader=Components.classes[JSLOADER_CONTRACTID]
 				.getService(Components.interfaces.mozIJSSubScriptLoader);
-			loader.loadSubScript('chrome://tpss/content/component.js');
+			loader.loadSubScript('chrome://tpss/content/tpss.js');
 			this.factoryLoaded=factory;
 		}
 

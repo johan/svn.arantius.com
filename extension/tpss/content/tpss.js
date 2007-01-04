@@ -6,6 +6,13 @@ const CONTENTPOLICY_DESCRIPTION="Content policy service";
 
 // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ //
 
+var gPref=Components.classes['@mozilla.org/preferences-service;1']
+	.getService(Components.interfaces.nsIPrefService)
+	.getBranch('extensions.tpss.');
+var gTpssEnabled=gPref.getBoolPref('enabled');
+
+// \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ //
+
 var policy={
 	hostToTld:function(host) {
 		// this terribly simple method seems to work well enough
@@ -16,6 +23,11 @@ var policy={
 	shouldLoad:function(
 		contentType, contentLocation, requestOrigin, requestingNode, mimeTypeGuess, extra
 	) {
+		if (!gTpssEnabled) {
+			// when not enabled:  let it through
+			return Components.interfaces.nsIContentPolicy.ACCEPT;
+		}
+
 		if (null==requestOrigin || null==requestingNode) {
 			// if we don't know where the request came from, we can't
 			// judge it.  let it through
@@ -123,3 +135,31 @@ if (typeof(Components.classes[TPSS_CONTRACTID]) == 'undefined') {
 		TPSS_CID, CONTENTPOLICY_DESCRIPTION, TPSS_CONTRACTID, factory
 	);
 }
+
+// \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ //
+
+var myPrefObserver={
+	_branch:null,
+
+	register:function() {
+		this._branch=gPref;
+		this._branch.QueryInterface(Components.interfaces.nsIPrefBranch2);
+		this._branch.addObserver('', this, false);
+	},
+
+	unregister:function() {
+		if (!this._branch) return;
+		this._branch.removeObserver('', this);
+	},
+
+	observe:function(aSubject, aTopic, aData) {
+		if(aTopic != 'nsPref:changed') return;
+		// aSubject is the nsIPrefBranch we're observing (after appropriate QI)
+		// aData is the name of the pref that's been changed (relative to aSubject)
+		
+		if ('enabled'==aData) {
+			gTpssEnabled=gPref.getBoolPref('enabled');
+		}
+	}
+}
+myPrefObserver.register();
