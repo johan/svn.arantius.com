@@ -4,6 +4,8 @@ const _TPSS_CID=Components.ID('{cabe6b3f-578c-480f-a2f0-68bc4b7a1142}');
 const CATMAN_CONTRACTID="@mozilla.org/categorymanager;1";
 const JSLOADER_CONTRACTID="@mozilla.org/moz/jssubscript-loader;1";
 
+// \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ //
+
 var module={
 	factoryLoaded:false,
 
@@ -58,6 +60,8 @@ var module={
 		return true;
 	}
 };
+
+// \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ //
 
 // module initialisation
 function NSGetModule(comMgr, fileSpec) {

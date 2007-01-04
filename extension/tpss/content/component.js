@@ -4,7 +4,14 @@ const TPSS_CID=Components.ID('{cabe6b3f-578c-480f-a2f0-68bc4b7a1142}');
 const CONTENTPOLICY_CONTRACTID="@mozilla.org/layout/content-policy;1";
 const CONTENTPOLICY_DESCRIPTION="Content policy service";
 
+// \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ //
+
 var policy={
+	hostToTld:function(host) {
+		// this terribly simple method seems to work well enough
+		return host.replace(/.*\.(.*......)/, '$1')
+	},
+
 	// nsIContentPolicy interface implementation
 	shouldLoad:function(
 		contentType, contentLocation, requestOrigin, requestingNode, mimeTypeGuess, extra
@@ -12,7 +19,7 @@ var policy={
 		if (null==requestOrigin || null==requestingNode) {
 			// if we don't know where the request came from, we can't
 			// judge it.  let it through
-			return apiConstants.ACCEPT;
+			return Components.interfaces.nsIContentPolicy.ACCEPT;
 		}
 
 		if ('http'!=contentLocation.scheme &&
@@ -20,42 +27,48 @@ var policy={
 			'ftp'!=contentLocation.scheme
 		) {
 			// it's not a remote scheme, definitely let it through
-			return apiConstants.ACCEPT;
+			return Components.interfaces.nsIContentPolicy.ACCEPT;
 		}
-
-//		dump('shouldLoad remote?\n'+
-//			contentLocation.spec+'\n'+
-//			requestOrigin.spec+'\n'+
-//			'\n'
-//		);
-//
-//		dump([
-//			'TPSS\'s shouldLoad called...',
-//			contentType, contentLocation, requestOrigin, requestingNode, mimeTypeGuess, extra,
-//			'-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=', ''
-//		].join('\n'));
 
 		if ('undefined'!=typeof requestingNode.tagName &&
 			'SCRIPT'==requestingNode.tagName
 		) {
-			dump('requestingNode '+requestingNode+' is a script!\n');
-			dump('c host: '+contentLocation.host+'\n');
-			dump('r host: '+requestOrigin.host+'\n');
+			var cHost=contentLocation.host;
+			var rHost=requestOrigin.host;
+
+			if ('undefined'!=typeof cHost && 'undefined'!=typeof rHost &&
+				''!=cHost && ''!=rHost
+			) {
+				if (cHost.match(/^[0-9.]+$/)) {
+					// the content host is all digits and dots ... IP!
+					// don't munge it
+				} else {
+					cHost=this.hostToTld(cHost);
+					rHost=this.hostToTld(rHost);
+				}
+
+				// at this point, we know the request originated from a 
+				// <script> tag.  We have a host and a referring host,
+				// and we've trimmed them down to the "top" domain name.
+				// if they aren't the same domain, REJECT!
+				if (cHost!=rHost) {
+					dump(
+						'TPSS denied: '+contentLocation.spec+'\n'+
+						'from page:   '+requestOrigin.spec+'\n'
+					);
+					return Components.interfaces.nsIContentPolicy.REJECT_REQUEST;
+				}
+			}
 		}
 
-		return apiConstants.ACCEPT;
+		return Components.interfaces.nsIContentPolicy.ACCEPT;
 	},
 
 	// this is now for urls that directly load media, and meta-refreshes (before activation)
 	shouldProcess:function(
 		contentType, contentLocation, requestOrigin, requestingNode, mimeType, extra
 	) {
-//		dump([
-//			'TPSS\'s shouldProcess called...',
-//			contentType, contentLocation, requestOrigin, requestingNode, mimeType, extra,
-//		'', ''].join('\n'));
-
-		return apiConstants.ACCEPT;
+		return Components.interfaces.nsIContentPolicy.ACCEPT;
 	},
 
 	// nsISupports interface implementation
@@ -70,21 +83,14 @@ var policy={
 	}
 };
 
+// \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ //
+
 // Factory object
 var factory={
 	// nsIFactory interface implementation
 	createInstance:function(outer, iid) {
 		if (outer!=null) throw Components.results.NS_ERROR_NO_AGGREGATION;
 		return policy;
-	},
-
-	// nsIObserver + nsIPrefBranchObserver interface implementation
-	observe:function(subject, topic, prefName) { 
-		dump([
-			'TPSS\'s factory observe called...',
-			subject, topic, prefName,
-		'', ''].join('\n'));
-
 	},
 
 	// nsISupports interface implementation
