@@ -61,6 +61,5 @@ var module={
 
 // module initialisation
 function NSGetModule(comMgr, fileSpec) {
-	dump('TPSS\'s NSGetModule was called...\n');
 	return module;
 }
