@@ -72,6 +72,7 @@ onLoad:function() {
 		m.style.backgroundPosition='50% 50%';
 		m.style.backgroundRepeat='no-repeat';
 		m.style.minWidth='32px';
+		m.style.minHeight='16px';
 		m.removeAttribute('label');
 	}
 },
