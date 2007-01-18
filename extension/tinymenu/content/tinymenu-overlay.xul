@@ -1,35 +1,24 @@
 <?xml version='1.0'?>
 <!DOCTYPE window SYSTEM "chrome://tinymenu/locale/overlay.dtd">
+<?xml-stylesheet href='chrome://tinymenu/skin/tinymenu-iconmode.css' type='text/css'?>
 <overlay id='tinymenu-overlay' xmlns='http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'>
 <script type='application/x-javascript' src='chrome://tinymenu/content/tinymenu.js'></script>
 
 <!-- Firefox -->
 <menubar id='main-menubar'>
-	<menu id='tinymenu' insertbefore='file-menu'
+	<menu id='tinymenu' mode='text' insertbefore='file-menu'
 		label='&tinymenu.menu;' accesskey='&tinymenu.menuaccesskey;'
 	>
-		<menupopup id='tinymenu-popup'>
-		<!--
-			<menuitem label='&tinymenu.title; ...' accesskey='&tinymenu.tinyaccesskey;'
-				oncommand='window.openDialog("chrome://tinymenu/content/tinymenu-options.xul","","chrome,centerscreen");'
-			/>
-		-->
-		</menupopup>
+		<menupopup id='tinymenu-popup' />
 	</menu>
 </menubar>
 
 <!-- Thunderbird -->
 <menubar id='mail-menubar'>
-	<menu id='tinymenu' insertbefore='menu_File'
+	<menu id='tinymenu' mode='text' insertbefore='menu_File'
 		label='&tinymenu.menu;' accesskey='&tinymenu.menuaccesskey;'
 	>
-		<menupopup id='tinymenu-popup'>
-		<!--
-			<menuitem label='&tinymenu.title; ...' accesskey='&tinymenu.tinyaccesskey;'
-				oncommand='window.openDialog("chrome://tinymenu/content/tinymenu-options.xul","","chrome,centerscreen");'
-			/>
-		-->
-		</menupopup>
+		<menupopup id='tinymenu-popup' />
 	</menu>
 </menubar>
 

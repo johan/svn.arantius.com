@@ -13,12 +13,15 @@ initPref:function() {
 
 	tinymenu.doNotCollapse=prefs.getCharPref('doNotCollapse');
 	tinymenu.viewMode=prefs.getCharPref('viewMode');
-	
+
 	try {
 		tinymenu.iconFile=prefs.getComplexValue(
 			'iconFile', Components.interfaces.nsILocalFile
 		);
-	} catch (e) {  }
+	} catch (e) {
+		// this is a little lame, but it works
+		tinymenu.iconFile='chrome://tinymenu/skin/tinymenu.png';
+	}
 },
 
 onLoad:function() {
@@ -54,27 +57,7 @@ onLoad:function() {
 	var menupop=document.getElementById('tinymenu');
 	menupop.appendChild(menusub);
 
-	// if we're set to image mode, inject the image
-	if ('image'==tinymenu.viewMode) {
-		// I'd MUCH rather do this.  But it doesn't work!  It doesn't apply
-		// to the current "page" so never really works for chrome.
-
-//		// http://developer.mozilla.org/en/docs/Using_the_Stylesheet_Service
-//		var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"]
-//			.getService(Components.interfaces.nsIStyleSheetService);
-//		var ios = Components.classes["@mozilla.org/network/io-service;1"]
-//			.getService(Components.interfaces.nsIIOService);
-//		var uri = ios.newURI("chrome://tinymenu/content/icon.css", null, null);
-//		sss.loadAndRegisterSheet(uri, sss.AGENT_SHEET);
-
-		var m=document.getElementById('tinymenu');
-		m.style.backgroundImage='url('+tinymenu.uriForFile(tinymenu.iconFile)+')';
-		m.style.backgroundPosition='50% 50%';
-		m.style.backgroundRepeat='no-repeat';
-		m.style.minWidth='32px';
-		m.style.minHeight='16px';
-		m.removeAttribute('label');
-	}
+	tinymenu.activateViewMode();
 },
 
 loadOptions:function() {
@@ -108,25 +91,27 @@ saveOptions:function() {
 		}
 	}
 	tinymenu.doNotCollapse=doNotCollapse;
+	
+	tinymenu.viewMode=
+		document.getElementById('view_image').getAttribute('selected')?
+		'image':'text';
 
 	// save all the bits
 	var prefs=Components.classes["@mozilla.org/preferences-service;1"]
 		.getService(Components.interfaces.nsIPrefService)
 		.getBranch("tinymenu.");
 
-	prefs.setCharPref('doNotCollapse', doNotCollapse);
-	prefs.setCharPref('viewMode', 
-		document.getElementById('view_image').getAttribute('selected')?
-		'image':'text'
-	);
+	prefs.setCharPref('doNotCollapse', tinymenu.doNotCollapse);
+	prefs.setCharPref('viewMode', tinymenu.viewMode);
 
-	if (tinymenu.iconFile &&
-		tinymenu.iconFile.QueryInterface(Components.interfaces.nsILocalFile)
-	) {
-		prefs.setComplexValue('iconFile', Components.interfaces.nsILocalFile, tinymenu.iconFile);
-	} else {
-		prefs.setCharPref('iconFile', '');
-	}
+	// will fail in default case, so silently catch
+	try {
+		if (tinymenu.iconFile &&
+			tinymenu.iconFile.QueryInterface(Components.interfaces.nsILocalFile)
+		) {
+			prefs.setComplexValue('iconFile', Components.interfaces.nsILocalFile, tinymenu.iconFile);
+		}
+	} catch (e) {  }
 },
 
 mimeForFile:function(file) {
@@ -142,11 +127,45 @@ mimeForFile:function(file) {
 },
 
 uriForFile:function(file) {
+	// special case for the default
+	if ('chrome:'==file.substring(0, 7)) {
+		return file;
+	}
+
+	// otherwise, work your mojo
 	var ioService=Components.classes["@mozilla.org/network/io-service;1"]
 		.getService(Components.interfaces.nsIIOService);
 	var fileHandler=ioService.getProtocolHandler("file")
 		.QueryInterface(Components.interfaces.nsIFileProtocolHandler);
 	return fileHandler.getURLSpecFromFile(file);
+},
+
+activateViewMode:function(mode) {
+	if ('undefined'==typeof mode) {
+		mode=tinymenu.viewMode;
+	}
+
+	var ifaces=Components.interfaces;
+	var mediator=Components.classes["@mozilla.org/appshell/window-mediator;1"].
+		getService(ifaces.nsIWindowMediator);
+	var win,winEnum=mediator.getEnumerator('navigator:browser');
+	while (winEnum.hasMoreElements()){
+		win=winEnum.getNext();
+
+		var m=win.document.getElementById('tinymenu');
+		if (!m) continue;
+
+		// if we're set to image mode, inject the image
+		if ('image'==mode) {
+			m.setAttribute('mode', 'image');
+			m.style.backgroundImage='url('+
+				escape(tinymenu.uriForFile(tinymenu.iconFile))
+				+')';
+		} else {
+			m.setAttribute('mode', 'text');
+			m.style.backgroundImage='none';
+		}
+	}
 }
 
 }//end var tinymenu

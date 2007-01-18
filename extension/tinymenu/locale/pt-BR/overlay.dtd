@@ -5,7 +5,7 @@
 <!ENTITY tinymenu.doNotCollapse "NÃO recolher estes menus:">
 <!ENTITY tinymenu.optionsMsg1 "Opções afetaram apenas as novas janelas.">
 <!ENTITY tinymenu.optionsMsg2 "(Reinicie o Firefox para ver as mudanças.)">
-<!ENTITY tinymenu.display "Display">
-<!ENTITY tinymenu.text "Text">
-<!ENTITY tinymenu.image "Image">
-<!ENTITY tinymenu.browse "Browse">
+<!ENTITY tinymenu.display "Exibição">
+<!ENTITY tinymenu.text "Texto">
+<!ENTITY tinymenu.image "Imagem">
+<!ENTITY tinymenu.browse "Navegação">

@@ -52,9 +52,17 @@ function browseImage() {
 			alert("Whoops, that doesn't seem to be an image!");
 		} else {
 			tinymenu.iconFile=fp.file;
+
+			document.getElementById('view_text').setAttribute('selected', false);
 			document.getElementById('view_image').setAttribute('selected', true);
+
+			tinymenu.activateViewMode();
 		}
 	}
+}
+
+function setViewMode(mode) {
+	tinymenu.activateViewMode(mode);
 }
 
 var overlayObserver={

@@ -14,7 +14,6 @@
 
 <?xml-stylesheet href="chrome://browser/skin/" type="text/css"?>
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
-<?xml-stylesheet href="chrome://tinymenu/content/tinymenu-options.css" type="text/css"?>
 
 <dialog id="tinymenu-options"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
@@ -39,26 +38,30 @@
 			<separator class="thin" />
 
 			<hbox id='menu_choices' />
+
+			<separator class="thin" />
+			<vbox style='text-align: center;'>
+				<text value='&tinymenu.optionsMsg1;' />
+				<text value='&tinymenu.optionsMsg2;' />
+			</vbox>
 		</groupbox>
+
+		<separator class="thin" />
 
 		<groupbox>
 			<caption label="&tinymenu.display;" />
 
 			<radiogroup>
-				<radio id="view_text" label="&tinymenu.text;" selected="true" />
+				<radio id="view_text" label="&tinymenu.text;" selected="true"
+					onclick='setViewMode("text");'
+				/>
 				<hbox>
-					<radio id="view_image" label="&tinymenu.image;" />
+					<radio id="view_image" label="&tinymenu.image;"
+						onclick='setViewMode("image");'
+					/>
 					<button label="&tinymenu.browse;" oncommand="browseImage();" />
 				</hbox>
 			</radiogroup>
 		</groupbox>
-
-
-		<separator class="thin" />
-		<vbox style='text-align: center;'>
-			<text value='&tinymenu.optionsMsg1;' />
-			<text value='&tinymenu.optionsMsg2;' />
-		</vbox>
-		<separator class="thin" />
 	</vbox>
 </dialog>
