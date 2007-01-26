@@ -128,7 +128,7 @@ mimeForFile:function(file) {
 
 uriForFile:function(file) {
 	// special case for the default
-	if ('chrome:'==file.substring(0, 7)) {
+	if ('string'==typeof file && 'chrome:'==file.substring(0, 7)) {
 		return file;
 	}
 
