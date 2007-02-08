@@ -6,7 +6,7 @@
 		<em:version>1.4.2</em:version>
 		<em:description>Replace the standard menu bar with a tiny menu popup.</em:description>
 		<em:creator>Anthony Lieuallen</em:creator>
-		<em:homepageURL>http://firefox-extensions.arantius.com/tiny+menu</em:homepageURL>
+		<em:homepageURL>http://trac.arantius.com/wiki/Extensions/TinyMenu</em:homepageURL>
 		<em:updateURL>http://arantius.com/misc/firefox-extensions/mine/updates.rdf</em:updateURL>
 		<em:iconURL>chrome://tinymenu/skin/em-icon.png</em:iconURL>
 		<em:optionsURL>chrome://tinymenu/content/tinymenu-options.xul</em:optionsURL>

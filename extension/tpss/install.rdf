@@ -9,7 +9,7 @@
 		<em:creator>Anthony Lieuallen</em:creator>
 
 		<em:iconURL>chrome://tpss/skin/tpss-on.png</em:iconURL>
-		<em:homepageURL>http://trac.arantius.com/Extensions/ThirdPartyScriptStopper</em:homepageURL>
+		<em:homepageURL>http://trac.arantius.com/wiki/Extensions/ThirdPartyScriptStopper</em:homepageURL>
 		<em:updateURL>http://arantius.com/misc/firefox-extensions/mine/updates.rdf</em:updateURL>
 
 		<em:targetApplication>
