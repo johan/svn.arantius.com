@@ -3,6 +3,7 @@ overlay	chrome://browser/content/browser.xul	chrome://mpwgen/content/mpwgen-over
 style	chrome://global/content/customizeToolbar.xul	chrome://mpwgen/skin/mpwgen-overlay.css
 skin	mpwgen	classic/1.0	skin/
 
+locale mpwgen ca-AD locale/ca-AD/
 locale mpwgen da-DK locale/da-DK/
 locale mpwgen de-DE locale/de-DE/
 locale mpwgen en-GB locale/en-GB/
@@ -13,10 +14,13 @@ locale mpwgen fr-FR locale/fr-FR/
 locale mpwgen hu-HU locale/hu-HU/
 locale mpwgen it-IT locale/it-IT/
 locale mpwgen ja-JP locale/ja-JP/
+locale mpwgen ko-KR locale/ko-KR/
 locale mpwgen ms-MY locale/ms-MY/
 locale mpwgen nl-NL locale/nl-NL/
 locale mpwgen pl-PL locale/pl-PL/
 locale mpwgen pt-BR locale/pt-BR/
 locale mpwgen ru-RU locale/ru-RU/
 locale mpwgen sk-SK locale/sk-SK/
+locale mpwgen tr-TR locale/tr-TR/
 locale mpwgen uk-UA locale/uk-UA/
+locale mpwgen zh-TW locale/zh-TW/
