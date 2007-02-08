@@ -1,0 +1,8 @@
+<!ENTITY mpwgen.title "Magic Password Generator">
+<!ENTITY mpwgen.accesskey "M">
+<!ENTITY mpwgen.mpass "Magic Password">
+<!ENTITY mpwgen.options "Opcions">
+<!ENTITY mpwgen.username "Nom d&apos;usuari/a">
+<!ENTITY mpwgen.email "Correu-e">
+<!ENTITY mpwgen.disablePasswordRemember "Deshabilitar recordatori de Contrasenya">
+<!ENTITY mpwgen.masterPrompt "Contrasenya mestre?">

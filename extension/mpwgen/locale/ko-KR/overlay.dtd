@@ -1,0 +1,8 @@
+<!ENTITY mpwgen.title "Magic Password Generator">
+<!ENTITY mpwgen.accesskey "M">
+<!ENTITY mpwgen.mpass "Magic Password">
+<!ENTITY mpwgen.options "선택사항">
+<!ENTITY mpwgen.username "사용자명">
+<!ENTITY mpwgen.email "이메일">
+<!ENTITY mpwgen.disablePasswordRemember "암호 기억 무효화">
+<!ENTITY mpwgen.masterPrompt "마스터 패스워드?">

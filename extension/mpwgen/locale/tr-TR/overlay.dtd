@@ -1,0 +1,8 @@
+<!ENTITY mpwgen.title "Sihirli Şifre Yaratıcı">
+<!ENTITY mpwgen.accesskey "M">
+<!ENTITY mpwgen.mpass "Sihirli Şifre">
+<!ENTITY mpwgen.options "Seçenekler">
+<!ENTITY mpwgen.username "Kullanıcı adı">
+<!ENTITY mpwgen.email "E-posta">
+<!ENTITY mpwgen.disablePasswordRemember "Şifre hatırlamayı devredışı bırak">
+<!ENTITY mpwgen.masterPrompt "Ana Şifre?">

@@ -1,0 +1,8 @@
+<!ENTITY mpwgen.title "Magic Password Generator">
+<!ENTITY mpwgen.accesskey "M">
+<!ENTITY mpwgen.mpass "Magic Password">
+<!ENTITY mpwgen.options "選項">
+<!ENTITY mpwgen.username "使用者名稱">
+<!ENTITY mpwgen.email "電子郵件">
+<!ENTITY mpwgen.disablePasswordRemember "不要記住密碼">
+<!ENTITY mpwgen.masterPrompt "主控密碼？">
