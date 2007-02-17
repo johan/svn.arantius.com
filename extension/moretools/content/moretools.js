@@ -1,83 +1,48 @@
 (function() {
 
-// hold early movers until the window is done loading .. that's the only point
-// at which we can be sure the new menu exists to be moved into
-var earlyMoverCache=[];
-
-// cache these lookups
-var toolsMenu=
-	document.getElementById('menu_ToolsPopup') || // firefox
-	document.getElementById('taskPopup') ;        // thunderbird
-// this one will almost certainly fail.  we'll deal with that gracefully later
-var moreToolsMenu=document.getElementById('more-tools-menupopup');
-
-var toolFlag=false;
+var insertEvents=[];
 
 function catchInsertEvent(event) {
-	try {
-		el=event.target;
-	} catch (e) {
-		dump('More tools error:\n'+e+'\n');
-		return;
-	}
-
-	if (!moreToolsMenu || !toolsMenu) {
-		earlyMoverCache.push(el);
-	} else {
-		moveTool(el);
-	}
+	// just cache the event.  if we try to access the object, we screw things up 
+	insertEvents[insertEvents.length]=event;
 }
 
-function moveTool(el) {
-	try {
-		// only move things if they came from the tools menu
-		if (toolsMenu!=el.parentNode) return;
+function mungeMenus(event) {
+	document.removeEventListener('DOMNodeInserted', catchInsertEvent, true);
+	window.removeEventListener('DOMContentLoaded', mungeMenus, true);
 
-		// if we got here, the insert was to the tools menu.  move the element!
-		toolsMenu.removeChild(el);
-		moreToolsMenu.appendChild(el);
+	var toolsMenu=
+		document.getElementById('menu_ToolsPopup') || // firefox
+		document.getElementById('taskPopup') ;        // thunderbird
 
-		if (!toolFlag) {
-			// if this was the first one...
-			try {
-				document.getElementById('more-tools-label').setAttribute('hidden', true);
-				document.getElementById('more-tools-sep').setAttribute('hidden', true);
-			} catch (e) {  }
-		}
-		toolFlag=true;
-	} catch (e) {
-		dump('More tools error:\n'+e+'\n');
-	}
-}
+	var moreToolsMenu=document.getElementById('more-tools-menupopup');
 
-function flushEarlyMovers() {
-	window.removeEventListener('DOMContentLoaded', flushEarlyMovers, false);
+	var mungeFlag=false;
 
-	// rebuild, in case early lookups failed
-	if (!toolsMenu) {
-		toolsMenu=
-			document.getElementById('menu_ToolsPopup') || // firefox
-			document.getElementById('taskPopup') ;        // thunderbird
-	}
-	if (!moreToolsMenu) {
-		moreToolsMenu=document.getElementById('more-tools-menupopup');
+	// for each insert event, find the element, and decide
+	// if we should do something with it
+	for (var i=insertEvents.length-1, event=null, el=null; event=insertEvents[i]; i--) {
+		try {
+			el=event.target;
+
+			if (toolsMenu!=el.parentNode) continue;
+			// if we got here, the insert was to the tools menu.  move the element!
+			toolsMenu.removeChild(el);
+			moreToolsMenu.appendChild(el);
+
+			mungeFlag=true;
+		} catch (e) { }
 	}
 
-	// now we can move, safely
-	for (var i=0, el=null; el=earlyMoverCache[i]; i++) {
-		moveTool(el);
-	}
-
-	// empty out the cache, save some memory
-	earlyMoverCache.length=0;
-
-	// if there was an earlier run, it probably failed this.  try again in case.
-	if (toolFlag) {
+	if (mungeFlag) {
+		// we did munge something into this menu; remove the label and separator
 		document.getElementById('more-tools-label').setAttribute('hidden', true);
 		document.getElementById('more-tools-sep').setAttribute('hidden', true);
 	}
 }
 
-document.addEventListener('DOMNodeInserted', catchInsertEvent, false);
-window.addEventListener('DOMContentLoaded', flushEarlyMovers, false);
+document.addEventListener('DOMNodeInserted', catchInsertEvent, true);
+window.addEventListener('DOMContentLoaded', mungeMenus, true);
+
+
 })();
