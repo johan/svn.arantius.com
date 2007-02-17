@@ -1,7 +1,8 @@
-content	mpwgen	content/
-overlay	chrome://browser/content/browser.xul	chrome://mpwgen/content/mpwgen-overlay.xul
-style	chrome://global/content/customizeToolbar.xul	chrome://mpwgen/skin/mpwgen-overlay.css
-skin	mpwgen	classic/1.0	skin/
+content mpwgen             content/
+skin    mpwgen classic/1.0 skin/
+
+overlay chrome://browser/content/browser.xul         chrome://mpwgen/content/mpwgen-overlay.xul
+style   chrome://global/content/customizeToolbar.xul chrome://mpwgen/skin/mpwgen-overlay.css
 
 locale mpwgen ca-AD locale/ca-AD/
 locale mpwgen da-DK locale/da-DK/
