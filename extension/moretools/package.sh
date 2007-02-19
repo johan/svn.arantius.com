@@ -1,5 +1,7 @@
 #!/bin/sh
 
+[ ! -f "chrome.manifest" ] && echo "Must execute from main extension directory!" && exit
+
 # derive project name and version
 PROJ=`awk '/^content/{print $2}' chrome.manifest`
 rm -f ${PROJ}*.xpi
@@ -25,15 +27,17 @@ cd build
 echo CREATING: "${PROJ}.jar"
 
 sed \
-	-e "/^content/s/\(.*\) \(.*\)/\1 jar:${PROJ}.jar!\/\2/" \
-	-e "/^skin/s/\(.*\) \(.*\)/\1 jar:${PROJ}.jar!\/\2/" \
-	-e "/^locale/s/\(.*\) \(.*\)/\1 jar:${PROJ}.jar!\/\2/" \
+	-e "/^content/s#\(.*\) \(.*\)#\1 jar:chrome/${PROJ}.jar!/\2#" \
+	-e "/^skin/s#\(.*\) \(.*\)#\1 jar:chrome/${PROJ}.jar!/\2#" \
+	-e "/^locale/s#\(.*\) \(.*\)#\1 jar:chrome/${PROJ}.jar!/\2#" \
 	chrome.manifest > chrome.manifest.jar
 mv chrome.manifest.jar chrome.manifest
 
 find content/ skin/ locale/ | \
 	zip -r -0 -@ "${PROJ}.jar" > /dev/null
 rm -fr content/ skin/ locale/
+mkdir chrome
+mv "${PROJ}.jar" chrome
 
 # zip together the jar and the rest into the xpi
 echo CREATING: "${PROJ}-${VER}.xpi"
