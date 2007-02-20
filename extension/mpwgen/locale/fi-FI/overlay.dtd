@@ -1,0 +1,8 @@
+<!ENTITY mpwgen.title "Magic Password Generator">
+<!ENTITY mpwgen.accesskey "M">
+<!ENTITY mpwgen.mpass "Magic Salasana">
+<!ENTITY mpwgen.options "Asetukset">
+<!ENTITY mpwgen.username "Käyttäjänimi">
+<!ENTITY mpwgen.email "Sähköposti">
+<!ENTITY mpwgen.disablePasswordRemember "Ota pois käytöstä Salasanan muisto">
+<!ENTITY mpwgen.masterPrompt "Pää Salasana?">

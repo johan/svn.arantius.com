@@ -11,6 +11,7 @@ locale mpwgen en-GB locale/en-GB/
 locale mpwgen en-US locale/en-US/
 locale mpwgen es-AR locale/es-AR/
 locale mpwgen es-ES locale/es-ES/
+locale mpwgen fi-FI locale/fi-FI/
 locale mpwgen fr-FR locale/fr-FR/
 locale mpwgen hu-HU locale/hu-HU/
 locale mpwgen it-IT locale/it-IT/
