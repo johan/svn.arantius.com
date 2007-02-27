@@ -26,10 +26,8 @@ cd build
 # create the jar, patch the manifest to reference it
 echo CREATING: "${PROJ}.jar"
 
-sed \
-	-e "/^content/s#\(.*\) \(.*\)#\1 jar:chrome/${PROJ}.jar!/\2#" \
-	-e "/^skin/s#\(.*\) \(.*\)#\1 jar:chrome/${PROJ}.jar!/\2#" \
-	-e "/^locale/s#\(.*\) \(.*\)#\1 jar:chrome/${PROJ}.jar!/\2#" \
+sed -e \
+	"/^content\|^skin\|^locale/s#\(.*\) \(.*\)#\1 jar:chrome/${PROJ}.jar!/\2#" \
 	chrome.manifest > chrome.manifest.jar
 mv chrome.manifest.jar chrome.manifest
 
