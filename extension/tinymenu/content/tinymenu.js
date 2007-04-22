@@ -42,7 +42,7 @@ onLoad:function() {
 	var el, r;
 	for (var i=menubar.childNodes.length-1; i>=0; i--) {
 		el=menubar.childNodes[i];
-		
+
 		// some thunderbird menus don't have IDs!
 		if (el.id) {
 			r=new RegExp('\\b'+el.id+'\\b');
@@ -91,7 +91,7 @@ saveOptions:function() {
 		}
 	}
 	tinymenu.doNotCollapse=doNotCollapse;
-	
+
 	tinymenu.viewMode=
 		document.getElementById('view_image').getAttribute('selected')?
 		'image':'text';
@@ -119,7 +119,7 @@ mimeForFile:function(file) {
 		.getService().QueryInterface(Components.interfaces.nsIMIMEService);
 	try {
 		mime=mime.getTypeFromFile(file);
-	} catch (e) { 
+	} catch (e) {
 		mime='';
 	}
 
@@ -148,11 +148,12 @@ activateViewMode:function(mode) {
 	var ifaces=Components.interfaces;
 	var mediator=Components.classes["@mozilla.org/appshell/window-mediator;1"].
 		getService(ifaces.nsIWindowMediator);
-	var win,winEnum=mediator.getEnumerator('navigator:browser');
+	var win,winEnum=mediator.getEnumerator(null);
 	while (winEnum.hasMoreElements()){
 		win=winEnum.getNext();
 
 		var m=win.document.getElementById('tinymenu');
+
 		if (!m) continue;
 
 		// if we're set to image mode, inject the image
