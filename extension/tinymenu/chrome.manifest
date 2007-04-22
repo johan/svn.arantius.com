@@ -6,12 +6,14 @@ overlay chrome://messenger/content/mailWindowOverlay.xul chrome://tinymenu/conte
 overlay chrome://messenger/content/mailWindowOverlay.xul chrome://tinymenu/content/tinymenu-tbfix.xul
 
 
+locale tinymenu cs-CZ locale/cs-CZ/
 locale tinymenu da-DK locale/da-DK/
 locale tinymenu de-DE locale/de-DE/
 locale tinymenu el-GR locale/el-GR/
 locale tinymenu en-US locale/en-US/
 locale tinymenu es-ES locale/es-ES/
 locale tinymenu fa-IR locale/fa-IR/
+locale tinymenu fi-FI locale/fi-FI/
 locale tinymenu fr-FR locale/fr-FR/
 locale tinymenu he-IL locale/he-IL/
 locale tinymenu hr-HR locale/hr-HR/

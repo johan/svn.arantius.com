@@ -1,0 +1,11 @@
+<!ENTITY tinymenu.title "Tiny Menu">
+<!ENTITY tinymenu.menu "Valikko">
+<!ENTITY tinymenu.menuaccesskey "V">
+<!ENTITY tinymenu.tinyaccesskey "Y">
+<!ENTITY tinymenu.doNotCollapse "ÄLÄ yhdistä näitä valikoita">
+<!ENTITY tinymenu.optionsMsg1 "Asetukset toimivat vain uusissa ikkunoissa">
+<!ENTITY tinymenu.optionsMsg2 "(Käynnistä uudelleen nähdäksesi muutokset.)">
+<!ENTITY tinymenu.display "Ulkonäkö">
+<!ENTITY tinymenu.text "Teksti">
+<!ENTITY tinymenu.image "Kuva">
+<!ENTITY tinymenu.browse "Selaa">

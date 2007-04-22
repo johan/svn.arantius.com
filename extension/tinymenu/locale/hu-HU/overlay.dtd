@@ -1,6 +1,6 @@
 <!ENTITY tinymenu.title "Tiny Menu">
-<!ENTITY tinymenu.menu "Menü">
-<!ENTITY tinymenu.menuaccesskey "M">
+<!ENTITY tinymenu.menu "Menüsor">
+<!ENTITY tinymenu.menuaccesskey "o">
 <!ENTITY tinymenu.tinyaccesskey "y">
 <!ENTITY tinymenu.doNotCollapse "Maradjon látható:">
 <!ENTITY tinymenu.optionsMsg1 "A változtatások új ablakokban lépnek érvénybe.">

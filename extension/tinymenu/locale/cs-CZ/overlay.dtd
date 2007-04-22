@@ -1,0 +1,11 @@
+<!ENTITY tinymenu.title "Tiny Menu">
+<!ENTITY tinymenu.menu "Menu">
+<!ENTITY tinymenu.menuaccesskey "M">
+<!ENTITY tinymenu.tinyaccesskey "Y">
+<!ENTITY tinymenu.doNotCollapse "Ponechat následující nabídky:">
+<!ENTITY tinymenu.optionsMsg1 "Nastavení se projeví až v novém okně.">
+<!ENTITY tinymenu.optionsMsg2 "(Restartujte Firefox)">
+<!ENTITY tinymenu.display "Zobrazit">
+<!ENTITY tinymenu.text "Text">
+<!ENTITY tinymenu.image "Ikonu">
+<!ENTITY tinymenu.browse "Procházet">
