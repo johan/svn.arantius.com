@@ -1,0 +1,8 @@
+<!ENTITY mpwgen.title "魔术密码生成器">
+<!ENTITY mpwgen.accesskey "M">
+<!ENTITY mpwgen.mpass "魔术密码">
+<!ENTITY mpwgen.options "选项">
+<!ENTITY mpwgen.username "用户名">
+<!ENTITY mpwgen.email "电子邮件">
+<!ENTITY mpwgen.disablePasswordRemember "禁用记住密码">
+<!ENTITY mpwgen.masterPrompt "主密码？">

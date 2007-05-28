@@ -1,0 +1,8 @@
+<!ENTITY mpwgen.title "Magisk passord-generator">
+<!ENTITY mpwgen.accesskey "M">
+<!ENTITY mpwgen.mpass "Magisk Passord">
+<!ENTITY mpwgen.options "Valg">
+<!ENTITY mpwgen.username "Brukernavn">
+<!ENTITY mpwgen.email "E-post">
+<!ENTITY mpwgen.disablePasswordRemember "Deaktiver Husking Av Passord">
+<!ENTITY mpwgen.masterPrompt "Sjefspassord?">
