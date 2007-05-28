@@ -1,7 +1,6 @@
 <!ENTITY tinymenu.title "Tiny Menu - opcje">
 <!ENTITY tinymenu.menu "Menu">
 <!ENTITY tinymenu.menuaccesskey "M">
-<!ENTITY tinymenu.tinyaccesskey "T">
 <!ENTITY tinymenu.doNotCollapse "Nie zwijaj menu:">
 <!ENTITY tinymenu.optionsMsg1 "Nowe ustawienia będą działały tylko w nowo otwieranych oknach.">
 <!ENTITY tinymenu.optionsMsg2 "Aby zmiany zostały zastosowane uruchom ponownie przeglądarkę.">

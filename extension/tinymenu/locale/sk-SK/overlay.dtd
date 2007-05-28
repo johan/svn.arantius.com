@@ -1,7 +1,6 @@
 <!ENTITY tinymenu.title "Tiny Menu">
 <!ENTITY tinymenu.menu "Ponuka">
 <!ENTITY tinymenu.menuaccesskey "P">
-<!ENTITY tinymenu.tinyaccesskey "Y">
 <!ENTITY tinymenu.doNotCollapse "NEUZATVÁRAJTE tieto ponuky:">
 <!ENTITY tinymenu.optionsMsg1 "Zmeny sa prejavia na nových oknách.">
 <!ENTITY tinymenu.optionsMsg2 "(Zmeny sa prejavia po reštarte Firefoxu.)">

@@ -1,7 +1,6 @@
 <!ENTITY tinymenu.title "Tiny Menu">
 <!ENTITY tinymenu.menu "Μενού">
 <!ENTITY tinymenu.menuaccesskey "Μ">
-<!ENTITY tinymenu.tinyaccesskey "υ">
 <!ENTITY tinymenu.doNotCollapse "Να μην επικαλύπτονται αυτά τα στοιχεία :">
 <!ENTITY tinymenu.optionsMsg1 "Οι επιλογές επηρεάζουν μόνο νέα παράθυρα.">
 <!ENTITY tinymenu.optionsMsg2 "(Επανεκκίνιση για να δείτε τις αλλαγές.)">

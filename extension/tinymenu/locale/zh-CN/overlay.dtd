@@ -1,7 +1,6 @@
 <!ENTITY tinymenu.title "Tiny Menu">
 <!ENTITY tinymenu.menu "菜单">
 <!ENTITY tinymenu.menuaccesskey "M">
-<!ENTITY tinymenu.tinyaccesskey "Y">
 <!ENTITY tinymenu.doNotCollapse "不隐藏下列选中的菜单项:">
 <!ENTITY tinymenu.optionsMsg1 "选项效果只能在新建窗口中体现。">
 <!ENTITY tinymenu.optionsMsg2 "(请重新启动浏览器。)">

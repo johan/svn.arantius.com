@@ -1,7 +1,6 @@
 <!ENTITY tinymenu.title "Tiny Menu">
 <!ENTITY tinymenu.menu "תפריט">
 <!ENTITY tinymenu.menuaccesskey "M">
-<!ENTITY tinymenu.tinyaccesskey "Y">
 <!ENTITY tinymenu.doNotCollapse "אל תקבץ את התפריטים הבאים:">
 <!ENTITY tinymenu.optionsMsg1 "אפשרויות משפיעות רק על חלונות חדשים.">
 <!ENTITY tinymenu.optionsMsg2 "(אתחל דפדפן מחדש כדי לראות שינויים)">

@@ -1,7 +1,6 @@
 <!ENTITY tinymenu.title "Tiny Menu">
 <!ENTITY tinymenu.menu "Menu">
 <!ENTITY tinymenu.menuaccesskey "N">
-<!ENTITY tinymenu.tinyaccesskey "Y">
 <!ENTITY tinymenu.doNotCollapse "Menu da non contrarre">
 <!ENTITY tinymenu.optionsMsg1 "Le opzioni avranno effetto solo sulle nuove finestre">
 <!ENTITY tinymenu.optionsMsg2 "(Riavviare Firefox per rendere effettive le modifiche)">
