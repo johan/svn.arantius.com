@@ -13,8 +13,10 @@ locale moretools es-ES locale/es-ES/
 locale moretools fr-FR locale/fr-FR/
 locale moretools he-IL locale/he-IL/
 locale moretools hr-HR locale/hr-HR/
+locale moretools hu-HU locale/hu-HU/
 locale moretools it-IT locale/it-IT/
 locale moretools ja-JP locale/ja-JP/
+locale moretools ko-KR locale/ko-KR/
 locale moretools lt-LT locale/lt-LT/
 locale moretools nb-NO locale/nb-NO/
 locale moretools nl-NL locale/nl-NL/
