@@ -18,6 +18,7 @@ locale mpwgen it-IT locale/it-IT/
 locale mpwgen ja-JP locale/ja-JP/
 locale mpwgen ko-KR locale/ko-KR/
 locale mpwgen ms-MY locale/ms-MY/
+locale mpwgen nb-NO locale/nb-NO/
 locale mpwgen nl-NL locale/nl-NL/
 locale mpwgen pl-PL locale/pl-PL/
 locale mpwgen pt-BR locale/pt-BR/
@@ -25,4 +26,5 @@ locale mpwgen ru-RU locale/ru-RU/
 locale mpwgen sk-SK locale/sk-SK/
 locale mpwgen tr-TR locale/tr-TR/
 locale mpwgen uk-UA locale/uk-UA/
+locale mpwgen zh-CN locale/zh-CN/
 locale mpwgen zh-TW locale/zh-TW/
