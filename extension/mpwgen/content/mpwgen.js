@@ -44,7 +44,10 @@ fillwindow:function(master, win) {
 		
 		var user=this.getPref('string', 'mpwgen.username');
 		var email=this.getPref('string', 'mpwgen.email');
+		// substitute wildcard address
 		if ('@'==email.charAt(0)) email=host.match(/[^.]*/)+email;
+		// substitute plus address
+		email=email.replace('+@', '+'+host.match(/[^.]*/)+'@');
 
 		var pass=this.hash(host+master),j;
 		var els=win.document.getElementsByTagName('input');
