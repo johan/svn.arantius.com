@@ -32,11 +32,11 @@ var gFireFlvPolicy={
 			src=requestOrigin.host+src;
 		}
 
-		if (urlIsForVideo(src)) {
-			dump('FireFlv DENY: '+src+'\n');
+		if (false!==gFireFlvUrlIsForVideo(src)) {
+			//dump('FireFlv DENY: '+src+'\n');
 			return this.REJECT;
 		} else {
-			dump('FireFlv PASS: '+src+'\n');
+			//dump('FireFlv PASS: '+src+'\n');
 			return this.ACCEPT;
 		}
 	},

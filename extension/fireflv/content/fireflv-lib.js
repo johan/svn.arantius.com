@@ -1,17 +1,13 @@
-var gVideoUrls=[
-	'metacafe.com',
-	'revver.com',
-	'video.google.com',
-	'yimg.com',
+var gFireFlvVideoUrls=[
 	'youtube.com/player2.swf'
 ];
 
-function urlIsForVideo(url) {
+function gFireFlvUrlIsForVideo(url) {
 	if (!url.toLowerCase) return false;
 	url=url.toLowerCase();
 
-	for(var i=0, vidUrl=null; vidUrl=gVideoUrls[i]; i++) {
-		if (-1!==url.indexOf(vidUrl)) return true;
+	for(var i=0, vidUrl=null; vidUrl=gFireFlvVideoUrls[i]; i++) {
+		if (-1!==url.indexOf(vidUrl)) return i;
 	}
 
 	return false;
