@@ -1,5 +1,6 @@
 var gFireFlvVideoUrls=[
-	'youtube.com/player2.swf'
+	'youtube.com/player2.swf',
+	'youtube.com/v/'
 ];
 
 function gFireFlvUrlIsForVideo(url) {

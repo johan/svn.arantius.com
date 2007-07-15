@@ -20,7 +20,6 @@ var gFireFlvPolicy={
 			return this.ACCEPT;
 		}
 
-
 		var src=requestingNode.getAttribute('src');
 		src=src||requestingNode.getAttribute('data');
 
@@ -31,6 +30,8 @@ var gFireFlvPolicy={
 		if ('http'!=src.substring(0, 4)) {
 			src=requestOrigin.host+src;
 		}
+
+		return this.ACCEPT;
 
 		if (false!==gFireFlvUrlIsForVideo(src)) {
 			//dump('FireFlv DENY: '+src+'\n');
