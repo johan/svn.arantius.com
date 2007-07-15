@@ -6,7 +6,33 @@ var gFireFlvPolicy={
 	shouldLoad:function(
 		contentType, contentLocation, requestOrigin, requestingNode, mimeTypeGuess, extra
 	) {
-		dump('FireFlv:\nloc: '+contentLocation.spec+'\norg: '+requestOrigin.spec+'\n');
+		// If it's not HTTP, we don't deal with it.
+		if (!contentLocation.schemeIs('http') &&
+			!contentLocation.schemeIs('https')
+		) {
+			return this.ACCEPT;
+		}
+
+		// If it's not embedded media, we don't deal with it.
+		if ('OBJECT'!=requestingNode.tagName &&
+			'EMBED'!=requestingNode.tagName
+		) {
+			return this.ACCEPT;
+		}
+
+
+		var src=requestingNode.getAttribute('src');
+		src=src||requestingNode.getAttribute('data');
+
+		if (!src) {
+			return this.ACCEPT;
+		}
+
+		if ('http'!=src.substring(0, 4)) {
+			src=requestOrigin.host+src;
+		}
+
+		dump('FireFlv:\nsrc: '+src+'\ntag:'+requestingNode.tagName+'\n');
 
 		return this.ACCEPT;
 	},
