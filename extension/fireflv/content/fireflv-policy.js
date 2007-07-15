@@ -32,9 +32,13 @@ var gFireFlvPolicy={
 			src=requestOrigin.host+src;
 		}
 
-		dump('FireFlv:\nsrc: '+src+'\ntag:'+requestingNode.tagName+'\n');
-
-		return this.ACCEPT;
+		if (urlIsForVideo(src)) {
+			dump('FireFlv DENY: '+src+'\n');
+			return this.REJECT;
+		} else {
+			dump('FireFlv PASS: '+src+'\n');
+			return this.ACCEPT;
+		}
 	},
 
 	// nsISupports interface implementation

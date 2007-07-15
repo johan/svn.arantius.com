@@ -50,6 +50,7 @@ var Module={
 			var loader=Components.classes[JSLOADER_CONTRACTID]
 				.getService(Components.interfaces.mozIJSSubScriptLoader);
 
+			loader.loadSubScript('chrome://fireflv/content/fireflv-lib.js');
 			loader.loadSubScript('chrome://fireflv/content/fireflv-policy.js');
 
 			this.factoryLoaded=true;
