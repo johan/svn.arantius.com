@@ -1,6 +1,3 @@
-//const FIREFLV_CONTRACTID='@arantius.com/fireflv-channel-manager;1';
-//const FIREFLV_CID=Components.ID('{cebd8118-e3c9-4d81-abd8-538c8b7abed5}');
-
 const FIREFLV_POLICY_CONTRACTID='@arantius.com/fireflv-policy;1';
 const FIREFLV_POLICY_CID=Components.ID('{cebd8118-e3c9-4d81-abd8-538c8b7abed5}');
 
@@ -16,11 +13,11 @@ var Module={
 		compMgr=compMgr.QueryInterface(
 			Components.interfaces.nsIComponentRegistrar
 		);
-
 		compMgr.registerFactoryLocation(
 			FIREFLV_POLICY_CID, 'FireFlash Video Content Policy', FIREFLV_POLICY_CONTRACTID,
 			fileSpec, location, type
 		);
+
 		var catman=Components.classes[CATMAN_CONTRACTID]
 			.getService(Components.interfaces.nsICategoryManager);
 		catman.addCategoryEntry(
@@ -37,7 +34,6 @@ var Module={
 
 		var catman=Components.classes[CATMAN_CONTRACTID]
 			.getService(Components.interfaces.nsICategoryManager);
-
 		catman.deleteCategoryEntry('content-policy', FIREFLV_POLICY_CONTRACTID, true);
 	},
 
@@ -55,7 +51,6 @@ var Module={
 				.getService(Components.interfaces.mozIJSSubScriptLoader);
 
 			loader.loadSubScript('chrome://fireflv/content/fireflv-policy.js');
-			//loader.loadSubScript('chrome://fireflv/content/fireflv-parse.js');
 
 			this.factoryLoaded=true;
 		}

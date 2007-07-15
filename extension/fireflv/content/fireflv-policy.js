@@ -6,6 +6,8 @@ var gFireFlvPolicy={
 	shouldLoad:function(
 		contentType, contentLocation, requestOrigin, requestingNode, mimeTypeGuess, extra
 	) {
+		dump('FireFlv:\nloc: '+contentLocation.spec+'\norg: '+requestOrigin.spec+'\n');
+
 		return this.ACCEPT;
 	},
 
@@ -13,6 +15,10 @@ var gFireFlvPolicy={
 	shouldProcess:function(
 		contentType, contentLocation, requestOrigin, requestingNode, mimeType, extra
 	) {
+		dump([
+			'.... shouldProcess ....', contentType, contentLocation.spec,
+			requestOrigin.spec, requestingNode, mimeType, extra
+		,''].join('\n'));
 		return this.ACCEPT;
 	},
 
@@ -55,7 +61,7 @@ var gFireFlvPolicyFactory={
 // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ //
 
 // Initialization and registration
-if ('undefined'==typeof(Components.classes[FIREFLV_POLICY__CONTRACTID])) {
+if ('undefined'==typeof(Components.classes[FIREFLV_POLICY_CONTRACTID])) {
 	(function() { // to keep from munging with scope
 		const CONTENTPOLICY_CONTRACTID="@mozilla.org/layout/content-policy;1";
 		const CONTENTPOLICY_DESCRIPTION="Content policy service";
@@ -66,10 +72,10 @@ if ('undefined'==typeof(Components.classes[FIREFLV_POLICY__CONTRACTID])) {
 		var cid=compMgr.contractIDToCID(CONTENTPOLICY_CONTRACTID);
 
 		compMgr.registerFactory(
-			cid, CONTENTPOLICY_DESCRIPTION, CONTENTPOLICY_CONTRACTID, gKablFactory
+			cid, CONTENTPOLICY_DESCRIPTION, CONTENTPOLICY_CONTRACTID, gFireFlvFactory
 		);
 		compMgr.registerFactory(
-			FIREFLV_POLICY__CID, CONTENTPOLICY_DESCRIPTION, FIREFLV_POLICY__CONTRACTID, gKablFactory
+			FIREFLV_POLICY_CID, CONTENTPOLICY_DESCRIPTION, FIREFLV_POLICY_CONTRACTID, gFireFlvPolicyFactory
 		);
 	})();
 }
