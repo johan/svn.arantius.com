@@ -52,6 +52,9 @@ var Module={
 
 			loader.loadSubScript('chrome://fireflv/content/fireflv-lib.js');
 			loader.loadSubScript('chrome://fireflv/content/fireflv-policy.js');
+			
+			// also pull in channel manager here, because it works
+			loader.loadSubScript('chrome://fireflv/content/fireflv-http.js');
 
 			this.factoryLoaded=true;
 		}

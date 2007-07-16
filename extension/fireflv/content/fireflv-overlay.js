@@ -5,7 +5,6 @@ window.addEventListener('load', function() {
 
 function gFireFlvDomLoad(event) {
 	var contentDoc=event.target;
-	dump('DOMCL: '+contentDoc+' '+contentDoc.location+'\n');
 
 	var src=null, domain=null;
 
