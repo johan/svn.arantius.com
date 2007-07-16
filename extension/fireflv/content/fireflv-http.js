@@ -1,16 +1,22 @@
 var gFireFlvHttpObserver={
 	observe:function(subject, topic, data) {
-		if ("http-on-examine-response"!=topic) return;
+		if ("http-on-modify-request"!=topic) return;
 
 		var httpChannel=subject
 			.QueryInterface(Components.interfaces.nsIHttpChannel);
-		//for (var i in httpChannel) dump(i+'	'+httpChannel[i]+'\n');
+		
+		for (var i in httpChannel) dump(i+'	'+('function'==typeof httpChannel[i]?'FUNC':httpChannel[i])+'\n');dump('\n');
 		//dump(httpChannel.name+'\n');
 
 		if (gFireFlvIsVideoXDomain(httpChannel.name)) {
 			dump('FireFlv needs to override: '+httpChannel.name+'!\n');
 
-			//httpChannel.setResponseHeader('Location', 'xx', false);
+//			var x=httpChannel.setResponseHeader(
+//				'Location', 'http://arantius.googlepages.com/crossdomain.xml', false
+//			);
+//			dump('set? '+x+'\n');
+
+			httpChannel.cancel();
 		}
 			
 //		dump('subj: '+subject+'\n');
@@ -35,11 +41,11 @@ var gFireFlvHttpObserver={
 	},
 
 	register:function() {
-		this.observerService.addObserver(this, "http-on-examine-response", false);
+		this.observerService.addObserver(this, "http-on-modify-request", false);
 	},
 
 	unregister:function() {
-		this.observerService.removeObserver(this, "http-on-examine-response");
+		this.observerService.removeObserver(this, "http-on-modify-request");
 	}
 };
 gFireFlvHttpObserver.register();

@@ -22,7 +22,6 @@ function gFireFlvIsVideoXDomain(url) {
 	url=url.toLowerCase();
 
 	for(var i=0, domain=null; domain=gFireFlvVideoDomains[i]; i++) {
-		dump('http://'+domain+'/crossdomain.xml ==? '+url+'\n');
 		if ('http://'+domain+'/crossdomain.xml'==url) return true;
 	}
 

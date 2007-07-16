@@ -29,8 +29,6 @@ function gFireFlvDomLoad(event) {
 		if (!src) continue;
 		if ('http'!=src.substring(0, 4)) src=contentDoc.location.host+src;
 
-		dump('param: '+item+' '+src+'\n');
-
 		domain=gFireFlvUrlIsForVideo(src);
 		if (false!==domain) {
 			gFireFlvRewireVideo(domain, src, item);
@@ -53,7 +51,7 @@ function gFireFlvDomLoad(event) {
 }
 
 function gFireFlvRewireVideo(domain, src, el) {
-	dump('FireFlv rewire: ['+domain+'] '+src+' '+el.tagName+'\n');
+//	dump('FireFlv rewire: ['+domain+'] '+src+' '+el.tagName+'\n');
 
 	var preview=null, flv=null;
 
@@ -72,8 +70,8 @@ function gFireFlvRewireVideo(domain, src, el) {
 	}
 
 	if (flv) {
-		//var newUrl='chrome://fireflv/content/flvplayer.swf'+
-		var newUrl='http://arantius.googlepages.com/flvplayer.swf'+
+		var newUrl='chrome://fireflv/content/flvplayer.swf'+
+		//var newUrl='http://arantius.googlepages.com/flvplayer.swf'+
 			'?file='+escape(flv)+
 //			'&width='+oldVideo.getAttribute('width')+
 //			'&height='+oldVideo.getAttribute('height')+
@@ -82,7 +80,7 @@ function gFireFlvRewireVideo(domain, src, el) {
 //			'&volume=50'
 			''
 		;
-		dump('New SWF url: '+newUrl+'\n');
+//		dump('New SWF url: '+newUrl+'\n');
 
 		if ('OBJECT'==el.tagName) {
 			var params=el.getElementsByTagName('param');
