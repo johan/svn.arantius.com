@@ -2,22 +2,32 @@ var gFireFlvHttpObserver={
 	observe:function(subject, topic, data) {
 		if ("http-on-modify-request"!=topic) return;
 
-		var httpChannel=subject
-			.QueryInterface(Components.interfaces.nsIHttpChannel);
+//		var httpChannel=subject
+//			.QueryInterface(Components.interfaces.nsIHttpChannel);
 		
-		for (var i in httpChannel) dump(i+'	'+('function'==typeof httpChannel[i]?'FUNC':httpChannel[i])+'\n');dump('\n');
-		//dump(httpChannel.name+'\n');
+//		for (var i in httpChannel) dump(i+'	'+('function'==typeof httpChannel[i]?'FUNC':httpChannel[i])+'\n');dump('\n');
+//		dump('channel: '+httpChannel.name+'\n');
+//
+//		if (0==httpChannel.name
+//			.indexOf('http://arantius.googlepages.com/flvplayer.swf')
+//		) {
+//			dump('\nforge: '+httpChannel.name+'\n');
+//			var o=httpChannel.name;
+//			o=o.substring(o.indexOf('origurl=')+8);
+//			
+//			httpChannel.originalURI=unescape(o);
+//		}
 
-		if (gFireFlvIsVideoXDomain(httpChannel.name)) {
-			dump('FireFlv needs to override: '+httpChannel.name+'!\n');
-
+//		if (gFireFlvIsVideoXDomain(httpChannel.name)) {
+//			dump('FireFlv needs to override: '+httpChannel.name+'!\n');
+//
 //			var x=httpChannel.setResponseHeader(
 //				'Location', 'http://arantius.googlepages.com/crossdomain.xml', false
 //			);
 //			dump('set? '+x+'\n');
-
-			httpChannel.cancel();
-		}
+//
+//			//httpChannel.cancel();
+//		}
 			
 //		dump('subj: '+subject+'\n');
 //		for (i in Components.interfaces) {
