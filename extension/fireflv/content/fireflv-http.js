@@ -1,12 +1,22 @@
 var gFireFlvHttpObserver={
 	observe:function(subject, topic, data) {
-		if ('http-on-modify-request'!=topic) return;
+		if ('http-on-examine-response'!=topic) return;
 
 		var httpChannel=subject
 			.QueryInterface(Components.interfaces.nsIHttpChannel);
 
-		dump(httpChannel.name+'\n');
-		httpChannel.setRequestHeader('X-FireFlv', 'Hello World!', false);
+		if (-1==httpChannel.name.indexOf('example')) {
+			httpChannel.setResponseHeader(
+				'Location', 'http://www.example.com/\n\r\n\rFoo', false
+			);
+			// This doesn't work!  Wah!
+			httpChannel.responseStatus=303;
+
+			for (i in httpChannel) {
+				dump(i+'	'+ ('function'==typeof httpChannel[i]?'FUNC':httpChannel[i]) +'\n');
+			}
+			dump('\n\n');
+		}
 	},
 
 	get observerService() {
