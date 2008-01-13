@@ -1,0 +1,4 @@
+content tubelube             content/
+skin    tubelube classic/1.0 skin/
+
+overlay chrome://browser/content/browser.xul chrome://tubelube/content/tubelube-overlay.xul
