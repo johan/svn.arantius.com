@@ -41,18 +41,18 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 
-var gKablInserter={};
+var TubeLubePreLoad={};
 
-gKablInserter.initialize=function() {
-	this.browser=document.getElementById('kablInserterBrowser');
-	this.browser.addEventListener('load', gKablInserter.setup, true);
+TubeLubePreLoad.initialize=function() {
+	var browser=document.getElementById('TubeLubePreLoadBrowser');
+	browser.addEventListener('load', TubeLubePreLoad.setup, true);
 }
 
-gKablInserter.setup=function(event) {
-	gKablInserter.addObserver();
+TubeLubePreLoad.setup=function(event) {
+	TubeLubePreLoad.addObserver();
 }
 
-gKablInserter.shutdown=function() {
+TubeLubePreLoad.shutdown=function() {
 	try {
 		this.removeObserver();
 	} catch (exc) {}
@@ -60,9 +60,9 @@ gKablInserter.shutdown=function() {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-gKablInserter.addObserver=function() {
+TubeLubePreLoad.addObserver=function() {
 	var tabBrowser=document.getElementById('content');
-	tabBrowser.addProgressListener(gKablInserterTabProgressListener,
+	tabBrowser.addProgressListener(TubeLubePreLoadTabProgressListener,
 		Components.interfaces.nsIWebProgress.NOTIFY_STATE_DOCUMENT);
 
 	for (var i=0; i<tabBrowser.browsers.length; ++i) {
@@ -71,25 +71,25 @@ gKablInserter.addObserver=function() {
 	}
 }
 
-gKablInserter.removeObserver=function() {
+TubeLubePreLoad.removeObserver=function() {
 	var tabBrowser=document.getElementById('content');
-	tabBrowser.removeProgressListener(gKablInserterTabProgressListener);
+	tabBrowser.removeProgressListener(TubeLubePreLoadTabProgressListener);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 
-gKablInserter.attachToWindow=function(win) {
+TubeLubePreLoad.attachToWindow=function(win) {
 	if ('about:blank'==win.location.href) return;
 
 	var browser=this.getBrowserByWindow(win);
 	if (browser && !browser.attachedKablInserter) {
-		browser.addProgressListener(gKablInserterFrameProgressListener,
+		browser.addProgressListener(TubeLubePreLoadFrameProgressListener,
 			Components.interfaces.nsIWebProgress.NOTIFY_DOCUMENT);
 		browser.attachedKablInserter=true;
 	}
 }
 
-gKablInserter.attachToLoadingWindow=function(win) {
+TubeLubePreLoad.attachToLoadingWindow=function(win) {
 	if (!gKablEnabled) return;
 	var whereFlag=false;
 
@@ -107,7 +107,7 @@ gKablInserter.attachToLoadingWindow=function(win) {
 	}
 }
 
-gKablInserter.getBrowserByWindow=function(win) {
+TubeLubePreLoad.getBrowserByWindow=function(win) {
 	var tabBrowser=document.getElementById('content');
 	for (var i=0; i<tabBrowser.browsers.length; ++i) {
 		var browser=tabBrowser.browsers[i];
@@ -119,8 +119,8 @@ gKablInserter.getBrowserByWindow=function(win) {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-function gKablInserterWebProgressListener() {}
-gKablInserterWebProgressListener.prototype={
+function TubeLubePreLoadWebProgressListener() {}
+TubeLubePreLoadWebProgressListener.prototype={
 	stateIsRequest: false,
 
 	QueryInterface:function(iid) {
@@ -142,18 +142,18 @@ gKablInserterWebProgressListener.prototype={
 	onLinkIconAvailable:function() {}
 };
 
-var gKablInserterTabProgressListener=new gKablInserterWebProgressListener();
-gKablInserterTabProgressListener.onLocationChange=function(progress, request, loc) {
+var TubeLubePreLoadTabProgressListener=new TubeLubePreLoadWebProgressListener();
+TubeLubePreLoadTabProgressListener.onLocationChange=function(progress, request, loc) {
 	// Only attach to windows that are their own parent - e.g. not frames
 	if (progress.DOMWindow.parent==progress.DOMWindow) {
-		gKablInserter.attachToWindow(progress.DOMWindow);
+		TubeLubePreLoad.attachToWindow(progress.DOMWindow);
 	}
 }
 
-var gKablInserterFrameProgressListener=new gKablInserterWebProgressListener();
-gKablInserterFrameProgressListener.onStateChange=function(progress, request, flag, status) {
+var TubeLubePreLoadFrameProgressListener=new TubeLubePreLoadWebProgressListener();
+TubeLubePreLoadFrameProgressListener.onStateChange=function(progress, request, flag, status) {
 	// When the load of the top-level page or a frame within begins
 	if (flag & Components.interfaces.nsIWebProgressListener.STATE_START) {
-		gKablInserter.attachToLoadingWindow(progress.DOMWindow);
+		TubeLubePreLoad.attachToLoadingWindow(progress.DOMWindow);
 	}
 }

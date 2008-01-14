@@ -1,19 +1,14 @@
 <?xml version='1.0'?>
 <overlay id='kabl-overlay' xmlns='http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'>
 
-<script type='application/x-javascript' src='chrome://kabl/content/kabl-pref.js'></script>
-<script type='application/x-javascript' src='chrome://kabl/content/kabl-parse.js'></script>
-<script type='application/x-javascript' src='chrome://kabl/content/kabl-overlay.js'></script>
-<script	type='application/x-javascript'	src='chrome://kabl/content/kabl-inserter.js'></script>
-
 <!--
 This browser, with its XBL binding, fires off the injector init before the
 first content window begins to open, ensuring it always works.
 -->
 <vbox id='appcontent'>
 	<box >
-		<browser id='kablInserterBrowser'
-			style='-moz-binding: url("chrome://kabl/content/kabl-inserter-bindings.xml#content");'
+		<browser id='TubeLubePreLoadBrowser'
+			style='-moz-binding: url("chrome://tubelube/content/tubelube-preload-bindings.xml#content");'
 		/>
 	</box>
 </vbox>
@@ -40,8 +35,8 @@ first content window begins to open, ensuring it always works.
 <keyset id="mainKeyset">
 	<key id='kabl-key-toggle'
 		modifiers='control,alt'
-		key='K'
-		oncommand='gKabl.toggle();'
+		key='t'
+		oncommand='/*gKabl.toggle();*/'
 	/>
 </keyset>
 

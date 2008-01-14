@@ -1,0 +1,17 @@
+<?xml version='1.0'?>
+<?xml-stylesheet href='chrome://global/skin/global.css' type='text/css'?>
+<prefwindow
+	xmlns='http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'
+	title='Tube Lube Options'
+	type='prefwindow' 
+>
+<prefpane>
+	<preferences>
+		<preference id='enabled' name='extensions.tubelube.enabled' type='bool'/>
+	</preferences>
+
+	<vbox>
+		<checkbox label="Enabled" preference="enabled"?>
+	</vbox>
+</prefpane>
+</prefwindow>

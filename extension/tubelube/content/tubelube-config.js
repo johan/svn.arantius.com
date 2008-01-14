@@ -31,68 +31,6 @@
 //
 // ***** END LICENSE BLOCK *****
 
-function gKablConfigOpen() {
-	document.getElementById('enabled').setAttribute('checked', gKablEnabled);
-
-	var textbox=document.getElementById('rules');
-	textbox.value=gKablRules;
-	textbox.selectionStart=0;
-	textbox.selectionEnd=0;
-	textbox.focus();
-}
-
-function gKablConfigAccept() {
-	var parseOk=gKablCheckConfig();
-
-	if (!parseOk) {
-		return confirm('Parse error.\nReally save rules?');
-	}
-
-	// extract pref vals
-	gKablEnabled=document.getElementById('enabled').checked;
-	gKablRules=document.getElementById('rules').value;
-
-	gKablSave();
-
-	return true;
-}
-
-function gKablCheckConfig() {
-	var textbox=document.getElementById('rules');
-
-	var parsed=gKablRulesObj.parse(textbox.value);
-
-	if (parsed instanceof Array) {
-		textbox.selectionStart=parseInt(parsed[0]);
-		textbox.selectionEnd=parseInt(parsed[1]);
-
-		gKablSetStatusLabel('err', parsed[2]);
-	} else {
-		gKablSetStatusLabel('ok');
-	}
-
-	// return the focus here for continued editing
-	textbox.focus();
-
-	return !(parsed instanceof Array);
-}
-
-function gKablSetStatusLabel(type, msg) {
-	for (label in {'unk':1, 'ok':1, 'err':1}) {
-		document.getElementById('status_'+label).setAttribute(
-			'hidden', (label!=type)
-		);
-	}
-
-	var errmsg=document.getElementById('status_errmsg');
-	if ('err'==type) {
-		errmsg.setAttribute('value', msg);
-		errmsg.setAttribute('hidden', false);
-	} else {
-		errmsg.setAttribute('hidden', true);
-	}
-}
-
 // This function originates from AdBlock Plus, reused under MPL.
 function gKablLoadInBrowser(url) {
 	var windowMediator=Components
