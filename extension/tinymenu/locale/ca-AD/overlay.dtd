@@ -1,0 +1,10 @@
+<!ENTITY tinymenu.title "Menú Petit">
+<!ENTITY tinymenu.menu "Menú">
+<!ENTITY tinymenu.menuaccesskey "M">
+<!ENTITY tinymenu.doNotCollapse "No treguis aquests menús:">
+<!ENTITY tinymenu.optionsMsg1 "Les opcions només afectaran a les noves finestres.">
+<!ENTITY tinymenu.optionsMsg2 "(Reinicia per a veure canvis.)">
+<!ENTITY tinymenu.display "Mostra">
+<!ENTITY tinymenu.text "Text">
+<!ENTITY tinymenu.image "Imatge">
+<!ENTITY tinymenu.browse "Navega">
