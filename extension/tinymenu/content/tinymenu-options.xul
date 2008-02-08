@@ -6,6 +6,8 @@
 
 <!ENTITY % preferencesDTD SYSTEM "chrome://browser/locale/preferences/preferences.dtd">
 %preferencesDTD;
+<!ENTITY % preferencesMainDTD SYSTEM "chrome://browser/locale/preferences/main.dtd">
+%preferencesMainDTD;
 <!ENTITY % browserDTD SYSTEM "chrome://browser/locale/browser.dtd" >
 %browserDTD;
 <!ENTITY % baseMenuOverlayDTD SYSTEM "chrome://browser/locale/baseMenuOverlay.dtd">
@@ -60,6 +62,7 @@
 						onclick='setViewMode("image");'
 					/>
 					<button label="&tinymenu.browse;" oncommand="browseImage();" />
+					<button label="&restoreDefault.label;" oncommand="resetImage();" />
 				</hbox>
 			</radiogroup>
 		</groupbox>

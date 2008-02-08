@@ -61,6 +61,11 @@ function browseImage() {
 	}
 }
 
+function resetImage() {
+	tinymenu.iconFile='chrome://tinymenu/skin/tinymenu.png';
+	tinymenu.activateViewMode();
+}
+
 function setViewMode(mode) {
 	tinymenu.activateViewMode(mode);
 }
