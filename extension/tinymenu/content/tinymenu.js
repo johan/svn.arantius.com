@@ -160,8 +160,8 @@ activateViewMode:function(mode) {
 		if ('image'==mode) {
 			m.setAttribute('mode', 'image');
 			m.style.backgroundImage='url('+
-				escape(tinymenu.uriForFile(tinymenu.iconFile))
-				+')';
+				tinymenu.uriForFile(tinymenu.iconFile)+
+				')';
 		} else {
 			m.setAttribute('mode', 'text');
 			m.style.backgroundImage='none';
