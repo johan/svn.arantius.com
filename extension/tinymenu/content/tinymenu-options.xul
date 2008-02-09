@@ -53,11 +53,11 @@
 
 			<radiogroup>
 				<radio id="view_text" label="&tinymenu.text;" selected="true"
-					onclick='setViewMode("text");'
+					onclick='tinymenu.activateViewMode("text");'
 				/>
 				<hbox id="image_mode">
 					<radio id="view_image" label="&tinymenu.image;"
-						onclick='setViewMode("image");'
+						onclick='tinymenu.activateViewMode("image");'
 					/>
 					<button label="&tinymenu.browse;" oncommand="browseImage();" />
 				</hbox>

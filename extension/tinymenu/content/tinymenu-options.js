@@ -56,18 +56,14 @@ function browseImage() {
 			document.getElementById('view_text').setAttribute('selected', false);
 			document.getElementById('view_image').setAttribute('selected', true);
 
-			tinymenu.activateViewMode();
+			tinymenu.activateViewMode('image');
 		}
 	}
 }
 
 function resetImage() {
 	tinymenu.iconFile='chrome://tinymenu/skin/tinymenu.png';
-	tinymenu.activateViewMode();
-}
-
-function setViewMode(mode) {
-	tinymenu.activateViewMode(mode);
+	tinymenu.activateViewMode('image');
 }
 
 var overlayObserver={
@@ -79,10 +75,6 @@ var overlayObserver={
 	},
 
 	QueryInterface: function(aIID) {
-//		// ???  This came from the example, but CI is not defined!
-//		if(!aIID.equals(CI.nsISupports) && !aIID.equals(CI.nsIObserver)) {
-//			throw CR.NS_ERROR_NO_INTERFACE;
-//		}
 		return this;
 	}
 };
