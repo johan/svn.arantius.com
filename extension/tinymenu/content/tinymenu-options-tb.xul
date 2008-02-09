@@ -6,6 +6,8 @@
 
 <!ENTITY % preferencesDTD SYSTEM "chrome://messenger/locale/preferences/preferences.dtd">
 %preferencesDTD;
+<!ENTITY % preferencesGeneralDTD SYSTEM "chrome://messenger/locale/preferences/general.dtd">
+%preferencesGeneralDTD;
 <!ENTITY % utilityDTD SYSTEM "chrome://communicator/locale/utilityOverlay.dtd">
 %utilityDTD;
 <!ENTITY % messengerDTD SYSTEM "chrome://messenger/locale/messenger.dtd">
@@ -26,6 +28,10 @@
 		<checkbox id='pref-tasksMenu' label='&tasksMenu.label;' checked='false' />
 		<checkbox id='pref-menu_Help' label='&helpMenu.label;' checked='false' />
 	</vbox>
+</hbox>
+
+<hbox id="image_mode">
+	<button label="&useDefault.label;" oncommand="resetImage();" />
 </hbox>
 
 </overlay>

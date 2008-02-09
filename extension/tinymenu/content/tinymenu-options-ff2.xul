@@ -6,6 +6,8 @@
 
 <!ENTITY % preferencesDTD SYSTEM "chrome://browser/locale/preferences/preferences.dtd">
 %preferencesDTD;
+<!ENTITY % preferencesMainDTD SYSTEM "chrome://browser/locale/preferences/main.dtd">
+%preferencesMainDTD;
 <!ENTITY % browserDTD SYSTEM "chrome://browser/locale/browser.dtd" >
 %browserDTD;
 <!ENTITY % baseMenuOverlayDTD SYSTEM "chrome://browser/locale/baseMenuOverlay.dtd">
@@ -26,6 +28,10 @@
 		<checkbox id='pref-tools-menu' label='&toolsMenu.label;' checked='false' />
 		<checkbox id='pref-helpMenu' label='&helpMenuWin.label;' checked='false' />
 	</vbox>
+</hbox>
+
+<hbox id="image_mode">
+	<button label="&restoreDefault.label;" oncommand="resetImage();" />
 </hbox>
 
 </overlay>
