@@ -16,6 +16,13 @@
 
 <overlay id='tinymenu-options-tb-overlay' xmlns='http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'>
 
+<script type='application/javascript'>
+tinymenu.menuIds=[
+	'menu_File', 'menu_Edit', 'menu_View', 'menu_Go',
+	'messageMenu', 'tasksMenu', 'menu_Help'
+];
+</script>
+
 <hbox id='menu_choices'>
 	<vbox>
 		<checkbox id='pref-menu_File' label='&fileMenu.label;' checked='false' />
