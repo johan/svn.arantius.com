@@ -1,3 +1,57 @@
+function loadOptions() {
+	tinymenu.initPref();
+
+	// set checkboxes
+	var r, id;
+	for (var i in tinymenu.menuIds) {
+		id=tinymenu.menuIds[i];
+		r=new RegExp('\\b'+id+'\\b');
+		document.getElementById('pref-'+id).checked=
+			(null!=r.exec(tinymenu.doNotCollapse));
+	}
+
+	// set radio
+	if ('image'==tinymenu.viewMode) {
+		document.getElementById('view_text').setAttribute('selected', false);
+		document.getElementById('view_image').setAttribute('selected', true);
+	}
+}
+
+function saveOptions() {
+	// build doNotCollapse string
+	var doNotCollapse='tinymenu';
+	var r, id;
+	for (var i in tinymenu.menuIds) {
+		id=tinymenu.menuIds[i];
+
+		if (document.getElementById('pref-'+id).checked) {
+			doNotCollapse+=' '+id;
+		}
+	}
+	tinymenu.doNotCollapse=doNotCollapse;
+
+	tinymenu.viewMode=
+		document.getElementById('view_image').getAttribute('selected')?
+		'image':'text';
+
+	// save all the bits
+	var prefs=Components.classes["@mozilla.org/preferences-service;1"]
+		.getService(Components.interfaces.nsIPrefService)
+		.getBranch("tinymenu.");
+
+	prefs.setCharPref('doNotCollapse', tinymenu.doNotCollapse);
+	prefs.setCharPref('viewMode', tinymenu.viewMode);
+
+	// will fail in default case, so silently catch
+	try {
+		if (tinymenu.iconFile &&
+			tinymenu.iconFile.QueryInterface(Components.interfaces.nsILocalFile)
+		) {
+			prefs.setComplexValue('iconFile', Components.interfaces.nsILocalFile, tinymenu.iconFile);
+		}
+	} catch (e) {  }
+}
+
 function browseImage() {
 	// based on sample from
 	// http://developer.mozilla.org/en/docs/nsIFilePicker
@@ -31,4 +85,4 @@ function resetImage() {
 	tinymenu.activateViewMode('image');
 }
 
-window.addEventListener('load', tinymenu.loadOptions, false);
+window.addEventListener('load', loadOptions, false);

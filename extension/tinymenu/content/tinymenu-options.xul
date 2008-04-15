@@ -13,7 +13,7 @@
 	title="&tinymenu.title;"
 	buttons="accept, cancel"
 	persist="width height screenX screenY"
-	ondialogaccept="tinymenu.saveOptions();"
+	ondialogaccept="saveOptions();"
 >
 
 	<script type="application/x-javascript">
