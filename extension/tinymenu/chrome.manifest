@@ -9,6 +9,7 @@ overlay chrome://tinymenu/content/tinymenu-options.xul   chrome://tinymenu/conte
 overlay chrome://tinymenu/content/tinymenu-options.xul   chrome://tinymenu/content/tinymenu-options-ff3.xul application={ec8030f7-c20a-464f-9b0e-13a3a9e97384} appversion>=3.0a5
 overlay chrome://tinymenu/content/tinymenu-options.xul   chrome://tinymenu/content/tinymenu-options-tb.xul  application={3550f703-e582-4d05-9a08-453d09bdfdc6}
 
+locale tinymenu ca-AD locale/ca-AD/
 locale tinymenu cs-CZ locale/cs-CZ/
 locale tinymenu da-DK locale/da-DK/
 locale tinymenu de-DE locale/de-DE/
@@ -32,5 +33,6 @@ locale tinymenu ru-RU locale/ru-RU/
 locale tinymenu sk-SK locale/sk-SK/
 locale tinymenu sv-SE locale/sv-SE/
 locale tinymenu tr-TR locale/tr-TR/
+locale tinymenu uk-UA locale/uk-UA/
 locale tinymenu zh-CN locale/zh-CN/
 locale tinymenu zh-TW locale/zh-TW/
