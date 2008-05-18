@@ -1,0 +1,2 @@
+content micromenu content/
+overlay chrome://browser/content/browser.xul chrome://micromenu/content/micromenu-overlay.xul

@@ -1,0 +1,30 @@
+<?xml version='1.0'?>
+<overlay id='micromenu-overlay' xmlns='http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'>
+
+<script>
+<![CDATA[
+function micromenu() {
+	//find the main menu
+	var menubar=document.getElementById('main-menubar');
+	//create our sub menu
+	var menusub=document.getElementById('micromenu-pop');
+
+	//move each of the menus into the sub menu
+	var el;
+	while (el=menubar.childNodes[1]) {
+		menubar.removeChild(el);
+		menusub.appendChild(el);
+	}
+}
+
+window.addEventListener('load', micromenu, false);
+]]>
+</script>
+
+<menubar id='main-menubar'>
+	<menu id='micromenu' label='Menu' accesskey='m' insertbefore='file-menu'>
+		<menupopup id='micromenu-pop' />
+	</menu>
+</menubar>
+
+</overlay>
