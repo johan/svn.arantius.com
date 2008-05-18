@@ -25,12 +25,16 @@
 		<textbox id="mpwgen-email" prefstring="mpwgen.email" />
 		<separator class="thin" />
 
-		<hbox>
-			<checkbox id='mpwgen-autoCompOff' prefstring="mpwgen.autoCompOff" 
+		<vbox>
+			<checkbox id='mpwgen-autoCompOff'
+				prefstring="mpwgen.autoCompOff" 
 				label="&mpwgen.disablePasswordRemember;"
 			/>
-			<label value="" />
-		</hbox>
+			<checkbox id='mpwgen-rememberDefault'
+				prefstring="mpwgen.rememberDefault" 
+				label="&mpwgen.rememberDefault;"
+			/>
+		</vbox>
 	</vbox>
 	</groupbox>
 </dialog>

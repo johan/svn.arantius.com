@@ -2,18 +2,22 @@
 <!DOCTYPE overlay SYSTEM "chrome://mpwgen/locale/overlay.dtd">
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 
-<dialog id="mpwgen-prompt-master"
+<!-- the "B" is to ensure persisted height/width from old version isn't used -->
+<dialog id="mpwgen-prompt-masterB"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 	title="&mpwgen.title;"
 	buttons="accept, cancel"
-	onload="window.document.getElementById('master-pw').focus();"
-	ondialogaccept="return window.opener.mpwgen.fillforms(window.document.getElementById('master-pw').value);"
-	persist="width height screenX screenY"
+	onload="mpwgen.promptLoad();"
+	ondialogaccept="mpwgen.promptAccept();"
+	persist="screenX screenY"
 >
+	<script type='application/x-javascript' src='chrome://mpwgen/content/mpwgen.js'></script>
+
 	<groupbox align="center" orient="horizontal">
 		<vbox>
 			<text value="&mpwgen.masterPrompt;" style="font-weight: bold; font-size: x-large;" />
 			<textbox type='password' id='master-pw' />
+			<checkbox id='remember' label='&mpwgen.remember;' />
 		</vbox>
 		<spring flex="1" style='padding-left: 9px;' />
 		<image src="chrome://mpwgen/skin/em-icon.png" />

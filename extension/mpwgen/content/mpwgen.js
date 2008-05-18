@@ -1,10 +1,16 @@
 var mpwgen={
+masterPw:null,
+
 run:function() {
-	var w = window.openDialog(
-		'chrome://mpwgen/content/mpwgen-prompt-master.xul',
-		'_blank',
-		'dialog=no,centerscreen,resizable=no,chrome,dependent'
-	);
+	if (this.masterPw) {
+		this.fillforms(this.masterPw);
+	} else {
+		window.openDialog(
+			'chrome://mpwgen/content/mpwgen-prompt-master.xul',
+			'_blank',
+			'dialog=no,centerscreen,resizable=no,chrome,dependent'
+		);
+	}
 },
 
 hash:function(s) {
@@ -22,7 +28,11 @@ oneElXpath:function(doc, exp) {
 	return result.snapshotItem(0);
 },
 
-fillforms:function(master) {
+fillforms:function(master, remember) {
+	if (('undefined'!=typeof remember) && remember) {
+		this.masterPw=master;
+	}
+
 	try {
 		var win=getBrowser().contentWindow;
 		this.fillwindow(master, win);
@@ -61,6 +71,8 @@ fillwindow:function(master, win) {
 				if (this.getPref('bool', 'mpwgen.autoCompOff')) {
 					el.form.setAttribute('autocomplete', 'off');
 				}
+
+				el.form.setAttribute('mpwgen', '1');
 			} else if ('text'==el.type) {
 				userScore=0;
 				emailScore=0;
@@ -128,7 +140,9 @@ fillwindow:function(master, win) {
 					el.value=user;
 				}
 			} else if ('submit'==el.type || 'image'==el.type) {
-				el.focus();
+				if ('1'==el.form.getAttribute('mpwgen')) {
+					el.focus();
+				}
 			}
 		}
 	} catch (e) { this.dumpErr(e) }
@@ -165,6 +179,7 @@ loadOptions:function() {
 	window.document.getElementById('mpwgen-username').value=this.getPref('string', 'mpwgen.username');
 	window.document.getElementById('mpwgen-email').value=this.getPref('string', 'mpwgen.email');
 	window.document.getElementById('mpwgen-autoCompOff').checked=this.getPref('bool', 'mpwgen.autoCompOff');
+	window.document.getElementById('mpwgen-rememberDefault').checked=this.getPref('bool', 'mpwgen.rememberDefault');
 	} catch (e) { this.dumpErr(e) }
 	return true;
 },
@@ -174,6 +189,7 @@ saveOptions:function() {
 	this.setPref('string', 'mpwgen.username', window.document.getElementById('mpwgen-username').value);
 	this.setPref('string', 'mpwgen.email', window.document.getElementById('mpwgen-email').value);
 	this.setPref('bool', 'mpwgen.autoCompOff', window.document.getElementById('mpwgen-autoCompOff').checked);
+	this.setPref('bool', 'mpwgen.rememberDefault', window.document.getElementById('mpwgen-rememberDefault').checked);
 	} catch (e) { this.dumpErr(e) }
 	return true;
 },
@@ -195,6 +211,20 @@ onload:function(event) {
 popupshowing:function(event) {
 	var show=!('password'==gContextMenu.target.type);
 	document.getElementById("mpwgen-context").setAttribute('hidden', show);
+},
+
+
+promptLoad:function() {
+	window.document.getElementById('remember').checked=
+		this.getPref('bool', 'mpwgen.rememberDefault');;
+	window.document.getElementById('master-pw').focus();
+},
+
+promptAccept:function() {
+	window.opener.mpwgen.fillforms(
+		window.document.getElementById('master-pw').value,
+		window.document.getElementById('remember').checked
+	);
 }
 
 }//end mpwgen object
