@@ -3,7 +3,7 @@
 [ ! -f "chrome.manifest" ] && echo "Must execute from main extension directory!" && exit
 
 # derive project name and version
-PROJ=`awk '/^content/{print $2}' chrome.manifest`
+PROJ=`awk '/^content/{print $2}' chrome.manifest | head -n 1`
 rm -f ${PROJ}*.xpi
 VER=`sed -n -e '/em:version/{s/[^0-9.]//g;p}' install.rdf`
 
@@ -26,8 +26,9 @@ cd build
 # create the jar, patch the manifest to reference it
 echo CREATING: "${PROJ}.jar"
 
-sed -e \
-	"/^content\|^skin\|^locale/s#\(.*\) \(.*\)#\1 jar:chrome/${PROJ}.jar!/\2#" \
+sed -e "s/^content  *\([^ ]*\)  *\([^ ]*\)/content \1 jar:chrome\/${PROJ}.jar!\/\2/" \
+	-e "s/skin  *\([^ ]*\)  *\([^ ]*\)  *\([^ ]*\)/skin \1 \2 jar:chrome\/${PROJ}.jar!\/\3/" \
+	-e "s/locale  *\([^ ]*\)  *\([^ ]*\)  *\([^ ]*\)/locale \1 \2 jar:chrome\/${PROJ}.jar!\/\3/" \
 	chrome.manifest > chrome.manifest.jar
 mv chrome.manifest.jar chrome.manifest
 
