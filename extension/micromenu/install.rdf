@@ -7,7 +7,6 @@
 		<em:description>Replace the standard menu bar with a tiny menu popup.</em:description>
 		<em:creator>Anthony Lieuallen</em:creator>
 		<em:homepageURL>http://trac.arantius.com/wiki/Extensions/MicroMenu</em:homepageURL>
-		<em:iconURL>chrome://micromenu/skin/em-icon.png</em:iconURL>
 
 		<em:targetApplication>
 			<Description>
