@@ -3,22 +3,19 @@
 	<Description about="urn:mozilla:install-manifest">
 		<em:id>{d33c2f7c-b1e6-4d46-ab0e-be1f6d05c904}</em:id>
 		<em:name>Tiny Menu</em:name>
-		<em:version>1.4.8</em:version>
+		<em:version>1.4.9</em:version>
 		<em:description>Replace the standard menu bar with a tiny menu popup.</em:description>
 		<em:creator>Anthony Lieuallen</em:creator>
 		<em:homepageURL>http://trac.arantius.com/wiki/Extensions/TinyMenu</em:homepageURL>
 		<em:iconURL>chrome://tinymenu/skin/tinymenu.png</em:iconURL>
 		<em:optionsURL>chrome://tinymenu/content/tinymenu-options.xul</em:optionsURL>
 
-		<em:updateURL>http://arantius.com/misc/firefox-extensions/mine/tinymenu.rdf</em:updateURL>
-		<em:updateKey>MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCgvhRtOhjdrvaU1TTAkMIvgZJ/5y3UF9GfjLiys1uvm/r2LVD1ukcJpHC37aMSQ255JmO5+Rdom0vxWHr+3qWIuBxVuD3y7Mq/JP5N5gcgV5zKKJ4P+dl20jt/y6JdnroHGZS1l9yL6p5UUKMM0QNer055Safe1NFMQ2wy2wjj7wIDAQAB</em:updateKey>
-
 		<!-- Firefox -->
 		<em:targetApplication>
 			<Description>
 				<em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
 				<em:minVersion>2.0.0.12</em:minVersion>
-				<em:maxVersion>3.0</em:maxVersion>
+				<em:maxVersion>3.0.*</em:maxVersion>
 			</Description>
 		</em:targetApplication>
 		<!-- Thunderbird -->
