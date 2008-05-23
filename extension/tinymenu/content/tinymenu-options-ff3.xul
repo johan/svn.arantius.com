@@ -18,7 +18,7 @@
 
 <script type='application/javascript'>
 tinymenu.menuIds=[
-	'file-menu', 'edit-menu', 'view-menu', 'go-menu',
+	'file-menu', 'edit-menu', 'view-menu', 'history-menu',
 	'bookmarksMenu', 'tools-menu', 'helpMenu'
 ];
 </script>
@@ -28,7 +28,7 @@ tinymenu.menuIds=[
 		<checkbox id='pref-file-menu' label='&fileMenu.label;' checked='false' />
 		<checkbox id='pref-edit-menu' label='&editMenu.label;' checked='false' />
 		<checkbox id='pref-view-menu' label='&viewMenu.label;' checked='false' />
-		<checkbox id='pref-go-menu' label='&historyMenu.label;' checked='false' />
+		<checkbox id='pref-history-menu' label='&historyMenu.label;' checked='false' />
 	</vbox>
 	<vbox>
 		<checkbox id='pref-bookmarksMenu' label='&bookmarksMenu.label;' checked='false' />
