@@ -6,3 +6,5 @@
 <!ENTITY mpwgen.email "이메일">
 <!ENTITY mpwgen.disablePasswordRemember "암호 기억 무효화">
 <!ENTITY mpwgen.masterPrompt "마스터 패스워드?">
+<!ENTITY mpwgen.remember "기억하기(이번 세션 동안)">
+<!ENTITY mpwgen.rememberDefault "기억하기(기본값)">

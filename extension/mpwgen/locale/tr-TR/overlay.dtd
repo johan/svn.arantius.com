@@ -6,3 +6,5 @@
 <!ENTITY mpwgen.email "E-posta">
 <!ENTITY mpwgen.disablePasswordRemember "Şifre hatırlamayı devredışı bırak">
 <!ENTITY mpwgen.masterPrompt "Ana Şifre?">
+<!ENTITY mpwgen.remember "Remember (for this session)">
+<!ENTITY mpwgen.rememberDefault "Remember (by default)">

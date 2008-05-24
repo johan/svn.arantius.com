@@ -6,3 +6,5 @@
 <!ENTITY mpwgen.email "Email">
 <!ENTITY mpwgen.disablePasswordRemember "パスワードの保存を無効にします">
 <!ENTITY mpwgen.masterPrompt "マスターパスワード?">
+<!ENTITY mpwgen.remember "Remember (for this session)">
+<!ENTITY mpwgen.rememberDefault "Remember (by default)">

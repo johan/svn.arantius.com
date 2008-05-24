@@ -6,3 +6,5 @@
 <!ENTITY mpwgen.email "電子郵件">
 <!ENTITY mpwgen.disablePasswordRemember "不要記住密碼">
 <!ENTITY mpwgen.masterPrompt "主控密碼？">
+<!ENTITY mpwgen.remember "Remember (for this session)">
+<!ENTITY mpwgen.rememberDefault "Remember (by default)">

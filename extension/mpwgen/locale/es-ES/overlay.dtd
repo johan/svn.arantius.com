@@ -6,3 +6,5 @@
 <!ENTITY mpwgen.email "Email">
 <!ENTITY mpwgen.disablePasswordRemember "Recordar deshabilitar contraseñas">
 <!ENTITY mpwgen.masterPrompt "¿Contraseña maestra?">
+<!ENTITY mpwgen.remember "Remember (for this session)">
+<!ENTITY mpwgen.rememberDefault "Remember (by default)">

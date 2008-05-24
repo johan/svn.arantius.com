@@ -6,3 +6,5 @@
 <!ENTITY mpwgen.email "E-mail">
 <!ENTITY mpwgen.disablePasswordRemember "Ne jegyezze meg a jelszavakat">
 <!ENTITY mpwgen.masterPrompt "Adja meg a Mesterjelszót">
+<!ENTITY mpwgen.remember "Megjegyzés (erre a munkamenetre)">
+<!ENTITY mpwgen.rememberDefault "Megjegyzés (mindig)">

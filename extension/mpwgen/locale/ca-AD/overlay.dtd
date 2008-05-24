@@ -6,3 +6,5 @@
 <!ENTITY mpwgen.email "Correu-e">
 <!ENTITY mpwgen.disablePasswordRemember "Deshabilitar recordatori de Contrasenya">
 <!ENTITY mpwgen.masterPrompt "Contrasenya mestre?">
+<!ENTITY mpwgen.remember "Recorda (per a aquesta sessió)">
+<!ENTITY mpwgen.rememberDefault "Recorda (per defecte)">

@@ -6,3 +6,5 @@
 <!ENTITY mpwgen.email "E-mail">
 <!ENTITY mpwgen.disablePasswordRemember "Запретить запоминать пароли">
 <!ENTITY mpwgen.masterPrompt "Основной пароль?">
+<!ENTITY mpwgen.remember "Запомнить (для этой сессии)">
+<!ENTITY mpwgen.rememberDefault "Запомнить (по умолчанию)">

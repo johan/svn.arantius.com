@@ -6,3 +6,5 @@
 <!ENTITY mpwgen.email "E-mail">
 <!ENTITY mpwgen.disablePasswordRemember "Vypnúť pamätanie si hesla">
 <!ENTITY mpwgen.masterPrompt "Hlavné heslo?">
+<!ENTITY mpwgen.remember "Pamätať si (pre toto sedenie)">
+<!ENTITY mpwgen.rememberDefault "Pamätať si (prednastavené)">
