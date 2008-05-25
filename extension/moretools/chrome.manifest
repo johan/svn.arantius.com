@@ -3,11 +3,13 @@ skin    moretools classic/1.0 skin/
 
 overlay chrome://browser/content/browser.xul             chrome://moretools/content/moretools-overlay.xul
 
+locale moretools ca-AD locale/ca-AD/
 locale moretools da-DK locale/da-DK/
 locale moretools de-DE locale/de-DE/
 locale moretools en-US locale/en-US/
 locale moretools es-AR locale/es-AR/
 locale moretools es-ES locale/es-ES/
+locale moretools fa-IR locale/fa-IR/
 locale moretools fr-FR locale/fr-FR/
 locale moretools he-IL locale/he-IL/
 locale moretools hr-HR locale/hr-HR/
@@ -24,6 +26,7 @@ locale moretools pt-PT locale/pt-PT/
 locale moretools ro-RO locale/ro-RO/
 locale moretools ru-RU locale/ru-RU/
 locale moretools sk-SK locale/sk-SK/
+locale moretools tr-TR locale/tr-TR/
 locale moretools uk-UA locale/uk-UA/
 locale moretools zh-CN locale/zh-CN/
 locale moretools zh-TW locale/zh-TW/
