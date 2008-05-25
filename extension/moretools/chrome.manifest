@@ -2,6 +2,8 @@ content moretools             content/
 skin    moretools classic/1.0 skin/
 
 overlay chrome://browser/content/browser.xul             chrome://moretools/content/moretools-overlay.xul
+overlay chrome://messenger/content/mailWindowOverlay.xul chrome://moretools/content/moretools-overlay.xul
+overlay chrome://messenger/content/mailWindowOverlay.xul chrome://moretools/content/moretools-tbfix.xul
 
 locale moretools ca-AD locale/ca-AD/
 locale moretools da-DK locale/da-DK/

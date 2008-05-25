@@ -11,6 +11,7 @@
 	>
 		<menupopup id='more-tools-menupopup' onpopupshowing=''>
 			<menuitem label='&moretools.createdby;' disabled='true' id='more-tools-label' />
+			<menuseparator id='more-tools-sep' />
 		</menupopup>
 	</menu>
 </menubar>
@@ -22,6 +23,7 @@
 	>
 		<menupopup id='more-tools-menupopup' onpopupshowing=''>
 			<menuitem label='&moretools.createdby;' disabled='true' id='more-tools-label' />
+			<menuseparator id='more-tools-sep' />
 		</menupopup>
 	</menu>
 </menubar>
