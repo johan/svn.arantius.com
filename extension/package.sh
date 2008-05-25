@@ -38,6 +38,10 @@ rm -fr content/ skin/ locale/
 mkdir chrome
 mv "${PROJ}.jar" chrome
 
+# remove files that shouldn't go in the xpi
+echo "Removing unwanted files ..."
+rm -f components/*.idl
+
 # zip together the jar and the rest into the xpi
 echo CREATING: "${PROJ}-${VER}.xpi"
 zip -r -9 "../${PROJ}-${VER}.xpi" * > /dev/null
