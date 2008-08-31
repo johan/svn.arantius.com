@@ -210,10 +210,6 @@
 				RelativePath=".\stdafx.h"
 				>
 			</File>
-			<File
-				RelativePath=".\VidSave.h"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Resource Files"

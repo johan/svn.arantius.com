@@ -1,7 +1,6 @@
 #include "stdafx.h"
 
-bool ScanModules( DWORD processID )
-{
+bool ScanModules(DWORD processID) {
 	HMODULE hMods[1024];
 	HANDLE hProcess;
 	DWORD cbNeeded;
