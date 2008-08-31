@@ -1,63 +1,55 @@
 #include "stdafx.h"
 
-void PrintModules( DWORD processID )
+bool ScanModules( DWORD processID )
 {
 	HMODULE hMods[1024];
 	HANDLE hProcess;
 	DWORD cbNeeded;
-	unsigned int i;
-
-	// Print the process identifier.
-
-	printf( "\nProcess ID: %u\n", processID );
 
 	// Get a list of all the modules in this process.
+	hProcess=OpenProcess(
+		PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, processID
+	);
+	if (NULL==hProcess) return 0;
 
-	hProcess = OpenProcess( PROCESS_QUERY_INFORMATION |
-							PROCESS_VM_READ,
-							FALSE, processID );
-	if (NULL == hProcess)
-		return;
-
-	if( EnumProcessModules(hProcess, hMods, sizeof(hMods), &cbNeeded))
-	{
-		for ( i = 0; i < (cbNeeded / sizeof(HMODULE)); i++ )
-		{
+	if (EnumProcessModules(hProcess, hMods, sizeof(hMods), &cbNeeded)) {
+		for (unsigned int i=0; i<cbNeeded/sizeof(HMODULE); i++) {
 			TCHAR szModName[MAX_PATH];
 
-			// Get the full path to the module's file.
-
-			if ( GetModuleFileNameEx(hProcess, hMods[i], szModName,
-									 sizeof(szModName)/sizeof(TCHAR)))
-			{
-				// Print the module name and handle value.
-
-				_tprintf(TEXT("\t%s (0x%08X)\n"),
-						 szModName, hMods[i]);
+			if (GetModuleBaseName(
+				hProcess, hMods[i], szModName, sizeof(szModName)/sizeof(TCHAR)
+			)) {
+				if (0==_wcsicmp(szModName, _T("npswf32.dll"))) {
+					CloseHandle(hProcess);
+					return 1;
+				}
 			}
 		}
 	}
 
-	CloseHandle( hProcess );
+	CloseHandle(hProcess);
+	return 0;
 }
 
-void _tmain( )
-{
+bool FindFlash() {
+	DWORD aProcesses[1024], cbNeeded;
+
 	// Get the list of process identifiers.
-
-	DWORD aProcesses[1024], cbNeeded, cProcesses;
-	unsigned int i;
-
-	if ( !EnumProcesses( aProcesses, sizeof(aProcesses), &cbNeeded ) )
-		return;
+	if (!EnumProcesses(aProcesses, sizeof(aProcesses), &cbNeeded)) {
+		return 0;
+	}
 
 	// Calculate how many process identifiers were returned.
-	cProcesses = cbNeeded / sizeof(DWORD);
+	DWORD cProcesses=cbNeeded/sizeof(DWORD);
 
-	// Print the name of the modules for each process.
-
-	for ( i = 0; i < cProcesses; i++ ) {
-		PrintModules( aProcesses[i] );
-		_getch();
+	for (unsigned int i=0; i<cProcesses; i++) {
+		if (ScanModules(aProcesses[i])) return 1;
 	}
+
+	return 0;
+}
+
+void _tmain() {
+	printf("Found flash? %s\n", FindFlash()?"Yes":"No");
+	_getch();
 }
