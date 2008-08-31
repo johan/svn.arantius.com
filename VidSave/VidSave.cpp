@@ -1,100 +1,64 @@
 #include "stdafx.h"
-#include "VidSave.h"
 
-int _tmain(int argc, _TCHAR* argv[])
+void PrintModules( DWORD processID )
 {
-	BOOL status=enumProcs();
+    HMODULE hMods[1024];
+    HANDLE hProcess;
+    DWORD cbNeeded;
+    unsigned int i;
 
-	return status;
+    // Print the process identifier.
+
+    printf( "\nProcess ID: %u\n", processID );
+
+    // Get a list of all the modules in this process.
+
+    hProcess = OpenProcess( PROCESS_QUERY_INFORMATION |
+                            PROCESS_VM_READ,
+                            FALSE, processID );
+    if (NULL == hProcess)
+        return;
+
+    if( EnumProcessModules(hProcess, hMods, sizeof(hMods), &cbNeeded))
+    {
+        for ( i = 0; i < (cbNeeded / sizeof(HMODULE)); i++ )
+        {
+            TCHAR szModName[MAX_PATH];
+
+            // Get the full path to the module's file.
+
+            if ( GetModuleFileNameEx(hProcess, hMods[i], szModName,
+                                     sizeof(szModName)/sizeof(TCHAR)))
+            {
+                // Print the module name and handle value.
+
+                _tprintf(TEXT("\t%s (0x%08X)\n"),
+                         szModName, hMods[i]);
+            }
+        }
+    }
+
+    CloseHandle( hProcess );
 }
 
-BOOL enumProcs() {
-	// Based very much on:
-	//  http://www.alexfedotov.com/articles/enumproc.asp
+void _tmain( )
+{
+    // Get the list of process identifiers.
 
-	HANDLE hHeap = GetProcessHeap();
-	DWORD cbReturned;
-	DWORD cbAlloc = 128;
-	DWORD * pdwIds = NULL;
+    DWORD aProcesses[1024], cbNeeded, cProcesses;
+    unsigned int i;
 
-	// Figure out "system" process ID
-	OSVERSIONINFO osvi;
-	osvi.dwOSVersionInfoSize = sizeof(osvi);
-	GetVersionEx(&osvi);
-	DWORD dwSystemId = 8;
-	if (osvi.dwMajorVersion >= 5) {
-		dwSystemId = (osvi.dwMinorVersion == 0) ? 2 : 4;
+    if ( !EnumProcesses( aProcesses, sizeof(aProcesses), &cbNeeded ) )
+        return;
+
+    // Calculate how many process identifiers were returned.
+
+    cProcesses = cbNeeded / sizeof(DWORD);
+
+    // Print the name of the modules for each process.
+
+	for ( i = 0; i < cProcesses; i++ ) {
+        PrintModules( aProcesses[i] );
+		_getch();
 	}
-
-	do {
-		cbAlloc *= 2;
-
-		if (pdwIds != NULL) {
-			HeapFree(hHeap, 0, pdwIds);
-		}
-
-		// allocate memory for the array of identifiers
-		pdwIds = (DWORD *)HeapAlloc(hHeap, 0, cbAlloc);
-		if (pdwIds == NULL) {
-			return 1;
-		}
-
-		// get processes identifiers
-		if (!EnumProcesses(pdwIds, cbAlloc, &cbReturned)) {
-			HeapFree(hHeap, 0, pdwIds);
-			return 1;
-		}
-	} while (cbReturned == cbAlloc);
-
-	for (DWORD i = 0; i < cbReturned/sizeof(DWORD); i++) {
-		//BOOL bContinue;
-		DWORD dwProcessId = pdwIds[i];
-
-		if (0==dwProcessId || dwSystemId==dwProcessId) {
-			continue;
-		}
-
-		HANDLE hProcess;
-		HMODULE hExeModule;
-		DWORD cbNeeded;
-		TCHAR szModulePath[MAX_PATH];
-		LPTSTR pszProcessName = NULL;
-
-		// open process handle
-		hProcess = OpenProcess(
-			PROCESS_QUERY_INFORMATION|PROCESS_VM_READ,
-			FALSE, dwProcessId
-		);
-		if (hProcess != NULL) {
-			if (EnumProcessModules(
-					hProcess, &hExeModule, sizeof(HMODULE), &cbNeeded
-				)
-			) {
-				if (GetModuleFileNameExW(
-						hProcess, hExeModule, szModulePath, MAX_PATH
-					)
-				) {
-					pszProcessName = _tcsrchr(szModulePath, _T('\\'));
-					if (pszProcessName == NULL) {
-						pszProcessName = szModulePath;
-					} else {
-						pszProcessName++;
-					}
-				}
-			}
-		}
-
-		if (0==wcscmp(_T("firefox.exe"), pszProcessName)) {
-			//enumMods(hProcess);
-			//printf("%d\n", cbNeeded/sizeof(HMODULE));
-		}
-
-		CloseHandle(hProcess);
-	}
-	return 0;
-}
-
-BOOL enumMods(HANDLE hProcess) {
-
-	return 0;
 }

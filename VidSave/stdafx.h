@@ -6,6 +6,6 @@
 #include <tchar.h>
 
 // The stuff I put here.
-#include <stdio.h>
 #include <windows.h>
 #include <psapi.h>
+#include <conio.h>
