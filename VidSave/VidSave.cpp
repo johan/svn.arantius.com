@@ -68,15 +68,31 @@ double getFlashProcTime() {
 	return process->TotalProcessorTime.TotalSeconds;
 }
 
+void toggleScreensaver(bool on) {
+	bool *pvParam=0;
+	if (!SystemParametersInfo(SPI_GETSCREENSAVEACTIVE, 0, &pvParam, 0)) {
+		printf("Error getting state: %s\n", GetLastError());
+	}
+	printf("screen saver appears to be: %s\n", pvParam);
+
+	printf("setting screen saver to: %d\n", on);
+	if (!SystemParametersInfo(
+			SPI_SETSCREENSAVEACTIVE, FALSE, (PVOID)on, SPIF_SENDWININICHANGE
+		)
+	) {
+		printf("Error setting state: %s\n", GetLastError());
+	}
+}
+
 int _tmain () {
 	double procTimeBefore=getFlashProcTime(), procTime=0;
 
 	do {
 		procTime=getFlashProcTime();
 		if ( (procTime-procTimeBefore) > CHECK_FREQUENCY*RUNNING_RATIO ) {
-			printf("I think flash video is running!\n");
+			toggleScreensaver(0);
 		} else {
-			printf("I think flash video is NOT running!\n");
+			toggleScreensaver(1);
 		}
 		procTimeBefore=procTime;
 		Sleep(CHECK_FREQUENCY*1000);
