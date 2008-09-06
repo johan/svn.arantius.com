@@ -1,11 +1,15 @@
-#include "stdafx.h"
+#pragma once
+#define WIN32_LEAN_AND_MEAN
+#include <stdio.h>
+#include <tchar.h>
+#include <windows.h>
+#include <psapi.h>
+#include <conio.h>
 
 #using <System.dll>
-
 using namespace System;
 using namespace System::ComponentModel;
 using namespace System::Diagnostics;
-using namespace System::Net;
 
 #define CHECK_FREQUENCY 10 // seconds
 #define RUNNING_RATIO 0.25
@@ -69,7 +73,8 @@ double getFlashProcTime() {
 }
 
 void toggleScreensaver(bool on) {
-	bool *pvParam=0;
+	bool *pvParam;
+
 	if (!SystemParametersInfo(SPI_GETSCREENSAVEACTIVE, 0, &pvParam, 0)) {
 		printf("Error getting state: %s\n", GetLastError());
 	}
