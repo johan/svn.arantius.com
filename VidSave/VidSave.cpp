@@ -3,9 +3,12 @@
 #using <System.dll>
 
 using namespace System;
-using namespace System::Diagnostics;
 using namespace System::ComponentModel;
+using namespace System::Diagnostics;
+using namespace System::Net;
 
+#define CHECK_FREQUENCY 10 // seconds
+#define RUNNING_RATIO 0.25
 
 bool ScanModules( DWORD processID )
 {
@@ -56,24 +59,28 @@ DWORD FindFlash() {
 	return 0;
 }
 
+double getFlashProcTime() {
+	DWORD processId=0;
+	processId=FindFlash();
+	if (!processId) return 0;
+
+	Process^ process=Process::GetProcessById(processId);
+	return process->TotalProcessorTime.TotalSeconds;
+}
+
 int _tmain () {
-	DWORD processId=FindFlash();
+	double procTimeBefore=getFlashProcTime(), procTime=0;
 
-	printf("Found flash? %s\n", processId?"Yes":"No");
-	printf("Found flash? %d\n", processId);
-
-	Process^ process = Process::GetProcessById(processId);
-
-	for (int i=0; i<15; i++) {
-		process->Refresh();
-
-		//printf("Total time: %s\n", process->TotalProcessorTime);
-		//Console::WriteLine( "  user processor time: {0}", process->UserProcessorTime );
-		//Console::WriteLine( "  privileged processor time: {0}", process->PrivilegedProcessorTime );
-		Console::WriteLine( "  total processor time: {0}", process->TotalProcessorTime );
-
-		Sleep(500);
-	}
-
-	_getch();
+	do {
+		procTime=getFlashProcTime();
+		if ( (procTime-procTimeBefore) > CHECK_FREQUENCY*RUNNING_RATIO ) {
+			printf("I think flash video is running!\n");
+		} else {
+			printf("I think flash video is NOT running!\n");
+		}
+		procTimeBefore=procTime;
+		Sleep(CHECK_FREQUENCY*1000);
+		
+		if (_kbhit() && 'q'==_getch()) return 0;
+	} while (true);
 }
