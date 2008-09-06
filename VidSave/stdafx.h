@@ -7,5 +7,11 @@
 
 // The stuff I put here.
 #include <windows.h>
-#include <psapi.h>
+#include <winperf.h>
+#include <malloc.h>
+#include <stdio.h>
+#include <tchar.h>
+#include <pdh.h>
+#include <pdhmsg.h>
+
 #include <conio.h>

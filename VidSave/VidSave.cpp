@@ -1,54 +1,85 @@
 #include "stdafx.h"
 
-bool ScanModules(DWORD processID) {
-	HMODULE hMods[1024];
-	HANDLE hProcess;
-	DWORD cbNeeded;
+// http://msdn.microsoft.com/en-us/library/aa372151(VS.85).aspx
+int _tmain () {
+    PDH_STATUS  pdhStatus               = ERROR_SUCCESS;
+    LPTSTR      szCounterListBuffer     = NULL;
+    DWORD       dwCounterListSize       = 0;
+    LPTSTR      szInstanceListBuffer    = NULL;
+    DWORD       dwInstanceListSize      = 0;
+    LPTSTR      szThisInstance          = NULL;
 
-	// Get a list of all the modules in this process.
-	hProcess=OpenProcess(
-		PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, processID
-	);
-	if (NULL==hProcess) return 0;
 
-	if (EnumProcessModules(hProcess, hMods, sizeof(hMods), &cbNeeded)) {
-		for (unsigned int i=0; i<cbNeeded/sizeof(HMODULE); i++) {
-			TCHAR szModName[MAX_PATH];
+    // Determine the required buffer size for the data. 
+    pdhStatus = PdhEnumObjectItems (
+        NULL,                   // real time source
+        NULL,                   // local machine
+        TEXT("Thread"),        // object to enumerate
+        szCounterListBuffer,    // pass NULL and 0
+        &dwCounterListSize,     // to get length required
+        szInstanceListBuffer,   // buffer size 
+        &dwInstanceListSize,    // 
+        PERF_DETAIL_WIZARD,     // counter detail level
+        0); 
 
-			if (GetModuleBaseName(
-				hProcess, hMods[i], szModName, sizeof(szModName)/sizeof(TCHAR)
-			)) {
-				if (0==_wcsicmp(szModName, _T("npswf32.dll"))) {
-					CloseHandle(hProcess);
-					return 1;
-				}
-			}
-		}
-	}
+    if (pdhStatus == PDH_MORE_DATA) 
+    {
+        // Allocate the buffers and try the call again.
+        szCounterListBuffer = (LPTSTR)malloc (
+            (dwCounterListSize * sizeof (TCHAR)));
+        szInstanceListBuffer = (LPTSTR)malloc (
+            (dwInstanceListSize * sizeof (TCHAR)));
 
-	CloseHandle(hProcess);
-	return 0;
-}
+        if ((szCounterListBuffer != NULL) &&
+            (szInstanceListBuffer != NULL)) 
+        {
+            pdhStatus = PdhEnumObjectItems (
+                NULL,                 // real time source
+                NULL,                 // local machine
+                TEXT("Thread"),      // object to enumerate
+                szCounterListBuffer,  // buffer to receive counter list
+                &dwCounterListSize, 
+                szInstanceListBuffer, // buffer to receive instance list 
+                &dwInstanceListSize,    
+                PERF_DETAIL_WIZARD,   // counter detail level
+                0);
+     
+            if (pdhStatus == ERROR_SUCCESS) 
+            {
+                _tprintf (TEXT("\nEnumerating Processes:"));
 
-bool FindFlash() {
-	DWORD aProcesses[1024], cbNeeded;
+                // Walk the instance list. The list can contain one
+                // or more null-terminated strings. The last string 
+                // is followed by a second null-terminator.
+                for (szThisInstance = szInstanceListBuffer;
+                     *szThisInstance != 0;
+                     szThisInstance += lstrlen(szThisInstance) + 1) 
+                {
+                     _tprintf (TEXT("\n  %s"), szThisInstance);
+                }
+            }
+            else 
+            {
+                _tprintf(TEXT("\nPdhEnumObjectItems failed with %ld."), pdhStatus);
+            }
+        } 
+        else 
+        {
+            _tprintf (TEXT("\nUnable to allocate buffers"));
+            pdhStatus = ERROR_OUTOFMEMORY;
+        }
 
-	// Get the list of process identifiers.
-	if (!EnumProcesses(aProcesses, sizeof(aProcesses), &cbNeeded)) {
-		return 0;
-	}
+        if (szCounterListBuffer != NULL) 
+            free (szCounterListBuffer);
 
-	// Calculate how many process identifiers were returned.
-	DWORD cProcesses=cbNeeded/sizeof(DWORD);
+        if (szInstanceListBuffer != NULL) 
+            free (szInstanceListBuffer);
+    } 
+    else 
+    {
+        _tprintf(TEXT("\nPdhEnumObjectItems failed with %ld."), pdhStatus);
+    }
 
-	for (unsigned int i=0; i<cProcesses; i++) {
-		if (ScanModules(aProcesses[i])) return 1;
-	}
-
-	return 0;
-}
-
-void _tmain() {
-	printf("Found flash? %s\n", FindFlash()?"Yes":"No");
 	_getch();
+    return pdhStatus;
 }
