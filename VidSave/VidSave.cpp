@@ -1,85 +1,79 @@
 #include "stdafx.h"
 
-// http://msdn.microsoft.com/en-us/library/aa372151(VS.85).aspx
+#using <System.dll>
+
+using namespace System;
+using namespace System::Diagnostics;
+using namespace System::ComponentModel;
+
+
+bool ScanModules( DWORD processID )
+{
+	HMODULE hMods[1024];
+	HANDLE hProcess;
+	DWORD cbNeeded;
+
+	// Get a list of all the modules in this process.
+	hProcess=OpenProcess(
+		PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, processID
+	);
+	if (NULL==hProcess) return 0;
+
+	if (EnumProcessModules(hProcess, hMods, sizeof(hMods), &cbNeeded)) {
+		for (unsigned int i=0; i<cbNeeded/sizeof(HMODULE); i++) {
+			TCHAR szModName[MAX_PATH];
+
+			if (GetModuleBaseName(
+				hProcess, hMods[i], szModName, sizeof(szModName)/sizeof(TCHAR)
+			)) {
+				if (0==_wcsicmp(szModName, _T("npswf32.dll"))) {
+					CloseHandle(hProcess);
+					return 1;
+				}
+			}
+		}
+	}
+
+	CloseHandle(hProcess);
+	return 0;
+}
+
+DWORD FindFlash() {
+	DWORD aProcesses[1024], cbNeeded;
+
+	// Get the list of process identifiers.
+	if (!EnumProcesses(aProcesses, sizeof(aProcesses), &cbNeeded)) {
+		return 0;
+	}
+
+	// Calculate how many process identifiers were returned.
+	DWORD cProcesses=cbNeeded/sizeof(DWORD);
+
+	for (unsigned int i=0; i<cProcesses; i++) {
+		if (ScanModules(aProcesses[i])) return aProcesses[i];
+	}
+
+	return 0;
+}
+
 int _tmain () {
-    PDH_STATUS  pdhStatus               = ERROR_SUCCESS;
-    LPTSTR      szCounterListBuffer     = NULL;
-    DWORD       dwCounterListSize       = 0;
-    LPTSTR      szInstanceListBuffer    = NULL;
-    DWORD       dwInstanceListSize      = 0;
-    LPTSTR      szThisInstance          = NULL;
+	DWORD processId=FindFlash();
 
+	printf("Found flash? %s\n", processId?"Yes":"No");
+	printf("Found flash? %d\n", processId);
 
-    // Determine the required buffer size for the data. 
-    pdhStatus = PdhEnumObjectItems (
-        NULL,                   // real time source
-        NULL,                   // local machine
-        TEXT("Thread"),        // object to enumerate
-        szCounterListBuffer,    // pass NULL and 0
-        &dwCounterListSize,     // to get length required
-        szInstanceListBuffer,   // buffer size 
-        &dwInstanceListSize,    // 
-        PERF_DETAIL_WIZARD,     // counter detail level
-        0); 
+	Process^ process = Process::GetProcessById(processId);
 
-    if (pdhStatus == PDH_MORE_DATA) 
-    {
-        // Allocate the buffers and try the call again.
-        szCounterListBuffer = (LPTSTR)malloc (
-            (dwCounterListSize * sizeof (TCHAR)));
-        szInstanceListBuffer = (LPTSTR)malloc (
-            (dwInstanceListSize * sizeof (TCHAR)));
+	for (int i=0; i<15; i++) {
+		process->Refresh();
 
-        if ((szCounterListBuffer != NULL) &&
-            (szInstanceListBuffer != NULL)) 
-        {
-            pdhStatus = PdhEnumObjectItems (
-                NULL,                 // real time source
-                NULL,                 // local machine
-                TEXT("Thread"),      // object to enumerate
-                szCounterListBuffer,  // buffer to receive counter list
-                &dwCounterListSize, 
-                szInstanceListBuffer, // buffer to receive instance list 
-                &dwInstanceListSize,    
-                PERF_DETAIL_WIZARD,   // counter detail level
-                0);
-     
-            if (pdhStatus == ERROR_SUCCESS) 
-            {
-                _tprintf (TEXT("\nEnumerating Processes:"));
+		//printf("Total time: %s\n", process->TotalProcessorTime);
+		//Console::WriteLine( "  user processor time: {0}", process->UserProcessorTime );
+		//Console::WriteLine( "  privileged processor time: {0}", process->PrivilegedProcessorTime );
+		Console::WriteLine( "  total processor time: {0}", process->TotalProcessorTime );
 
-                // Walk the instance list. The list can contain one
-                // or more null-terminated strings. The last string 
-                // is followed by a second null-terminator.
-                for (szThisInstance = szInstanceListBuffer;
-                     *szThisInstance != 0;
-                     szThisInstance += lstrlen(szThisInstance) + 1) 
-                {
-                     _tprintf (TEXT("\n  %s"), szThisInstance);
-                }
-            }
-            else 
-            {
-                _tprintf(TEXT("\nPdhEnumObjectItems failed with %ld."), pdhStatus);
-            }
-        } 
-        else 
-        {
-            _tprintf (TEXT("\nUnable to allocate buffers"));
-            pdhStatus = ERROR_OUTOFMEMORY;
-        }
-
-        if (szCounterListBuffer != NULL) 
-            free (szCounterListBuffer);
-
-        if (szInstanceListBuffer != NULL) 
-            free (szInstanceListBuffer);
-    } 
-    else 
-    {
-        _tprintf(TEXT("\nPdhEnumObjectItems failed with %ld."), pdhStatus);
-    }
+		Sleep(500);
+	}
 
 	_getch();
-    return pdhStatus;
 }
