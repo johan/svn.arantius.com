@@ -73,16 +73,9 @@ double getFlashProcTime() {
 }
 
 void toggleScreensaver(bool on) {
-	bool *pvParam;
-
-	if (!SystemParametersInfo(SPI_GETSCREENSAVEACTIVE, 0, &pvParam, 0)) {
-		printf("Error getting state: %s\n", GetLastError());
-	}
-	printf("screen saver appears to be: %s\n", pvParam);
-
 	printf("setting screen saver to: %d\n", on);
 	if (!SystemParametersInfo(
-			SPI_SETSCREENSAVEACTIVE, FALSE, (PVOID)on, SPIF_SENDWININICHANGE
+			SPI_SETSCREENSAVEACTIVE, on, 0, SPIF_SENDWININICHANGE
 		)
 	) {
 		printf("Error setting state: %s\n", GetLastError());
