@@ -4,8 +4,8 @@
 #include <tchar.h>
 #include <windows.h>
 #include <psapi.h>
-#include <conio.h>
 #include <strsafe.h>
+#include <shellapi.h>
 
 #using <System.dll>
 using namespace System;
@@ -120,14 +120,39 @@ void ErrorExit(LPTSTR lpszFunction) {
 	ExitProcess(dw); 
 }
 
-int _tmain () {
+int APIENTRY _tWinMain(
+	HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow
+) {
 	double procTimeBefore=0, procTime=0;
-	HWND foreWin, deskWin, myWin;
+	HWND foreWin, deskWin;
 	RECT foreRect, deskRect;
+	NOTIFYICONDATA iconData={0};
 
-	// Set up this window.
-	if (!(myWin=GetWindow(NULL, NULL))) {
-		ErrorExit(_T("GetWindow"));
+    /*
+	HWND hWnd = CreateDialog(
+		hInstance,
+        MAKEINTRESOURCE(MY_DIALOG),
+        NULL,
+        (DLGPROC)MyDlgProc
+	);
+	*/
+
+	// See: http://www.codeproject.com/KB/shell/StealthDialog.aspx
+
+	// Set up the system tray.
+	iconData.cbSize=sizeof(NOTIFYICONDATA);
+	iconData.uID=1;
+	iconData.uFlags=NIF_ICON|NIF_MESSAGE|NIF_TIP;
+	iconData.hIcon=(HICON)LoadImage(
+		hInstance,
+		MAKEINTRESOURCE(1),
+		IMAGE_ICON,
+		16,
+		16,
+		LR_DEFAULTCOLOR
+	);
+	if (!Shell_NotifyIcon(NIM_ADD, &iconData)) {
+		ErrorExit(_T("Shell_NotifyIcon"));
 	}
 
 	// Look up the size of the desktop.
@@ -140,9 +165,6 @@ int _tmain () {
 	}
 
 	do {
-		// Quit when the user says to.
-		if (_kbhit() && 'q'==_getch()) return 0;
-
 		// Wait for next time.
 		Sleep(CHECK_FREQUENCY*1000);
 
