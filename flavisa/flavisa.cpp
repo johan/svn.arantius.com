@@ -11,8 +11,8 @@ using namespace System;
 using namespace System::ComponentModel;
 using namespace System::Diagnostics;
 
-#define CHECK_FREQUENCY 10 // seconds
-#define RUNNING_RATIO 0.25
+#define CHECK_FREQUENCY 2 // seconds
+#define IDLE_RATIO 0.25
 
 bool ScanModules( DWORD processID )
 {
@@ -82,19 +82,69 @@ void toggleScreensaver(bool on) {
 	}
 }
 
+void suspendScreensaver() {
+	UINT ssActive=0;
+	if (SystemParametersInfo(SPI_GETSCREENSAVEACTIVE, 0, (PVOID)&ssActive, 0)) {
+		printf("Suspending SS!\n");
+		//SystemParametersInfo(SPI_SETSCREENSAVEACTIVE, 0, 0, SPIF_SENDCHANGE);
+		SystemParametersInfo(SPI_SETSCREENSAVEACTIVE, ssActive, 0, SPIF_SENDCHANGE);
+	}
+}
+
+bool rectEquals(RECT rect1, RECT rect2) {
+	return rect1.top==rect2.top &&
+		rect1.right==rect2.right &&
+		rect1.left==rect2.left &&
+		rect1.bottom==rect2.bottom;
+}
+
 int _tmain () {
-	double procTimeBefore=getFlashProcTime(), procTime=0;
+	double procTimeBefore=0, procTime=0;
+	HWND foreWin, deskWin;
+	RECT foreRect, deskRect;
+
+	if (deskWin=GetDesktopWindow()) {
+		if (!GetWindowRect(deskWin, &deskRect)) {
+			MessageBox(
+				NULL,
+				_T("Error finding desktop size!"),
+				_T("Flavisa Error"),
+				MB_ICONEXCLAMATION
+			);
+			return 1;
+		}
+	} else {
+		MessageBox(
+			NULL,
+			_T("Error finding desktop window!"),
+			_T("Flavisa Error"),
+			MB_ICONEXCLAMATION
+		);
+		return 1;
+	}
 
 	do {
-		procTime=getFlashProcTime();
-		if ( (procTime-procTimeBefore) > CHECK_FREQUENCY*RUNNING_RATIO ) {
-			toggleScreensaver(0);
-		} else {
-			toggleScreensaver(1);
-		}
-		procTimeBefore=procTime;
-		Sleep(CHECK_FREQUENCY*1000);
-		
+		// Quit when the user says to.
 		if (_kbhit() && 'q'==_getch()) return 0;
+
+		// Wait for next time.
+		Sleep(CHECK_FREQUENCY*1000);
+
+		// Wait again if the processor has been idle.
+		procTimeBefore=procTime;
+		procTime=getFlashProcTime();
+		if ( (procTime-procTimeBefore) < CHECK_FREQUENCY*IDLE_RATIO ) {
+			continue;
+		}
+
+		// Wait again if flash (or something...) isn't full screen.
+		if (foreWin=GetForegroundWindow()) {
+			if (GetWindowRect(foreWin, &foreRect)) {
+				if (!rectEquals(foreRect, deskRect)) continue;
+			}
+		}
+
+		// We made it through all the tests, suspend the screen saver.
+		suspendScreensaver();
 	} while (true);
 }
