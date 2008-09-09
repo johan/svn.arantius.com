@@ -18,8 +18,11 @@ using namespace System::Diagnostics;
 #define CHECK_FREQUENCY 2 // seconds
 #define IDLE_RATIO 0.25
 
-#define SWM_TRAYMSG 1
-#define SWM_EXIT 2
+#define SWM_TRAYMSG			(WM_USER + 100)
+#define SWM_EXIT			(WM_USER + 101)
+
+#define APP_WND_CLASSNAME	_T("Tonysclass")
+
 
 NOTIFYICONDATA iconData;
 
@@ -95,14 +98,13 @@ bool rectEquals(RECT rect1, RECT rect2) {
 }
 
 // http://msdn.microsoft.com/en-us/library/ms680582(VS.85).aspx
-void ErrorExit(LPTSTR lpszFunction) { 
-	// Retrieve the system error message for the last-error code
+void ErrorExit(LPTSTR lpszFunction) {
 	LPVOID lpMsgBuf;
 	LPVOID lpDisplayBuf;
-	DWORD dw = GetLastError(); 
+	DWORD dw=GetLastError();
 
 	FormatMessage(
-		FORMAT_MESSAGE_ALLOCATE_BUFFER | 
+		FORMAT_MESSAGE_ALLOCATE_BUFFER |
 		FORMAT_MESSAGE_FROM_SYSTEM |
 		FORMAT_MESSAGE_IGNORE_INSERTS,
 		NULL,
@@ -112,23 +114,21 @@ void ErrorExit(LPTSTR lpszFunction) {
 		0, NULL
 	);
 
-	// Display the error message and exit the process
-	lpDisplayBuf = (LPVOID)LocalAlloc(LMEM_ZEROINIT, 
-		(lstrlen((LPCTSTR)lpMsgBuf)+lstrlen((LPCTSTR)lpszFunction)+40)*sizeof(TCHAR)); 
-	StringCchPrintf((LPTSTR)lpDisplayBuf, 
+	lpDisplayBuf=(LPVOID)LocalAlloc(LMEM_ZEROINIT,
+		(lstrlen((LPCTSTR)lpMsgBuf)+lstrlen((LPCTSTR)lpszFunction)+40)*sizeof(TCHAR));
+	StringCchPrintf((LPTSTR)lpDisplayBuf,
 		LocalSize(lpDisplayBuf) / sizeof(TCHAR),
-		TEXT("%s failed with error %d: %s"), 
+		TEXT("%s failed with error %d: %s"),
 		lpszFunction, dw, lpMsgBuf
 	);
-	MessageBox(NULL, (LPCTSTR)lpDisplayBuf, TEXT("Error"), MB_OK); 
+	MessageBox(NULL, (LPCTSTR)lpDisplayBuf, TEXT("Error"), MB_OK);
 
 	LocalFree(lpMsgBuf);
 	LocalFree(lpDisplayBuf);
-	ExitProcess(dw); 
+	ExitProcess(dw);
 }
 
-void ShowContextMenu(HWND hWnd)
-{
+void ShowContextMenu(HWND hWnd) {
 	POINT pt;
 	GetCursorPos(&pt);
 	HMENU hMenu=CreatePopupMenu();
@@ -149,28 +149,19 @@ INT_PTR CALLBACK DlgProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
 	case SWM_TRAYMSG:
 		switch(lParam) {
 		case WM_LBUTTONDBLCLK:
-			// ...
 			break;
 		case WM_RBUTTONDOWN:
 		case WM_CONTEXTMENU:
 			ShowContextMenu(hWnd);
+			break;
 		}
 		break;
-	case WM_SYSCOMMAND:
-		/*
-		if((wParam & 0xFFF0) == SC_MINIMIZE) {
-			//ShowWindow(hWnd, SW_HIDE);
-			return 1;
-		} else if (wParam == IDM_ABOUT) {
-			//DialogBox(hInst, (LPCTSTR)IDD_ABOUTBOX, hWnd, (DLGPROC)About);
-		}
-		*/
-		break;
+
 	case WM_COMMAND:
 		int wmId, wmEvent;
 
-		wmId    = LOWORD(wParam);
-		wmEvent = HIWORD(wParam);
+		wmId   =LOWORD(wParam);
+		wmEvent=HIWORD(wParam);
 
 		switch (wmId) {
 		case SWM_EXIT:
@@ -179,12 +170,11 @@ INT_PTR CALLBACK DlgProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
 		}
 
 		return 1;
-	case WM_INITDIALOG:
-		//return OnInitDialog(hWnd);
-		return 1;
+
 	case WM_CLOSE:
 		DestroyWindow(hWnd);
 		break;
+
 	case WM_DESTROY:
 		iconData.uFlags=0;
 		Shell_NotifyIcon(NIM_DELETE, &iconData);
@@ -192,7 +182,7 @@ INT_PTR CALLBACK DlgProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
 		break;
 	}
 
-	return 0;
+	return DefWindowProc(hWnd, message, wParam, lParam);
 }
 
 int APIENTRY _tWinMain(
@@ -203,17 +193,30 @@ int APIENTRY _tWinMain(
 	RECT foreRect, deskRect;
 	HWND hWnd;
 	MSG msg;
-//	HACCEL hAccelTable;
+	WNDCLASS wndClass;
 
 	InitCommonControls();
 
-	// Set up the system tray.
-	hWnd=CreateDialog(
-		hInstance,
-        MAKEINTRESOURCE(IDD_DLG_DIALOG),
-        NULL,
-        (DLGPROC)DlgProc
+	// Set up a Window Class ...
+	wndClass.hIcon=LoadIcon(NULL, IDI_APPLICATION);
+	wndClass.hCursor=LoadCursor(NULL, IDC_ARROW);
+	wndClass.hbrBackground=(HBRUSH)COLOR_WINDOW;
+	wndClass.cbWndExtra=0;
+	wndClass.cbClsExtra=0;
+	wndClass.hInstance=hInstance;
+	wndClass.lpfnWndProc=(WNDPROC)DlgProc;
+	wndClass.lpszClassName=APP_WND_CLASSNAME;
+	wndClass.lpszMenuName=NULL;
+	wndClass.style=CS_DBLCLKS;
+	RegisterClass(&wndClass);
+
+	// And create a window of that class, to catch messages.
+	hWnd=CreateWindow(
+		APP_WND_CLASSNAME, _T("test window"), WS_POPUP,
+		0, 0, 0, 0, NULL, NULL, hInstance, NULL
 	);
+
+	// Set up the system tray.
 	iconData.cbSize=sizeof(NOTIFYICONDATA);
 	iconData.uID=1;
 	iconData.uFlags=NIF_ICON|NIF_MESSAGE|NIF_TIP;
@@ -221,8 +224,7 @@ int APIENTRY _tWinMain(
 		hInstance,
 		MAKEINTRESOURCE(1),
 		IMAGE_ICON,
-		16,
-		16,
+		16, 16,
 		LR_DEFAULTCOLOR
 	);
 	iconData.hWnd=hWnd;
@@ -248,14 +250,10 @@ int APIENTRY _tWinMain(
 		ErrorExit(_T("GetDesktopWindow"));
 	}
 
-	// Main message loop:
-//	hAccelTable = LoadAccelerators(hInstance, (LPCTSTR)IDC_DIALOG);
+	// Message loop.
 	while (GetMessage(&msg, NULL, 0, 0)) {
-		if (!IsDialogMessage(msg.hwnd,&msg)
-		) {
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
-		}
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
 	}
  	return (int)msg.wParam;
 
