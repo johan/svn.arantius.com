@@ -6,6 +6,9 @@
 #include <psapi.h>
 #include <strsafe.h>
 #include <shellapi.h>
+#include <commctrl.h>
+
+#include "resource.h"
 
 #using <System.dll>
 using namespace System;
@@ -15,8 +18,12 @@ using namespace System::Diagnostics;
 #define CHECK_FREQUENCY 2 // seconds
 #define IDLE_RATIO 0.25
 
-bool ScanModules( DWORD processID )
-{
+#define SWM_TRAYMSG 1
+#define SWM_EXIT 2
+
+NOTIFYICONDATA iconData;
+
+bool ScanModules (DWORD processID) {
 	HMODULE hMods[1024];
 	HANDLE hProcess;
 	DWORD cbNeeded;
@@ -120,26 +127,93 @@ void ErrorExit(LPTSTR lpszFunction) {
 	ExitProcess(dw); 
 }
 
+void ShowContextMenu(HWND hWnd)
+{
+	POINT pt;
+	GetCursorPos(&pt);
+	HMENU hMenu=CreatePopupMenu();
+	if (hMenu) {
+		InsertMenu(hMenu, -1, MF_BYPOSITION, SWM_EXIT, _T("Exit"));
+
+		// note:	must set window to the foreground or the
+		//			menu won't disappear when it should
+		SetForegroundWindow(hWnd);
+
+		TrackPopupMenu(hMenu, TPM_BOTTOMALIGN, pt.x, pt.y, 0, hWnd, NULL);
+		DestroyMenu(hMenu);
+	}
+}
+
+INT_PTR CALLBACK DlgProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
+	switch (message) {
+	case SWM_TRAYMSG:
+		switch(lParam) {
+		case WM_LBUTTONDBLCLK:
+			// ...
+			break;
+		case WM_RBUTTONDOWN:
+		case WM_CONTEXTMENU:
+			ShowContextMenu(hWnd);
+		}
+		break;
+	case WM_SYSCOMMAND:
+		/*
+		if((wParam & 0xFFF0) == SC_MINIMIZE) {
+			//ShowWindow(hWnd, SW_HIDE);
+			return 1;
+		} else if (wParam == IDM_ABOUT) {
+			//DialogBox(hInst, (LPCTSTR)IDD_ABOUTBOX, hWnd, (DLGPROC)About);
+		}
+		*/
+		break;
+	case WM_COMMAND:
+		int wmId, wmEvent;
+
+		wmId    = LOWORD(wParam);
+		wmEvent = HIWORD(wParam);
+
+		switch (wmId) {
+		case SWM_EXIT:
+			DestroyWindow(hWnd);
+			break;
+		}
+
+		return 1;
+	case WM_INITDIALOG:
+		//return OnInitDialog(hWnd);
+		return 1;
+	case WM_CLOSE:
+		DestroyWindow(hWnd);
+		break;
+	case WM_DESTROY:
+		iconData.uFlags=0;
+		Shell_NotifyIcon(NIM_DELETE, &iconData);
+		PostQuitMessage(0);
+		break;
+	}
+
+	return 0;
+}
+
 int APIENTRY _tWinMain(
 	HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow
 ) {
 	double procTimeBefore=0, procTime=0;
 	HWND foreWin, deskWin;
 	RECT foreRect, deskRect;
-	NOTIFYICONDATA iconData={0};
+	HWND hWnd;
+	MSG msg;
+//	HACCEL hAccelTable;
 
-    /*
-	HWND hWnd = CreateDialog(
-		hInstance,
-        MAKEINTRESOURCE(MY_DIALOG),
-        NULL,
-        (DLGPROC)MyDlgProc
-	);
-	*/
-
-	// See: http://www.codeproject.com/KB/shell/StealthDialog.aspx
+	InitCommonControls();
 
 	// Set up the system tray.
+	hWnd=CreateDialog(
+		hInstance,
+        MAKEINTRESOURCE(IDD_DLG_DIALOG),
+        NULL,
+        (DLGPROC)DlgProc
+	);
 	iconData.cbSize=sizeof(NOTIFYICONDATA);
 	iconData.uID=1;
 	iconData.uFlags=NIF_ICON|NIF_MESSAGE|NIF_TIP;
@@ -151,8 +225,18 @@ int APIENTRY _tWinMain(
 		16,
 		LR_DEFAULTCOLOR
 	);
+	iconData.hWnd=hWnd;
+	iconData.uCallbackMessage=SWM_TRAYMSG;
+	lstrcpyn(
+		iconData.szTip,
+		_T("Flavisa"),
+		sizeof(iconData.szTip)/sizeof(TCHAR)
+	);
 	if (!Shell_NotifyIcon(NIM_ADD, &iconData)) {
 		ErrorExit(_T("Shell_NotifyIcon"));
+	}
+	if (iconData.hIcon && DestroyIcon(iconData.hIcon)) {
+		iconData.hIcon=NULL;
 	}
 
 	// Look up the size of the desktop.
@@ -163,6 +247,17 @@ int APIENTRY _tWinMain(
 	} else {
 		ErrorExit(_T("GetDesktopWindow"));
 	}
+
+	// Main message loop:
+//	hAccelTable = LoadAccelerators(hInstance, (LPCTSTR)IDC_DIALOG);
+	while (GetMessage(&msg, NULL, 0, 0)) {
+		if (!IsDialogMessage(msg.hwnd,&msg)
+		) {
+			TranslateMessage(&msg);
+			DispatchMessage(&msg);
+		}
+	}
+ 	return (int)msg.wParam;
 
 	do {
 		// Wait for next time.
