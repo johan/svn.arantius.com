@@ -5,6 +5,7 @@
 #include <windows.h>
 #include <psapi.h>
 #include <conio.h>
+#include <strsafe.h>
 
 #using <System.dll>
 using namespace System;
@@ -86,29 +87,56 @@ bool rectEquals(RECT rect1, RECT rect2) {
 		rect1.bottom==rect2.bottom;
 }
 
+// http://msdn.microsoft.com/en-us/library/ms680582(VS.85).aspx
+void ErrorExit(LPTSTR lpszFunction) { 
+	// Retrieve the system error message for the last-error code
+	LPVOID lpMsgBuf;
+	LPVOID lpDisplayBuf;
+	DWORD dw = GetLastError(); 
+
+	FormatMessage(
+		FORMAT_MESSAGE_ALLOCATE_BUFFER | 
+		FORMAT_MESSAGE_FROM_SYSTEM |
+		FORMAT_MESSAGE_IGNORE_INSERTS,
+		NULL,
+		dw,
+		MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+		(LPTSTR) &lpMsgBuf,
+		0, NULL
+	);
+
+	// Display the error message and exit the process
+	lpDisplayBuf = (LPVOID)LocalAlloc(LMEM_ZEROINIT, 
+		(lstrlen((LPCTSTR)lpMsgBuf)+lstrlen((LPCTSTR)lpszFunction)+40)*sizeof(TCHAR)); 
+	StringCchPrintf((LPTSTR)lpDisplayBuf, 
+		LocalSize(lpDisplayBuf) / sizeof(TCHAR),
+		TEXT("%s failed with error %d: %s"), 
+		lpszFunction, dw, lpMsgBuf
+	);
+	MessageBox(NULL, (LPCTSTR)lpDisplayBuf, TEXT("Error"), MB_OK); 
+
+	LocalFree(lpMsgBuf);
+	LocalFree(lpDisplayBuf);
+	ExitProcess(dw); 
+}
+
 int _tmain () {
 	double procTimeBefore=0, procTime=0;
-	HWND foreWin, deskWin;
+	HWND foreWin, deskWin, myWin;
 	RECT foreRect, deskRect;
 
+	// Set up this window.
+	if (!(myWin=GetWindow(NULL, NULL))) {
+		ErrorExit(_T("GetWindow"));
+	}
+
+	// Look up the size of the desktop.
 	if (deskWin=GetDesktopWindow()) {
 		if (!GetWindowRect(deskWin, &deskRect)) {
-			MessageBox(
-				NULL,
-				_T("Error finding desktop size!"),
-				_T("Flavisa Error"),
-				MB_ICONEXCLAMATION
-			);
-			return 1;
+			ErrorExit(_T("GetWindowRect"));
 		}
 	} else {
-		MessageBox(
-			NULL,
-			_T("Error finding desktop window!"),
-			_T("Flavisa Error"),
-			MB_ICONEXCLAMATION
-		);
-		return 1;
+		ErrorExit(_T("GetDesktopWindow"));
 	}
 
 	do {
