@@ -27,7 +27,7 @@ bool ScanModules( DWORD processID )
 	if (NULL==hProcess) return 0;
 
 	if (EnumProcessModules(hProcess, hMods, sizeof(hMods), &cbNeeded)) {
-		for (unsigned int i=0; i<cbNeeded/sizeof(HMODULE); i++) {
+		for (unsigned int i=0; i<cbNeeded/sizeof(HMODULE) && i<1024; i++) {
 			TCHAR szModName[MAX_PATH];
 
 			if (GetModuleBaseName(
@@ -56,7 +56,7 @@ DWORD FindFlash() {
 	// Calculate how many process identifiers were returned.
 	DWORD cProcesses=cbNeeded/sizeof(DWORD);
 
-	for (unsigned int i=0; i<cProcesses; i++) {
+	for (unsigned int i=0; i<cProcesses && i<1024; i++) {
 		if (ScanModules(aProcesses[i])) return aProcesses[i];
 	}
 
@@ -72,21 +72,9 @@ double getFlashProcTime() {
 	return process->TotalProcessorTime.TotalSeconds;
 }
 
-void toggleScreensaver(bool on) {
-	printf("setting screen saver to: %d\n", on);
-	if (!SystemParametersInfo(
-			SPI_SETSCREENSAVEACTIVE, on, 0, SPIF_SENDWININICHANGE
-		)
-	) {
-		printf("Error setting state: %s\n", GetLastError());
-	}
-}
-
 void suspendScreensaver() {
 	UINT ssActive=0;
 	if (SystemParametersInfo(SPI_GETSCREENSAVEACTIVE, 0, (PVOID)&ssActive, 0)) {
-		printf("Suspending SS!\n");
-		//SystemParametersInfo(SPI_SETSCREENSAVEACTIVE, 0, 0, SPIF_SENDCHANGE);
 		SystemParametersInfo(SPI_SETSCREENSAVEACTIVE, ssActive, 0, SPIF_SENDCHANGE);
 	}
 }
