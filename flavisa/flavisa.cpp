@@ -7,6 +7,7 @@
 #include <strsafe.h>
 #include <shellapi.h>
 #include <commctrl.h>
+#include <time.h>
 
 #include "resource.h"
 
@@ -18,13 +19,48 @@ using namespace System::Diagnostics;
 #define CHECK_FREQUENCY 2 // seconds
 #define IDLE_RATIO 0.25
 
-#define SWM_TRAYMSG			(WM_USER + 100)
-#define SWM_EXIT			(WM_USER + 101)
+#define SWM_TRAYMSG      (WM_USER + 100)
+#define SWM_EXIT         (WM_USER + 101)
+#define SWM_CHECKFLASH   (WM_USER + 102)
 
-#define APP_WND_CLASSNAME	_T("Tonysclass")
+#define APP_WND_CLASSNAME	_T("flavisa")
 
-
+// Global variables.
 NOTIFYICONDATA iconData;
+double procTimeBefore=0, procTime=0;
+HWND deskWin;
+RECT deskRect;
+
+// http://msdn.microsoft.com/en-us/library/ms680582(VS.85).aspx
+void ErrorExit(LPTSTR lpszFunction) {
+	LPVOID lpMsgBuf;
+	LPVOID lpDisplayBuf;
+	DWORD dw=GetLastError();
+
+	FormatMessage(
+		FORMAT_MESSAGE_ALLOCATE_BUFFER |
+		FORMAT_MESSAGE_FROM_SYSTEM |
+		FORMAT_MESSAGE_IGNORE_INSERTS,
+		NULL,
+		dw,
+		MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+		(LPTSTR) &lpMsgBuf,
+		0, NULL
+	);
+
+	lpDisplayBuf=(LPVOID)LocalAlloc(LMEM_ZEROINIT,
+		(lstrlen((LPCTSTR)lpMsgBuf)+lstrlen((LPCTSTR)lpszFunction)+40)*sizeof(TCHAR));
+	StringCchPrintf((LPTSTR)lpDisplayBuf,
+		LocalSize(lpDisplayBuf) / sizeof(TCHAR),
+		TEXT("%s failed with error %d: %s"),
+		lpszFunction, dw, lpMsgBuf
+	);
+	MessageBox(NULL, (LPCTSTR)lpDisplayBuf, TEXT("Error"), MB_OK);
+
+	LocalFree(lpMsgBuf);
+	LocalFree(lpDisplayBuf);
+	ExitProcess(dw);
+}
 
 bool ScanModules (DWORD processID) {
 	HMODULE hMods[1024];
@@ -97,35 +133,30 @@ bool rectEquals(RECT rect1, RECT rect2) {
 		rect1.bottom==rect2.bottom;
 }
 
-// http://msdn.microsoft.com/en-us/library/ms680582(VS.85).aspx
-void ErrorExit(LPTSTR lpszFunction) {
-	LPVOID lpMsgBuf;
-	LPVOID lpDisplayBuf;
-	DWORD dw=GetLastError();
+void checkFlashPlaying() {
+	HWND foreWin;
+	RECT foreRect;
 
-	FormatMessage(
-		FORMAT_MESSAGE_ALLOCATE_BUFFER |
-		FORMAT_MESSAGE_FROM_SYSTEM |
-		FORMAT_MESSAGE_IGNORE_INSERTS,
-		NULL,
-		dw,
-		MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-		(LPTSTR) &lpMsgBuf,
-		0, NULL
-	);
+	// Skip if the processor has been idle.
+	procTimeBefore=procTime;
+	procTime=getFlashProcTime();
+	if ( (procTime-procTimeBefore) < CHECK_FREQUENCY*IDLE_RATIO ) {
+		return;
+	}
 
-	lpDisplayBuf=(LPVOID)LocalAlloc(LMEM_ZEROINIT,
-		(lstrlen((LPCTSTR)lpMsgBuf)+lstrlen((LPCTSTR)lpszFunction)+40)*sizeof(TCHAR));
-	StringCchPrintf((LPTSTR)lpDisplayBuf,
-		LocalSize(lpDisplayBuf) / sizeof(TCHAR),
-		TEXT("%s failed with error %d: %s"),
-		lpszFunction, dw, lpMsgBuf
-	);
-	MessageBox(NULL, (LPCTSTR)lpDisplayBuf, TEXT("Error"), MB_OK);
+	// Wait again if flash (or something...) isn't full screen.
+	if (foreWin=GetForegroundWindow()) {
+		if (GetWindowRect(foreWin, &foreRect)) {
+			if (!rectEquals(foreRect, deskRect)) return;
+		} else {
+			ErrorExit(_T("GetWindowRect"));
+		}
+	} else {
+		ErrorExit(_T("GetForegroundWindow"));
+	}
 
-	LocalFree(lpMsgBuf);
-	LocalFree(lpDisplayBuf);
-	ExitProcess(dw);
+	// We made it through all the tests, suspend the screen saver.
+	suspendScreensaver();
 }
 
 void ShowContextMenu(HWND hWnd) {
@@ -139,7 +170,11 @@ void ShowContextMenu(HWND hWnd) {
 		//			menu won't disappear when it should
 		SetForegroundWindow(hWnd);
 
-		TrackPopupMenu(hMenu, TPM_BOTTOMALIGN, pt.x, pt.y, 0, hWnd, NULL);
+		TrackPopupMenu(
+			hMenu,
+			TPM_BOTTOMALIGN|TPM_RIGHTALIGN,
+			pt.x, pt.y, 0, hWnd, NULL
+		);
 		DestroyMenu(hMenu);
 	}
 }
@@ -150,9 +185,18 @@ INT_PTR CALLBACK DlgProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
 		switch(lParam) {
 		case WM_LBUTTONDBLCLK:
 			break;
+
 		case WM_RBUTTONDOWN:
 		case WM_CONTEXTMENU:
 			ShowContextMenu(hWnd);
+			break;
+		}
+		break;
+
+	case WM_TIMER:
+		switch(wParam) {
+		case SWM_CHECKFLASH:
+			checkFlashPlaying();
 			break;
 		}
 		break;
@@ -188,9 +232,6 @@ INT_PTR CALLBACK DlgProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
 int APIENTRY _tWinMain(
 	HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow
 ) {
-	double procTimeBefore=0, procTime=0;
-	HWND foreWin, deskWin;
-	RECT foreRect, deskRect;
 	HWND hWnd;
 	MSG msg;
 	WNDCLASS wndClass;
@@ -250,32 +291,13 @@ int APIENTRY _tWinMain(
 		ErrorExit(_T("GetDesktopWindow"));
 	}
 
+	// Set up a timer to repeatedly check flash video status.
+	SetTimer(hWnd, SWM_CHECKFLASH, CHECK_FREQUENCY*1000, NULL);
+
 	// Message loop.
-	while (GetMessage(&msg, NULL, 0, 0)) {
+	while (GetMessage(&msg, NULL, 0, 0) > 0) {
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
 	}
  	return (int)msg.wParam;
-
-	do {
-		// Wait for next time.
-		Sleep(CHECK_FREQUENCY*1000);
-
-		// Wait again if the processor has been idle.
-		procTimeBefore=procTime;
-		procTime=getFlashProcTime();
-		if ( (procTime-procTimeBefore) < CHECK_FREQUENCY*IDLE_RATIO ) {
-			continue;
-		}
-
-		// Wait again if flash (or something...) isn't full screen.
-		if (foreWin=GetForegroundWindow()) {
-			if (GetWindowRect(foreWin, &foreRect)) {
-				if (!rectEquals(foreRect, deskRect)) continue;
-			}
-		}
-
-		// We made it through all the tests, suspend the screen saver.
-		suspendScreensaver();
-	} while (true);
 }
