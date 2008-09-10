@@ -1,20 +1,5 @@
-#pragma once
-#define WIN32_LEAN_AND_MEAN
-#include <stdio.h>
-#include <tchar.h>
-#include <windows.h>
-#include <psapi.h>
-#include <strsafe.h>
-#include <shellapi.h>
-#include <commctrl.h>
-#include <time.h>
-
-#include "resource.h"
-
-#using <System.dll>
-using namespace System;
-using namespace System::ComponentModel;
-using namespace System::Diagnostics;
+#include "stdafx.h"
+#include "error.h"
 
 #define CHECK_FREQUENCY 2 // seconds
 #define IDLE_RATIO 0.25
@@ -30,37 +15,6 @@ NOTIFYICONDATA iconData;
 double procTimeBefore=0, procTime=0;
 HWND deskWin;
 RECT deskRect;
-
-// http://msdn.microsoft.com/en-us/library/ms680582(VS.85).aspx
-void ErrorExit(LPTSTR lpszFunction) {
-	LPVOID lpMsgBuf;
-	LPVOID lpDisplayBuf;
-	DWORD dw=GetLastError();
-
-	FormatMessage(
-		FORMAT_MESSAGE_ALLOCATE_BUFFER |
-		FORMAT_MESSAGE_FROM_SYSTEM |
-		FORMAT_MESSAGE_IGNORE_INSERTS,
-		NULL,
-		dw,
-		MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-		(LPTSTR) &lpMsgBuf,
-		0, NULL
-	);
-
-	lpDisplayBuf=(LPVOID)LocalAlloc(LMEM_ZEROINIT,
-		(lstrlen((LPCTSTR)lpMsgBuf)+lstrlen((LPCTSTR)lpszFunction)+40)*sizeof(TCHAR));
-	StringCchPrintf((LPTSTR)lpDisplayBuf,
-		LocalSize(lpDisplayBuf) / sizeof(TCHAR),
-		TEXT("%s failed with error %d: %s"),
-		lpszFunction, dw, lpMsgBuf
-	);
-	MessageBox(NULL, (LPCTSTR)lpDisplayBuf, TEXT("Error"), MB_OK);
-
-	LocalFree(lpMsgBuf);
-	LocalFree(lpDisplayBuf);
-	ExitProcess(dw);
-}
 
 bool ScanModules (DWORD processID) {
 	HMODULE hMods[1024];
