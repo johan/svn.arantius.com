@@ -1,0 +1,1 @@
+void ErrorExit(LPTSTR lpszFunction);
