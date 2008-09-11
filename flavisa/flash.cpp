@@ -64,12 +64,32 @@ DWORD FindFlash() {
 }
 
 double getFlashProcTime() {
-	DWORD processId=0;
+	DWORD processId;
+	HANDLE process;
+	FILETIME createTime, exitTime, kernelTime, userTime;
+
 	processId=FindFlash();
 	if (!processId) return 0;
 
-	Process^ process=Process::GetProcessById(processId);
-	return process->TotalProcessorTime.TotalSeconds;
+	process=OpenProcess(
+		PROCESS_QUERY_INFORMATION,
+		FALSE,
+		processId
+	);
+	if (!process) {
+		ErrorExit(_T("OpenProcess"));
+	}
+
+	if (!GetProcessTimes(
+		process, 
+		&createTime, &exitTime,
+		&kernelTime, &userTime
+	)) {
+		ErrorExit(_T("GetProcessTimes"));
+	}
+
+	// ? http://www.codeproject.com/KB/threads/getprocesstimes.aspx
+	return (*((__int64 *)&kernelTime)/1e7)+(*((__int64 *)&userTime)/1e7);
 }
 
 void suspendScreensaver() {
@@ -90,9 +110,14 @@ void checkFlashPlaying() {
 	HWND foreWin;
 	RECT foreRect;
 
-	// Skip if the processor has been idle.
+	// Skip if the time recorded is zero (not running, first sample, etc).
 	procTimeBefore=procTime;
 	procTime=getFlashProcTime();
+	if (0==procTime || 0==procTimeBefore) {
+		return;
+	}
+
+	// Skip if so little time has been used that video probably isn't playing.
 	if ( (procTime-procTimeBefore) < CHECK_FREQUENCY*IDLE_RATIO ) {
 		return;
 	}

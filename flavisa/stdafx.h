@@ -9,12 +9,6 @@
 #include <shellapi.h>
 #include <strsafe.h> // For ErrorExit() .
 
-// For the Process class and its details.
-#using <System.dll>
-using namespace System;
-using namespace System::ComponentModel;
-using namespace System::Diagnostics;
-
 // Bits of this program.
 #include "error.h"
 #include "flash.h"
