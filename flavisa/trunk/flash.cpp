@@ -33,7 +33,9 @@ bool ScanModules (DWORD processID) {
 			if (GetModuleBaseName(
 				hProcess, hMods[i], szModName, sizeof(szModName)/sizeof(TCHAR)
 			)) {
-				if (0==_wcsicmp(szModName, _T("npswf32.dll"))) {
+				if (0==_wcsicmp(szModName, _T("npswf32.dll")) ||
+					0==_wcsicmp(szModName, _T("flash9c.ocx"))
+				) {
 					CloseHandle(hProcess);
 					return 1;
 				}

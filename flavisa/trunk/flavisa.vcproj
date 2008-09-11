@@ -241,6 +241,10 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\LICENSE.txt"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
