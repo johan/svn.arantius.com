@@ -61,7 +61,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="comctl32.lib kernel32.lib psapi.lib shell32.lib user32.lib $(NOINHERIT)"
+				AdditionalDependencies="comctl32.lib kernel32.lib psapi.lib"
 				Version="0.1"
 				LinkIncremental="2"
 				GenerateManifest="false"
@@ -141,7 +141,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="comctl32.lib kernel32.lib psapi.lib shell32.lib user32.lib $(NOINHERIT)"
+				AdditionalDependencies="comctl32.lib kernel32.lib psapi.lib"
 				Version="0.1"
 				LinkIncremental="2"
 				GenerateManifest="false"
