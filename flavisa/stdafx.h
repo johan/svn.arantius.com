@@ -14,3 +14,8 @@
 using namespace System;
 using namespace System::ComponentModel;
 using namespace System::Diagnostics;
+
+// Bits of this program.
+#include "error.h"
+#include "flash.h"
+#include "tray.h"

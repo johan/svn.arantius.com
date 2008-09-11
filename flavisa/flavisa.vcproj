@@ -187,11 +187,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\flash.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\flavisa.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\stdafx.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\tray.cpp"
 				>
 			</File>
 		</Filter>
@@ -205,7 +213,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\flash.h"
+				>
+			</File>
+			<File
 				RelativePath=".\stdafx.h"
+				>
+			</File>
+			<File
+				RelativePath=".\tray.h"
 				>
 			</File>
 		</Filter>
