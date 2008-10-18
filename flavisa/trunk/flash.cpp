@@ -19,6 +19,7 @@ bool ScanModules (DWORD processID) {
 	HMODULE hMods[1024];
 	HANDLE hProcess;
 	DWORD cbNeeded;
+	TCHAR szModName[MAX_PATH];
 
 	// Get a list of all the modules in this process.
 	hProcess=OpenProcess(
@@ -28,7 +29,6 @@ bool ScanModules (DWORD processID) {
 
 	if (EnumProcessModules(hProcess, hMods, sizeof(hMods), &cbNeeded)) {
 		for (unsigned int i=0; i<cbNeeded/sizeof(HMODULE) && i<1024; i++) {
-			TCHAR szModName[MAX_PATH];
 
 			if (GetModuleBaseName(
 				hProcess, hMods[i], szModName, sizeof(szModName)/sizeof(TCHAR)
