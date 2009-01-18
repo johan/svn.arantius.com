@@ -8,3 +8,5 @@
 <!ENTITY tinymenu.text "Szöveg">
 <!ENTITY tinymenu.image "Kép">
 <!ENTITY tinymenu.browse "Tallózás...">
+<!ENTITY tinymenu.fullscreen "Full screen">
+<!ENTITY tinymenu.menuVisible "Menu toolbar visible in full screen mode.">

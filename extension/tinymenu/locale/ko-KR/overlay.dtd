@@ -8,3 +8,5 @@
 <!ENTITY tinymenu.text "글자">
 <!ENTITY tinymenu.image "이미지">
 <!ENTITY tinymenu.browse "찾아보기">
+<!ENTITY tinymenu.fullscreen "Full screen">
+<!ENTITY tinymenu.menuVisible "Menu toolbar visible in full screen mode.">

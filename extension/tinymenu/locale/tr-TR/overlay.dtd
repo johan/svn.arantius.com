@@ -8,3 +8,5 @@
 <!ENTITY tinymenu.text "Yazı">
 <!ENTITY tinymenu.image "Resim">
 <!ENTITY tinymenu.browse "Araştır">
+<!ENTITY tinymenu.fullscreen "Full screen">
+<!ENTITY tinymenu.menuVisible "Menu toolbar visible in full screen mode.">

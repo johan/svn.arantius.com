@@ -8,3 +8,5 @@
 <!ENTITY tinymenu.text "Teksti">
 <!ENTITY tinymenu.image "Kuva">
 <!ENTITY tinymenu.browse "Selaa">
+<!ENTITY tinymenu.fullscreen "Full screen">
+<!ENTITY tinymenu.menuVisible "Menu toolbar visible in full screen mode.">
