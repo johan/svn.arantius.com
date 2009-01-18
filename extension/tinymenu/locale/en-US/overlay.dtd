@@ -8,3 +8,6 @@
 <!ENTITY tinymenu.text "Text">
 <!ENTITY tinymenu.image "Image">
 <!ENTITY tinymenu.browse "Browse">
+
+<!ENTITY tinymenu.fullscreen "Full screen">
+<!ENTITY tinymenu.menuVisible "Menu toolbar visible in full screen mode.">

@@ -10,6 +10,9 @@ function loadOptions() {
 			(null!=r.exec(tinymenu.doNotCollapse));
 	}
 
+	document.getElementById('pref-fullscreenVisible').checked=
+		tinymenu.fullscreenVisible;
+
 	// set radio
 	if ('image'==tinymenu.viewMode) {
 		document.getElementById('view_text').setAttribute('selected', false);
@@ -34,6 +37,8 @@ function saveOptions() {
 		document.getElementById('view_image').getAttribute('selected')?
 		'image':'text';
 
+	tinymenu.fullscreenVisible=document.getElementById('pref-fullscreenVisible').checked;
+
 	// save all the bits
 	var prefs=Components.classes["@mozilla.org/preferences-service;1"]
 		.getService(Components.interfaces.nsIPrefService)
@@ -41,6 +46,7 @@ function saveOptions() {
 
 	prefs.setCharPref('doNotCollapse', tinymenu.doNotCollapse);
 	prefs.setCharPref('viewMode', tinymenu.viewMode);
+	prefs.setBoolPref('fullscreenVisible', tinymenu.fullscreenVisible);
 
 	// will fail in default case, so silently catch
 	try {
@@ -50,6 +56,8 @@ function saveOptions() {
 			prefs.setComplexValue('iconFile', Components.interfaces.nsILocalFile, tinymenu.iconFile);
 		}
 	} catch (e) {  }
+
+	applyFullscreen();
 }
 
 function browseImage() {
@@ -83,6 +91,13 @@ function browseImage() {
 function resetImage() {
 	tinymenu.iconFile='chrome://tinymenu/skin/tinymenu.png';
 	tinymenu.activateViewMode('image');
+}
+
+function applyFullscreen() {
+	tinymenu.withAllWindows(function(win) {
+		if (!win.tinymenu) return;
+		win.tinymenu.setFullscreenVisible(tinymenu.fullscreenVisible);
+	});
 }
 
 window.addEventListener('load', loadOptions, false);

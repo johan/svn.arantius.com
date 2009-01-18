@@ -56,5 +56,12 @@
 				</hbox>
 			</radiogroup>
 		</groupbox>
+
+		<groupbox>
+			<caption label="&tinymenu.fullscreen;" />
+
+			<checkbox id='pref-fullscreenVisible' label="&tinymenu.menuVisible;" />
+		</groupbox>
+	
 	</vbox>
 </dialog>

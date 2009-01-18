@@ -5,6 +5,7 @@ doNotCollapse:'',
 
 viewMode:null,
 iconFile:null,
+fullscreenVisible:null,
 
 initPref:function() {
 	var prefs=Components.classes["@mozilla.org/preferences-service;1"]
@@ -13,6 +14,7 @@ initPref:function() {
 
 	tinymenu.doNotCollapse=prefs.getCharPref('doNotCollapse');
 	tinymenu.viewMode=prefs.getCharPref('viewMode');
+	tinymenu.fullscreenVisible=prefs.getBoolPref('fullscreenVisible');
 
 	try {
 		tinymenu.iconFile=prefs.getComplexValue(
@@ -58,6 +60,22 @@ onLoad:function() {
 	menupop.appendChild(menusub);
 
 	tinymenu.activateViewMode();
+	tinymenu.setFullscreenVisible();
+},
+
+// Move the 'fullscr-toggler' so that CSS can target the menu toolbar */
+setFullscreenVisible:function(set) {
+	if ('undefined'==typeof set) {
+		set=tinymenu.fullscreenVisible;
+	}
+
+	try {
+		document.getElementById('toolbar-menubar').setAttribute(
+			'fullscreentoolbar', set?'true':'false'
+		);
+	} catch (e) {
+		// In case it's not available (Thunderbird).
+	}
 },
 
 mimeForFile:function(file) {
@@ -86,21 +104,25 @@ uriForFile:function(file) {
 	return fileHandler.getURLSpecFromFile(file);
 },
 
+withAllWindows:function(callback) {
+	var ifaces=Components.interfaces;
+	var mediator=Components.classes["@mozilla.org/appshell/window-mediator;1"].
+		getService(ifaces.nsIWindowMediator);
+	var win,winEnum=mediator.getEnumerator(null);
+	while (winEnum.hasMoreElements()) {
+		win=winEnum.getNext();
+		callback(win);
+	}
+},
+
 activateViewMode:function(mode) {
 	if ('undefined'==typeof mode) {
 		mode=tinymenu.viewMode;
 	}
 
-	var ifaces=Components.interfaces;
-	var mediator=Components.classes["@mozilla.org/appshell/window-mediator;1"].
-		getService(ifaces.nsIWindowMediator);
-	var win,winEnum=mediator.getEnumerator(null);
-	while (winEnum.hasMoreElements()){
-		win=winEnum.getNext();
-
+	tinymenu.withAllWindows(function(win) {
 		var m=win.document.getElementById('tinymenu');
-
-		if (!m) continue;
+		if (!m) return;
 
 		// if we're set to image mode, inject the image
 		if ('image'==mode) {
@@ -112,7 +134,7 @@ activateViewMode:function(mode) {
 			m.setAttribute('mode', 'text');
 			m.style.backgroundImage='none';
 		}
-	}
+	});
 }
 
 }//end var tinymenu
