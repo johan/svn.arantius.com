@@ -126,13 +126,14 @@ activateViewMode:function(mode) {
 
 		// if we're set to image mode, inject the image
 		if ('image'==mode) {
+			var url=tinymenu.uriForFile(tinymenu.iconFile);
 			m.setAttribute('mode', 'image');
-			m.style.backgroundImage='url('+
-				tinymenu.uriForFile(tinymenu.iconFile)+
-				')';
+			m.setAttribute('style',
+				'background-image: url('+url+') !important;'
+			);
 		} else {
 			m.setAttribute('mode', 'text');
-			m.style.backgroundImage='none';
+			m.removeAttribute('style');
 		}
 	});
 }

@@ -1,5 +1,5 @@
 menu#tinymenu[mode='image'] {
-	background-position: center;
+	background-position: center !important;
 	background-repeat: no-repeat;
 
 	/* Fix for #24 */
