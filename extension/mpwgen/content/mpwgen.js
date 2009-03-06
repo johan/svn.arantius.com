@@ -63,16 +63,18 @@ fillwindow:function(master, win) {
 		var els=win.document.getElementsByTagName('input');
 
 		for (var j=0, el; el=els[j]; j++) {
+dump(el+' '+el.name+' '+el.value+' '+el.form+'\n');
+
 			if ( 'password'==String(el.type) || 'password'==String(el.name).toLowerCase() ) {
 				el.value=pass;
 				el.focus();
 
 				//for any password field, disable autocomplete on its form
-				if (this.getPref('bool', 'mpwgen.autoCompOff')) {
+				if (this.getPref('bool', 'mpwgen.autoCompOff') && el.form) {
 					el.form.setAttribute('autocomplete', 'off');
 				}
 
-				el.form.setAttribute('mpwgen', '1');
+				if (el.form) el.form.setAttribute('mpwgen', '1');
 			} else if ('text'==el.type) {
 				userScore=0;
 				emailScore=0;
@@ -140,7 +142,7 @@ fillwindow:function(master, win) {
 					el.value=user;
 				}
 			} else if ('submit'==el.type || 'image'==el.type) {
-				if ('1'==el.form.getAttribute('mpwgen')) {
+				if (el.form && '1'==el.form.getAttribute('mpwgen')) {
 					el.focus();
 				}
 			}
@@ -204,8 +206,8 @@ dumpErr:function(e) {
 onload:function(event) {
 	window.removeEventListener('load', mpwgen.onload, false);
 
-	document.getElementById("contentAreaContextMenu")
-		.addEventListener("popupshowing", mpwgen.popupshowing, false);
+	var el=document.getElementById("contentAreaContextMenu");
+	if (el) el.addEventListener("popupshowing", mpwgen.popupshowing, false);
 },
 
 popupshowing:function(event) {
