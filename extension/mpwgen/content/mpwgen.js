@@ -63,8 +63,6 @@ fillwindow:function(master, win) {
 		var els=win.document.getElementsByTagName('input');
 
 		for (var j=0, el; el=els[j]; j++) {
-dump(el+' '+el.name+' '+el.value+' '+el.form+'\n');
-
 			if ( 'password'==String(el.type) || 'password'==String(el.name).toLowerCase() ) {
 				el.value=pass;
 				el.focus();
