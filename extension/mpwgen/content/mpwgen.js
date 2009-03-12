@@ -63,83 +63,26 @@ fillwindow:function(master, win) {
 		var els=win.document.getElementsByTagName('input');
 
 		for (var j=0, el; el=els[j]; j++) {
-			if ( 'password'==String(el.type) || 'password'==String(el.name).toLowerCase() ) {
-				el.value=pass;
-				el.focus();
+			var type=mpwgen.findFieldType(win, el);
 
-				//for any password field, disable autocomplete on its form
+			if ('password'==type) {
+				el.focus();
+				el.value=pass;
+
+				// For any password field, disable autocomplete on its form.
 				if (this.getPref('bool', 'mpwgen.autoCompOff') && el.form) {
 					el.form.setAttribute('autocomplete', 'off');
 				}
 
 				if (el.form) el.form.setAttribute('mpwgen', '1');
-			} else if ('text'==el.type) {
-				userScore=0;
-				emailScore=0;
-
-				var label=null;
-
-				// find label text
-				if (''!=el.id) {
-					// if we have an id, try to find the label for it
-					label=this.oneElXpath(
-						win.document, '//label[@for="'+el.id+'"]'
-					);
-				}
-				if (''==el.id || !label) {
-					// try to find the label this el is in
-					label=el;
-					while (label && 'LABEL'!=label.tagName) {
-						label=label.parentNode;
-					}
-				}
-
-				var txt='';
-				if (label) {
-					// if we have a label, use its text
-					txt=label.textContent;
-				} else {
-					try {
-						// if we don't, try to find some surrounding text
-						var tmpid='mpwgen'+String(Math.random()).substr(2);
-						var tmptxt=win.document.createTextNode(tmpid);
-
-						// put in our temp text to look for
-						el.appendChild(tmptxt);
-
-						// look for 20 chars before that marker
-						var txt=win.document.body.textContent
-							.replace(/[ \t\n\r]+/g, ' ');
-						var pos=txt.indexOf(tmpid);
-						txt=txt.substring(pos-20, pos);
-
-						// remove our marker
-						el.removeChild(tmptxt);
-					} catch (e) { this.dumpErr(e); }
-				}
-
-				if (
-					txt.match(/\b(e-?mail)\b/i)
-					&& ''!=email
-				) {
-					el.value=email;
-				} else if (
-					txt.match(/\b((user|member) ?name|log ?in|id)\b/i) 
-					&& ''!=user
-				) {
-					el.value=user;
-				} else if (
-					(el.name.match(/e-?mail/i) || 'e'==el.name)
-					&& ''!=email
-				) {
-					el.value=email;
-				} else if (
-					el.name.match(/username|login|id/i)
-					&& ''!=user
-				) {
-					el.value=user;
-				}
-			} else if ('submit'==el.type || 'image'==el.type) {
+			} else if ('user'==type && ''!=user) {
+				el.focus();
+				el.value=user;
+			} else if ('email'==type && ''!=email) {
+				el.focus();
+				el.value=email;
+			} else 	if ('submit'==type) {
+				// For submit buttons in a form we filled, focus.
 				if (el.form && '1'==el.form.getAttribute('mpwgen')) {
 					el.focus();
 				}
@@ -147,6 +90,85 @@ fillwindow:function(master, win) {
 		}
 	} catch (e) { this.dumpErr(e) }
 	return true;
+},
+
+findFieldType:function(win, el) {
+	// In this case, we *know* it's not a field we want to deal with.
+	if ('checkbox'==el.type || 'radio'==el.type) {
+		return null;
+	}
+
+	// Fields with exact name or type 'password' are clear.
+	if ( 'password'==String(el.type)
+		|| 'password'==String(el.name).toLowerCase()
+	) {
+		return 'password';
+	}
+
+	// Submit and image type fields are clear.
+	if ('submit'==el.type || 'image'==el.type) {
+		return 'submit';
+	}
+
+	var userScore=0;
+	var emailScore=0;
+	var label=null;
+
+	// Find label text.
+	if (''!=el.id) {
+		// If we have an id, try to find the label for it.
+		label=this.oneElXpath(
+			win.document, '//label[@for="'+el.id+'"]'
+		);
+	} else {
+		// Try to find the label this el is _in_.
+		label=el;
+		while (label && 'LABEL'!=label.tagName) {
+			label=label.parentNode;
+		}
+	}
+
+	var txt='';
+	if (label) {
+		// If we have a label, use its text.
+		txt=label.textContent;
+	} else {
+		// If we don't, try to find some surrounding text.
+		try {
+			var tmpid='mpwgen'+String(Math.random()).substr(2);
+			var tmptxt=win.document.createTextNode(tmpid);
+
+			// Put in our temp text to look for.
+			el.appendChild(tmptxt);
+
+			// Look for 20 (non whitespace) chars before that marker.
+			var txt=win.document.body.textContent.replace(/\s+/g, ' ');
+			var pos=txt.indexOf(tmpid);
+			txt=txt.substring(pos-20, pos);
+
+			// Remove our marker.
+			el.removeChild(tmptxt);
+		} catch (e) {
+			this.dumpErr(e);
+			txt='';
+		}
+	}
+
+	if (txt.match(/\b(e-?mail)\b/i)
+		|| el.name.match(/^e$|e-?mail/i)
+	) {
+		return 'email';
+	}
+
+	if (txt.match(/\b((user|member) ?name|log ?in|id)\b/i)
+		|| el.name.match(/user|username|login|id/i)
+	)  {
+		return 'user';
+	}
+
+	// If I didn't match something above, I don't know!
+	dump('mpwgen unknown field!\nlabel: '+label+'\ntext: '+txt+'\n');
+	return null;
 },
 
 getPref:function(type, name) {
