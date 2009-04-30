@@ -50,6 +50,7 @@ fillwindow:function(master, win) {
 			host=String(
 				String(win.location.host).match(/[^.]*\.[^.]*$/)[0]
 			).toLowerCase();
+			dump('Picked host: '+host+'\n');
 		} catch (e) { }
 		
 		var user=this.getPref('string', 'mpwgen.username');
