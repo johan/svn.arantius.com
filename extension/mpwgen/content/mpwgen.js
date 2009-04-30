@@ -65,7 +65,9 @@ fillwindow:function(master, win) {
 		for (var j=0, el; el=els[j]; j++) {
 			var type=mpwgen.findFieldType(win, el);
 
-			if ('password'==type) {
+			if (!type) {
+				continue;
+			} else if ('password'==type) {
 				el.focus();
 				el.value=pass;
 
@@ -93,8 +95,10 @@ fillwindow:function(master, win) {
 },
 
 findFieldType:function(win, el) {
-	// In this case, we *know* it's not a field we want to deal with.
-	if ('checkbox'==el.type || 'radio'==el.type) {
+	// In these cases, we *know* it's not a field we want to deal with.
+	if (el.type in {
+		'checkbox':1, 'hidden':1, 'radio':1, 'submit':1
+	}) {
 		return null;
 	}
 
@@ -167,7 +171,13 @@ findFieldType:function(win, el) {
 	}
 
 	// If I didn't match something above, I don't know!
-	dump('mpwgen unknown field!\nlabel: '+label+'\ntext: '+txt+'\n');
+	dump([
+		'mpwgen unknown field!',
+		'type: '+el.type,
+		'label: '+label,
+		'text: '+txt,
+	''].join('\n'));
+
 	return null;
 },
 
