@@ -8,11 +8,15 @@
 <?xml-stylesheet href="chrome://browser/skin/" type="text/css"?>
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 
-<dialog id="tinymenu-options"
+<!--
+The "B" is to change the ID, so that width/height (incorrectly) persisted
+in older versions will no longer be in effect.
+-->
+<dialog id="tinymenu-optionsB"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 	title="&tinymenu.title;"
 	buttons="accept, cancel"
-	persist="width height screenX screenY"
+	persist="screenX screenY"
 	ondialogaccept="saveOptions();"
 >
 
