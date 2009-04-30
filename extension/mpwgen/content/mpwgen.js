@@ -97,7 +97,7 @@ fillwindow:function(master, win) {
 findFieldType:function(win, el) {
 	// In these cases, we *know* it's not a field we want to deal with.
 	if (el.type in {
-		'checkbox':1, 'hidden':1, 'radio':1, 'submit':1
+		'checkbox':1, 'hidden':1, 'radio':1
 	}) {
 		return null;
 	}
