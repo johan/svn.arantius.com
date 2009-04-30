@@ -53,7 +53,7 @@ fillwindow:function(master, win) {
 		// Then try to find a more specific "reasonable" name inside a
 		// third-level domain.  If there is none, this does nothing.
 		tmpHost=String(win.location.host)
-			.match(/(.*\.)?(.*\.((biz|co|com|edu|gov|info|int|mil|name|net|org)\.[a-z]{2}))/);
+			.match(/(.*\.)?(.*\.((ac|biz|co|com|edu|gov|info|int|mil|name|net|org)\.[a-z]{2}))/);
 		if (tmpHost && tmpHost[2]) host=tmpHost[2];
 		dump('Picked host: '+host+'\n');
 		
