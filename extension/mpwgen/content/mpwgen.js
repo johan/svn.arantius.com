@@ -45,13 +45,17 @@ fillforms:function(master, remember) {
 
 fillwindow:function(master, win) {
 	try {
-		var host='';
-		try {
-			host=String(
-				String(win.location.host).match(/[^.]*\.[^.]*$/)[0]
-			).toLowerCase();
-			dump('Picked host: '+host+'\n');
-		} catch (e) { }
+		var host='', tmpHost;
+		// First try a very simple pattern to find the domain name.
+		tmpHost=String(win.location.host)
+			.match(/(.*\.)?(.+\..{2,7})/);
+		if (tmpHost && tmpHost[2]) host=tmpHost[2];
+		// Then try to find a more specific "reasonable" name inside a
+		// third-level domain.  If there is none, this does nothing.
+		tmpHost=String(win.location.host)
+			.match(/(.*\.)?(.*\.((biz|co|com|edu|gov|info|int|mil|name|net|org)\.[a-z]{2}))/);
+		if (tmpHost && tmpHost[2]) host=tmpHost[2];
+		dump('Picked host: '+host+'\n');
 		
 		var user=this.getPref('string', 'mpwgen.username');
 		var email=this.getPref('string', 'mpwgen.email');
@@ -60,7 +64,7 @@ fillwindow:function(master, win) {
 		// substitute plus address
 		email=email.replace('+@', '+'+host.match(/[^.]*/)+'@');
 
-		var pass=this.hash(host+master),j;
+		var pass=this.hash(host+master);
 		var els=win.document.getElementsByTagName('input');
 
 		for (var j=0, el; el=els[j]; j++) {
@@ -172,7 +176,7 @@ findFieldType:function(win, el) {
 	}
 
 	// If I didn't match something above, I don't know!
-	dump([
+	if (0) dump([
 		'mpwgen unknown field!',
 		'type: '+el.type,
 		'label: '+label,
