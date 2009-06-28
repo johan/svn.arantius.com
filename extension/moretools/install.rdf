@@ -3,7 +3,7 @@
 	<Description about="urn:mozilla:install-manifest">
 		<em:id>{9a7a67d3-3048-47fb-acde-d0f7ae51f86a}</em:id>
 		<em:name>More Tools Menu</em:name>
-		<em:version>1.2</em:version>
+		<em:version>1.2.1</em:version>
 		<em:description>Unclutter the "Tools" menu by moving new items to a "More Tools" menu.</em:description>
 		<em:creator>Anthony Lieuallen</em:creator>
 		<em:homepageURL>http://trac.arantius.com/wiki/Extensions/MoreToolsMenu</em:homepageURL>
