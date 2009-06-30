@@ -17,7 +17,7 @@ find . -name '.svn' -prune -false -o -name 'build' -prune -false -o \
 	-type d -not -name '.svn' -a -not -name 'build'  -a -not -name '.' \
 	-exec mkdir "build/{}" \;
 # copy files in
-find . -name '.svn' -prune -false -o -name 'build' -prune -false -o \
+find -L . -name '.svn' -prune -false -o -name 'build' -prune -false -o \
 	-type f -not -name 'package.sh' \
 	-exec cp "{}" "build/{}" \;
 
