@@ -1,103 +1,52 @@
-function loadOptions() {
-	tinymenu.initPref();
-
-	// set checkboxes
-	var r, id;
-	for (var i in tinymenu.menuIds) {
-		id=tinymenu.menuIds[i];
-		r=new RegExp('\\b'+id+'\\b');
-		document.getElementById('pref-'+id).checked=
-			(null!=r.exec(tinymenu.doNotCollapse));
-	}
-
+function optionsMemToXul() {
 	document.getElementById('pref-fullscreenVisible').checked=
 		tinymenu.fullscreenVisible;
 
-	// set radio
-	if ('image'==tinymenu.viewMode) {
-		document.getElementById('view_text').setAttribute('selected', false);
-		document.getElementById('view_image').setAttribute('selected', true);
+	var cont=document.getElementById('menu_choices');
+
+	for (var winId in tinymenu.allMenus) {
+		var menus=tinymenu.allMenus[winId];
+
+		var winCont=document.createElement('vbox');
+		winCont.setAttribute('id', winId);
+
+		var descr=document.createElement('description');
+		descr.textContent=winId.split('\t')[1];
+		winCont.appendChild(descr);
+
+		for (var menuId in menus) {
+			var menu=menus[menuId];
+
+			var cbox=document.createElement('checkbox');
+			cbox.setAttribute('id', menuId);
+			cbox.setAttribute('label', menuId.split('\t')[1]);
+			cbox.setAttribute('checked', !menus[menuId]);
+			
+			winCont.appendChild(cbox);
+		}
+
+		cont.appendChild(winCont);
 	}
 }
 
-function saveOptions() {
-	// build doNotCollapse string
-	var doNotCollapse='tinymenu';
-	var r, id;
-	for (var i in tinymenu.menuIds) {
-		id=tinymenu.menuIds[i];
+function optionsXulToMem() {
+	tinymenu.fullscreenVisible=
+		document.getElementById('pref-fullscreenVisible').checked;
 
-		if (document.getElementById('pref-'+id).checked) {
-			doNotCollapse+=' '+id;
-		}
-	}
-	tinymenu.doNotCollapse=doNotCollapse;
+	var cont=document.getElementById('menu_choices');
+	var wins=cont.getElementsByTagName('vbox');
+	for (var i=0, win=null; win=wins[i]; i++) {
+		var winId=win.getAttribute('id');
 
-	tinymenu.viewMode=
-		document.getElementById('view_image').getAttribute('selected')?
-		'image':'text';
-
-	tinymenu.fullscreenVisible=document.getElementById('pref-fullscreenVisible').checked;
-
-	// save all the bits
-	var prefs=Components.classes["@mozilla.org/preferences-service;1"]
-		.getService(Components.interfaces.nsIPrefService)
-		.getBranch("tinymenu.");
-
-	prefs.setCharPref('doNotCollapse', tinymenu.doNotCollapse);
-	prefs.setCharPref('viewMode', tinymenu.viewMode);
-	prefs.setBoolPref('fullscreenVisible', tinymenu.fullscreenVisible);
-
-	// will fail in default case, so silently catch
-	try {
-		if (tinymenu.iconFile &&
-			tinymenu.iconFile.QueryInterface(Components.interfaces.nsILocalFile)
-		) {
-			prefs.setComplexValue('iconFile', Components.interfaces.nsILocalFile, tinymenu.iconFile);
-		}
-	} catch (e) {  }
-
-	applyFullscreen();
-}
-
-function browseImage() {
-	// based on sample from
-	// http://developer.mozilla.org/en/docs/nsIFilePicker
-
-	const nsIFilePicker = Components.interfaces.nsIFilePicker;
-
-	var fp = Components.classes["@mozilla.org/filepicker;1"]
-		.createInstance(nsIFilePicker);
-	fp.init(window, '', nsIFilePicker.modeOpen);
-	fp.appendFilters(nsIFilePicker.filterAll | nsIFilePicker.filterText);
-
-	var rv=fp.show();
-	if (rv==nsIFilePicker.returnOK) {
-		var mime=tinymenu.mimeForFile(fp.file);
-
-		if (!mime.match(/^image/)) {
-			alert("Whoops, that doesn't seem to be an image!");
-		} else {
-			tinymenu.iconFile=fp.file;
-
-			document.getElementById('view_text').setAttribute('selected', false);
-			document.getElementById('view_image').setAttribute('selected', true);
-
-			tinymenu.activateViewMode('image');
+		var menus=win.getElementsByTagName('checkbox');
+		for (var j=0, menu=null; menu=menus[j]; j++) {
+			var menuId=menu.getAttribute('id');
+			tinymenu.allMenus[winId][menuId]=!menu.checked;
 		}
 	}
 }
 
-function resetImage() {
-	tinymenu.iconFile='chrome://tinymenu/skin/tinymenu.png';
-	tinymenu.activateViewMode('image');
-}
-
-function applyFullscreen() {
-	tinymenu.withAllWindows(function(win) {
-		if (!win.tinymenu) return;
-		win.tinymenu.setFullscreenVisible(tinymenu.fullscreenVisible);
-	});
-}
-
-window.addEventListener('load', loadOptions, false);
+window.addEventListener('load', function() {
+	tinymenu.optionsPrefsToMem();
+	optionsMemToXul();
+}, false);

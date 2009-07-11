@@ -1,145 +1,73 @@
 var tinymenu={
 
-menuIds:[],
-doNotCollapse:'',
-
-viewMode:null,
-iconFile:null,
+prefBranch:Components.classes["@mozilla.org/preferences-service;1"]
+		.getService(Components.interfaces.nsIPrefService)
+		.getBranch("tinymenu."),
+allMenus:{},
 fullscreenVisible:null,
 
-initPref:function() {
-	var prefs=Components.classes["@mozilla.org/preferences-service;1"]
-		.getService(Components.interfaces.nsIPrefService)
-		.getBranch("tinymenu.");
-
-	tinymenu.doNotCollapse=prefs.getCharPref('doNotCollapse');
-	tinymenu.viewMode=prefs.getCharPref('viewMode');
-	tinymenu.fullscreenVisible=prefs.getBoolPref('fullscreenVisible');
-
-	try {
-		tinymenu.iconFile=prefs.getComplexValue(
-			'iconFile', Components.interfaces.nsILocalFile
-		);
-	} catch (e) {
-		// this is a little lame, but it works
-		tinymenu.iconFile='chrome://tinymenu/skin/tinymenu.png';
-	}
-},
-
 onLoad:function() {
-	tinymenu.initPref();
+	tinymenu.optionsPrefsToMem();
 
-	if ('function'==typeof gTinymenuTbFix) {
-		gTinymenuTbFix();
-	}
-
-	//find the main menu
-	var menubar=document.getElementById('main-menubar') || //firefox
-		document.getElementById('mail-menubar') ; //thunderbird
+	// Find the main menu.
+	var menubar=
+		document.getElementById('main-menubar') || // Firefox
+		document.getElementById('mail-menubar') ;  // Thunderbird
 	if (!menubar) return;
-	//find our menu popup
+	// Find our menu popup.
 	var menusub=document.getElementById('tinymenu-popup');
 
-	//move each of the menus into the sub menu
-	var el, r;
-	for (var i=menubar.childNodes.length-1; i>=0; i--) {
-		el=menubar.childNodes[i];
+	// Save this window as "seen".
+	var winId=document.location.href+'\t'+document.title;
+	if ('undefined'==typeof tinymenu.allMenus[winId]) {
+		tinymenu.allMenus[winId]={};
+	}
+	var menus=tinymenu.allMenus[winId];
 
-		// some thunderbird menus don't have IDs!
-		if (el.id) {
-			r=new RegExp('\\b'+el.id+'\\b');
-			if (r.exec(tinymenu.doNotCollapse)) continue;
+	// With each menu ...
+	for (var i=0, el=null; el=menubar.childNodes[i]; i++) {
+		if ('tinymenu'==el.id) continue;
+
+		// Save as "seen" this menu, if it doesn't exist.
+		var id=el.getAttribute('id')+'\t'+el.getAttribute('label');
+		if ('undefined'==typeof menus[id]) {
+			menus[id]=true;
 		}
 
-		menubar.removeChild(el);
-		menusub.insertBefore(el, menusub.firstChild);
+		// Conditionally move it into the tiny menu.
+		if (menus[id]) {
+			menusub.appendChild(el);
+			i--;
+		}
 	}
 
-	//put the new items in our menu popup
-	var menupop=document.getElementById('tinymenu');
-	menupop.appendChild(menusub);
+	// Save the options in case seen menus has changed.
+	tinymenu.optionsMemToPrefs();
 
-	tinymenu.activateViewMode();
-	tinymenu.setFullscreenVisible();
-},
-
-// Move the 'fullscr-toggler' so that CSS can target the menu toolbar */
-setFullscreenVisible:function(set) {
-	if ('undefined'==typeof set) {
-		set=tinymenu.fullscreenVisible;
-	}
-
+	// Set full-screen-visible mode conditionally.
 	try {
 		document.getElementById('toolbar-menubar').setAttribute(
-			'fullscreentoolbar', set?'true':'false'
+			'fullscreentoolbar', tinymenu.fullscreenVisible?'true':'false'
 		);
 	} catch (e) {
 		// In case it's not available (Thunderbird).
 	}
 },
 
-mimeForFile:function(file) {
-	var mime=Components.classes["@mozilla.org/mime;1"]
-		.getService().QueryInterface(Components.interfaces.nsIMIMEService);
-	try {
-		mime=mime.getTypeFromFile(file);
-	} catch (e) {
-		mime='';
-	}
+// \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ //
 
-	return mime;
+optionsPrefsToMem:function() {
+	var prefs=Components.classes["@mozilla.org/preferences-service;1"]
+		.getService(Components.interfaces.nsIPrefService)
+		.getBranch("tinymenu.");
+
+	eval( 'tinymenu.allMenus='+prefs.getCharPref('allMenus') );
+	tinymenu.fullscreenVisible=prefs.getBoolPref('fullscreenVisible');
 },
 
-uriForFile:function(file) {
-	// special case for the default
-	if ('string'==typeof file && 'chrome:'==file.substring(0, 7)) {
-		return file;
-	}
-
-	// otherwise, work your mojo
-	var ioService=Components.classes["@mozilla.org/network/io-service;1"]
-		.getService(Components.interfaces.nsIIOService);
-	var fileHandler=ioService.getProtocolHandler("file")
-		.QueryInterface(Components.interfaces.nsIFileProtocolHandler);
-	return fileHandler.getURLSpecFromFile(file);
-},
-
-withAllWindows:function(callback) {
-	var ifaces=Components.interfaces;
-	var mediator=Components.classes["@mozilla.org/appshell/window-mediator;1"].
-		getService(ifaces.nsIWindowMediator);
-	var win,winEnum=mediator.getEnumerator(null);
-	while (winEnum.hasMoreElements()) {
-		win=winEnum.getNext();
-		callback(win);
-	}
-},
-
-activateViewMode:function(mode) {
-	if ('undefined'==typeof mode) {
-		mode=tinymenu.viewMode;
-	}
-
-	tinymenu.withAllWindows(function(win) {
-		var m=win.document.getElementById('tinymenu');
-		if (!m) return;
-
-		// if we're set to image mode, inject the image
-		if ('image'==mode) {
-			var url=tinymenu.uriForFile(tinymenu.iconFile);
-			m.setAttribute('mode', 'image');
-			m.setAttribute('style',
-				'background-image: url('+url+') !important;'
-			);
-		} else {
-			m.setAttribute('mode', 'text');
-			m.removeAttribute('style');
-		}
-	});
+optionsMemToPrefs:function() {
+	tinymenu.prefBranch.setCharPref('allMenus', uneval(tinymenu.allMenus));
+	tinymenu.prefBranch.setBoolPref('fullscreenVisible', tinymenu.fullscreenVisible);
 }
 
-}//end var tinymenu
-
-if ('undefined'==typeof gInOptions || !gInOptions) {
-	window.addEventListener('load', tinymenu.onLoad, false);
 }

@@ -3,7 +3,7 @@
 	<Description about="urn:mozilla:install-manifest">
 		<em:id>{d33c2f7c-b1e6-4d46-ab0e-be1f6d05c904}</em:id>
 		<em:name>Tiny Menu</em:name>
-		<em:version>1.4.10</em:version>
+		<em:version>2.0</em:version>
 		<em:description>Replace the standard menu bar with a tiny menu popup.</em:description>
 		<em:creator>Anthony Lieuallen</em:creator>
 		<em:homepageURL>http://trac.arantius.com/wiki/Extensions/TinyMenu</em:homepageURL>
@@ -16,6 +16,14 @@
 				<em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
 				<em:minVersion>3.0</em:minVersion>
 				<em:maxVersion>3.5.*</em:maxVersion>
+			</Description>
+		</em:targetApplication>
+		<!-- Thunderbird -->
+		<em:targetApplication>
+			<Description>
+				<em:id>{3550f703-e582-4d05-9a08-453d09bdfdc6}</em:id>
+				<em:minVersion>2.0</em:minVersion>
+				<em:maxVersion>2.0.0.*</em:maxVersion>
 			</Description>
 		</em:targetApplication>
 	</Description>

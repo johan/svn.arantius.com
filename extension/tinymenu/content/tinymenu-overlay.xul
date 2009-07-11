@@ -2,7 +2,11 @@
 <!DOCTYPE window SYSTEM "chrome://tinymenu/locale/overlay.dtd">
 <?xml-stylesheet href='chrome://tinymenu/skin/tinymenu-iconmode.css' type='text/css'?>
 <overlay id='tinymenu-overlay' xmlns='http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'>
+
 <script type='application/x-javascript' src='chrome://tinymenu/content/tinymenu.js'></script>
+<script type='application/x-javascript'>
+window.addEventListener('load', tinymenu.onLoad, false);
+</script>
 
 <!-- Firefox -->
 <menubar id='main-menubar'>
