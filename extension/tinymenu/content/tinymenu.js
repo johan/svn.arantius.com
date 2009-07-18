@@ -37,6 +37,7 @@ onLoad:function() {
 	var menus=tinymenu.allMenus[winId];
 
 	// With each menu ...
+	var movedMenus=0;
 	for (var i=0, el=null; el=menubar.childNodes[i]; i++) {
 		if ('menu'!=el.tagName) continue;
 
@@ -55,6 +56,7 @@ onLoad:function() {
 		if (menus[id].collapse) {
 			menusub.appendChild(el);
 			i--;
+			movedMenus++;
 		} else if (menus[id].image) {
 			var imageNode=document.createElement('image');
 			imageNode.setAttribute('src', menus[id].image);
@@ -62,6 +64,12 @@ onLoad:function() {
 			el.className='menu-iconic';
 			el.insertBefore(imageNode, el.firstChild);
 		}
+	}
+
+	// If we didn't move any menus, remove the tiny menu.
+	if (0==movedMenus) {
+		var tinymenuEl=document.getElementById('tinymenu');
+		tinymenuEl.parentNode.removeChild(tinymenuEl);
 	}
 
 	// Save the options in case seen menus has changed.
