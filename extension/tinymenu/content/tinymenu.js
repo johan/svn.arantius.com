@@ -14,7 +14,7 @@ onLoad:function() {
 		tinymenu.prefBranch.setBoolPref('firstRun', false);
 		try {
 			gBrowser.selectedTab=gBrowser.addTab(
-				'http://trac.arantius.com/wiki/Extensions/TinyMenu/FirstRun'
+				'http://trac.arantius.com/wiki/Extensions/TinyMenu#Documentation'
 			);
 		} catch (e) {
 			// Silent fail in Thunderbird.
