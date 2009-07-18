@@ -22,10 +22,6 @@ in older versions will no longer be in effect.
 <script type="application/x-javascript" src="chrome://tinymenu/content/tinymenu-options.js"></script>
 
 <vbox orient="vertical">
-	<dialogheader title='&tinymenu.title;' description=''/>
-
-	<separator class="thin" />
-
 	<groupbox align="center">
 		<caption label="&tinymenu.doNotCollapse;" />
 		<separator class="thin" />

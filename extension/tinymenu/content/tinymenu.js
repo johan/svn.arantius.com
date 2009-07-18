@@ -20,24 +20,32 @@ onLoad:function() {
 	// Save this window as "seen".
 	var winId=document.location.href+'\t'+document.title;
 	if ('undefined'==typeof tinymenu.allMenus[winId]) {
-		tinymenu.allMenus[winId]={};
+		tinymenu.allMenus[winId]={'tinymenu':{'collapse':false}};
 	}
 	var menus=tinymenu.allMenus[winId];
 
 	// With each menu ...
 	for (var i=0, el=null; el=menubar.childNodes[i]; i++) {
-		if ('tinymenu'==el.id) continue;
-
-		// Save as "seen" this menu, if it doesn't exist.
-		var id=el.getAttribute('id')+'\t'+el.getAttribute('label');
-		if ('undefined'==typeof menus[id]) {
-			menus[id]=true;
+		if ('tinymenu'==el.id) {
+			var id=el.id;
+		} else {
+			// Save as "seen" this menu, if it doesn't exist.
+			var id=el.getAttribute('id')+'\t'+el.getAttribute('label');
+			if ('undefined'==typeof menus[id]) {
+				menus[id]={'collapse':true};
+			}
 		}
 
 		// Conditionally move it into the tiny menu.
-		if (menus[id]) {
+		if (menus[id].collapse) {
 			menusub.appendChild(el);
 			i--;
+		} else if (menus[id].image) {
+			var imageNode=document.createElement('image');
+			imageNode.setAttribute('src', menus[id].image);
+
+			el.className='menu-iconic';
+			el.insertBefore(imageNode, el.firstChild);
 		}
 	}
 

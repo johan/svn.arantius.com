@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE window SYSTEM "chrome://tinymenu/locale/overlay.dtd">
+
+<?xml-stylesheet href="chrome://browser/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://tinymenu/skin/tinymenu-image.css" type="text/css"?>
+
+<dialog id="tinymenu-image"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	title="&tinymenu.title;"
+	buttons="accept, cancel"
+	ondialogaccept="applyImageSetting();"
+>
+
+<script type="application/x-javascript" src="chrome://tinymenu/content/tinymenu-image.js"></script>
+
+<vbox orient="vertical">
+	<radiogroup>
+		<radio id="view_text" label="&tinymenu.text;" oncommand="selectText();"/>
+		<hbox id="image_mode">
+			<radio id="view_image" label="&tinymenu.image;"/>
+			<button label="&tinymenu.browse;" oncommand="browseImage();" />
+			<button label="&tinymenu.default;" oncommand="defaultImage();"
+				id='defaultButton' collapsed='true'
+			/>
+		</hbox>
+		<description>&tinymenu.fileNote;</description>
+	</radiogroup>
+</vbox>
+</dialog>

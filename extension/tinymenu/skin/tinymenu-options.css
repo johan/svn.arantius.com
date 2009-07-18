@@ -1,6 +1,12 @@
-#menu_choices description {
+#menu_choices description.window {
 	font-weight: bold;
 }
 
-#menu_choices vbox {
+#menu_choices vbox.winCol button {
+	width: 32px;
+	min-width: 32px;
+}
+
+#menu_choices vbox.winCol checkbox#tinymenu label {
+	color: black;
 }

@@ -8,5 +8,7 @@
 <!ENTITY tinymenu.text "Text">
 <!ENTITY tinymenu.image "Image">
 <!ENTITY tinymenu.browse "Browse">
+<!ENTITY tinymenu.default "Default">
+<!ENTITY tinymenu.fileNote "Note: Do not delete any image file you pick.">
 <!ENTITY tinymenu.fullscreen "Full screen">
 <!ENTITY tinymenu.menuVisible "Menu toolbar visible in full screen mode.">
