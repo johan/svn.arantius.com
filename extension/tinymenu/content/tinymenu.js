@@ -82,6 +82,11 @@ onLoad:function() {
 	} catch (e) {
 		// In case it's not available (Thunderbird).
 	}
+
+    // #212 Interoperate with PrefBar
+	if ('function'==typeof window.prefbarBrowserToolboxCustomizeDone) {
+		window.prefbarBrowserToolboxCustomizeDone();
+	}
 },
 
 // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ // \\ //
