@@ -9,6 +9,8 @@ window.addEventListener('load', function() {
 			.setAttribute('collapsed', 'false');
 	}
 
+	selectText();
+
 	gImageUrl=false;
 	if (gOptionsButton.allMenusNode.image) {
 		selectImage(gOptionsButton.allMenusNode.image);
