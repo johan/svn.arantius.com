@@ -25,7 +25,7 @@ function optionsMemToXul() {
 
 		if (numWindows>1) {
 			var descr=document.createElement('description');
-			descr.setAttribute('window');
+			descr.setAttribute('class', 'window');
 			descr.textContent=winId.split('\t')[1];
 			winCont.appendChild(descr);
 		}
