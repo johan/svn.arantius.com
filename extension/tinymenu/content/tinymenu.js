@@ -47,7 +47,6 @@ onLoad:function() {
 			// Save as "seen" this menu, if it doesn't exist.
 			var id=el.getAttribute('id')+'\t'+el.getAttribute('label');
 			if ('undefined'==typeof menus[id]) {
-				alert('learn menu '+id+' '+el.tagName+'\n');
 				menus[id]={'collapse':true};
 			}
 		}
