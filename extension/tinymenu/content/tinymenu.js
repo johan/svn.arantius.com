@@ -51,7 +51,7 @@ onLoad:function() {
 			}
 		}
 
-		// Conditionally move it into the tiny menu.
+		// Conditionally move it into the tiny menu, or enable image mode.
 		if (menus[id].collapse) {
 			menusub.appendChild(el);
 			i--;
