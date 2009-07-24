@@ -4,9 +4,10 @@
 <!ENTITY tinymenu.doNotCollapse "Sammenklap ikke disse menuer:">
 <!ENTITY tinymenu.optionsMsg1 "Indstillinger påvirker kun nye vinduer.">
 <!ENTITY tinymenu.optionsMsg2 "(Genstart Firefox for at se ændringer.)">
-<!ENTITY tinymenu.display "Vis">
 <!ENTITY tinymenu.text "Tekst">
 <!ENTITY tinymenu.image "Billede">
 <!ENTITY tinymenu.browse "Gennemse">
+<!ENTITY tinymenu.default "Default">
+<!ENTITY tinymenu.fileNote "Note: Do not delete any image file you pick.">
 <!ENTITY tinymenu.fullscreen "Full screen">
 <!ENTITY tinymenu.menuVisible "Menu toolbar visible in full screen mode.">

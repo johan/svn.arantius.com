@@ -4,9 +4,10 @@
 <!ENTITY tinymenu.doNotCollapse "Inkludera INTE dessa menyer:">
 <!ENTITY tinymenu.optionsMsg1 "Ändringarna påverkar bara nya fönster.">
 <!ENTITY tinymenu.optionsMsg2 "(Du måste starta om firefox innan inställningarna börjar gälla.)">
-<!ENTITY tinymenu.display "Display">
 <!ENTITY tinymenu.text "Text">
 <!ENTITY tinymenu.image "Image">
 <!ENTITY tinymenu.browse "Browse">
+<!ENTITY tinymenu.default "Default">
+<!ENTITY tinymenu.fileNote "Note: Do not delete any image file you pick.">
 <!ENTITY tinymenu.fullscreen "Full screen">
 <!ENTITY tinymenu.menuVisible "Menu toolbar visible in full screen mode.">

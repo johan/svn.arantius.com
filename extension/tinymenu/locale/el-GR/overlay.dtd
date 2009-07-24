@@ -3,10 +3,11 @@
 <!ENTITY tinymenu.menuaccesskey "Μ">
 <!ENTITY tinymenu.doNotCollapse "Να μην επικαλύπτονται αυτά τα στοιχεία :">
 <!ENTITY tinymenu.optionsMsg1 "Οι επιλογές επηρεάζουν μόνο νέα παράθυρα.">
-<!ENTITY tinymenu.optionsMsg2 "(Επανεκκίνιση για να δείτε τις αλλαγές.)">
-<!ENTITY tinymenu.display "Εμφάνιση :">
+<!ENTITY tinymenu.optionsMsg2 "(Επανεκκίνηση για να δείτε τις αλλαγές.)">
 <!ENTITY tinymenu.text "Κείμενο">
 <!ENTITY tinymenu.image "Εικόνα">
 <!ENTITY tinymenu.browse "Εντοπισμός">
-<!ENTITY tinymenu.fullscreen "Full screen">
-<!ENTITY tinymenu.menuVisible "Menu toolbar visible in full screen mode.">
+<!ENTITY tinymenu.default "Αρχική">
+<!ENTITY tinymenu.fileNote "Σημείωση: Μην διαγράψετε τα αρχεία εικόνων που επιλέγετε.">
+<!ENTITY tinymenu.fullscreen "Πλήρης οθόνη">
+<!ENTITY tinymenu.menuVisible "Να εμφανίζεται η εργαλειοθήκη μενού σε κατάσταση λειτουργίας πλήρους οθόνης.">

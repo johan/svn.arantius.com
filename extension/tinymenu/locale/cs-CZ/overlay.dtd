@@ -4,9 +4,10 @@
 <!ENTITY tinymenu.doNotCollapse "Ponechat následující nabídky:">
 <!ENTITY tinymenu.optionsMsg1 "Nastavení se projeví až v novém okně.">
 <!ENTITY tinymenu.optionsMsg2 "(Restartujte Firefox)">
-<!ENTITY tinymenu.display "Zobrazit">
 <!ENTITY tinymenu.text "Text">
 <!ENTITY tinymenu.image "Ikonu">
 <!ENTITY tinymenu.browse "Procházet">
+<!ENTITY tinymenu.default "Default">
+<!ENTITY tinymenu.fileNote "Note: Do not delete any image file you pick.">
 <!ENTITY tinymenu.fullscreen "Full screen">
 <!ENTITY tinymenu.menuVisible "Menu toolbar visible in full screen mode.">

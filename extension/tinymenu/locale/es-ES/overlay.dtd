@@ -4,9 +4,10 @@
 <!ENTITY tinymenu.doNotCollapse "NO contraer estos menús:">
 <!ENTITY tinymenu.optionsMsg1 "Las opciones tendrán efecto en nuevas ventanas.">
 <!ENTITY tinymenu.optionsMsg2 "(Reiniciar Firefox para ver los cambios)">
-<!ENTITY tinymenu.display "Mostrar">
 <!ENTITY tinymenu.text "Texto">
 <!ENTITY tinymenu.image "Imagen">
 <!ENTITY tinymenu.browse "Examinar">
-<!ENTITY tinymenu.fullscreen "Full screen">
-<!ENTITY tinymenu.menuVisible "Menu toolbar visible in full screen mode.">
+<!ENTITY tinymenu.default "Predeterminada">
+<!ENTITY tinymenu.fileNote "Nota: No borre las imágenes que seleccione.">
+<!ENTITY tinymenu.fullscreen "Pantalla completa">
+<!ENTITY tinymenu.menuVisible "Barra de herramientas de Menú visible en modo pantalla completa.">

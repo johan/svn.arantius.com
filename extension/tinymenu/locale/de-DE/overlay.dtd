@@ -1,12 +1,13 @@
-<!ENTITY tinymenu.title "Tiny Menu">
+<!ENTITY tinymenu.title "Tiny Menu - Einstellungen">
 <!ENTITY tinymenu.menu "Menü">
 <!ENTITY tinymenu.menuaccesskey "M">
-<!ENTITY tinymenu.doNotCollapse "Folgende Menüs NICHT einschließen:">
+<!ENTITY tinymenu.doNotCollapse "Folgende Menüs NICHT ausblenden:">
 <!ENTITY tinymenu.optionsMsg1 "Änderungen wirken sich erst auf neue Fenster aus.">
 <!ENTITY tinymenu.optionsMsg2 "(Neustarten, um diese zu übernehmen.)">
-<!ENTITY tinymenu.display "Anzeige">
 <!ENTITY tinymenu.text "Text">
 <!ENTITY tinymenu.image "Symbol">
 <!ENTITY tinymenu.browse "Durchsuchen...">
-<!ENTITY tinymenu.fullscreen "Full screen">
-<!ENTITY tinymenu.menuVisible "Menu toolbar visible in full screen mode.">
+<!ENTITY tinymenu.default "Standard">
+<!ENTITY tinymenu.fileNote "Hinweis: Löschen Sie nicht die ausgewählten Grafiken!">
+<!ENTITY tinymenu.fullscreen "Vollbild">
+<!ENTITY tinymenu.menuVisible "Menüleiste im Vollbild-Modus sichtbar">

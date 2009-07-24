@@ -4,9 +4,10 @@
 <!ENTITY tinymenu.doNotCollapse "НЕ сворачивать">
 <!ENTITY tinymenu.optionsMsg1 "Только для новых окон.">
 <!ENTITY tinymenu.optionsMsg2 "(Необходимо перезагрузить Firefox.)">
-<!ENTITY tinymenu.display "Отображать">
 <!ENTITY tinymenu.text "Текст">
 <!ENTITY tinymenu.image "Изображение">
 <!ENTITY tinymenu.browse "Обзор">
+<!ENTITY tinymenu.default "Default">
+<!ENTITY tinymenu.fileNote "Note: Do not delete any image file you pick.">
 <!ENTITY tinymenu.fullscreen "Full screen">
 <!ENTITY tinymenu.menuVisible "Menu toolbar visible in full screen mode.">

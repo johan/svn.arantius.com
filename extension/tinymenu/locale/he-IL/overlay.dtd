@@ -1,12 +1,13 @@
 <!ENTITY tinymenu.title "Tiny Menu">
 <!ENTITY tinymenu.menu "תפריט">
-<!ENTITY tinymenu.menuaccesskey "M">
+<!ENTITY tinymenu.menuaccesskey "ת">
 <!ENTITY tinymenu.doNotCollapse "אל תקבץ את התפריטים הבאים:">
 <!ENTITY tinymenu.optionsMsg1 "אפשרויות משפיעות רק על חלונות חדשים.">
 <!ENTITY tinymenu.optionsMsg2 "(אתחל דפדפן מחדש כדי לראות שינויים)">
-<!ENTITY tinymenu.display "הצג">
 <!ENTITY tinymenu.text "טקסט">
 <!ENTITY tinymenu.image "תמונה">
 <!ENTITY tinymenu.browse "דפדף">
-<!ENTITY tinymenu.fullscreen "Full screen">
-<!ENTITY tinymenu.menuVisible "Menu toolbar visible in full screen mode.">
+<!ENTITY tinymenu.default "ברירת מחדל">
+<!ENTITY tinymenu.fileNote "הערה: אין למחוק שום קובץ תמונה שנבחר.">
+<!ENTITY tinymenu.fullscreen "מסך מלא">
+<!ENTITY tinymenu.menuVisible "סרגלי הכלים של התפריט נגישים במסך מלא.">

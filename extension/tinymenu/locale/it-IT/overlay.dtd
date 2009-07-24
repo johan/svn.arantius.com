@@ -1,12 +1,13 @@
 <!ENTITY tinymenu.title "Tiny Menu">
-<!ENTITY tinymenu.menu "Menu">
-<!ENTITY tinymenu.menuaccesskey "N">
+<!ENTITY tinymenu.menu "Tiny Menu">
+<!ENTITY tinymenu.menuaccesskey "n">
 <!ENTITY tinymenu.doNotCollapse "Menu da non contrarre">
 <!ENTITY tinymenu.optionsMsg1 "Le opzioni avranno effetto solo sulle nuove finestre">
 <!ENTITY tinymenu.optionsMsg2 "(Riavviare Firefox per rendere effettive le modifiche)">
-<!ENTITY tinymenu.display "Visualizzare l&apos;elemento &apos;Menu&apos; come:">
-<!ENTITY tinymenu.text "testo">
-<!ENTITY tinymenu.image "immagine">
-<!ENTITY tinymenu.browse "Sfoglia...">
-<!ENTITY tinymenu.fullscreen "Full screen">
-<!ENTITY tinymenu.menuVisible "Menu toolbar visible in full screen mode.">
+<!ENTITY tinymenu.text "Mostra testo">
+<!ENTITY tinymenu.image "Mostra immagine">
+<!ENTITY tinymenu.browse "Sfoglia…">
+<!ENTITY tinymenu.default "Ripristina predefinita">
+<!ENTITY tinymenu.fileNote "Nota: non eliminare o spostare l&apos;immagine selezionata">
+<!ENTITY tinymenu.fullscreen "Modalità a tutto schermo">
+<!ENTITY tinymenu.menuVisible "Visualizza la barra dei menu quando si passa alla modalità a tutto schermo">

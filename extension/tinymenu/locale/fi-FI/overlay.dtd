@@ -4,9 +4,10 @@
 <!ENTITY tinymenu.doNotCollapse "ÄLÄ yhdistä näitä valikoita">
 <!ENTITY tinymenu.optionsMsg1 "Asetukset toimivat vain uusissa ikkunoissa">
 <!ENTITY tinymenu.optionsMsg2 "(Käynnistä uudelleen nähdäksesi muutokset.)">
-<!ENTITY tinymenu.display "Ulkonäkö">
 <!ENTITY tinymenu.text "Teksti">
 <!ENTITY tinymenu.image "Kuva">
 <!ENTITY tinymenu.browse "Selaa">
+<!ENTITY tinymenu.default "Default">
+<!ENTITY tinymenu.fileNote "Note: Do not delete any image file you pick.">
 <!ENTITY tinymenu.fullscreen "Full screen">
 <!ENTITY tinymenu.menuVisible "Menu toolbar visible in full screen mode.">

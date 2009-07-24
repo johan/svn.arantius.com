@@ -4,9 +4,10 @@
 <!ENTITY tinymenu.doNotCollapse "このメニューは小さくまとめない:">
 <!ENTITY tinymenu.optionsMsg1 "オプションのみ新規画面にエフェクトをかける.">
 <!ENTITY tinymenu.optionsMsg2 "(変更を有効にするにはリスタートしてください)">
-<!ENTITY tinymenu.display "画面">
 <!ENTITY tinymenu.text "テキスト">
 <!ENTITY tinymenu.image "イメージ">
 <!ENTITY tinymenu.browse "ブラウズ">
+<!ENTITY tinymenu.default "Default">
+<!ENTITY tinymenu.fileNote "Note: Do not delete any image file you pick.">
 <!ENTITY tinymenu.fullscreen "Full screen">
 <!ENTITY tinymenu.menuVisible "Menu toolbar visible in full screen mode.">

@@ -4,9 +4,10 @@
 <!ENTITY tinymenu.doNotCollapse "No treguis aquests menús:">
 <!ENTITY tinymenu.optionsMsg1 "Les opcions només afectaran a les noves finestres.">
 <!ENTITY tinymenu.optionsMsg2 "(Reinicia per a veure canvis.)">
-<!ENTITY tinymenu.display "Mostra">
 <!ENTITY tinymenu.text "Text">
 <!ENTITY tinymenu.image "Imatge">
 <!ENTITY tinymenu.browse "Navega">
+<!ENTITY tinymenu.default "Default">
+<!ENTITY tinymenu.fileNote "Note: Do not delete any image file you pick.">
 <!ENTITY tinymenu.fullscreen "Full screen">
 <!ENTITY tinymenu.menuVisible "Menu toolbar visible in full screen mode.">

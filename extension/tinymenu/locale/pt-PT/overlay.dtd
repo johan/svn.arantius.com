@@ -4,9 +4,10 @@
 <!ENTITY tinymenu.doNotCollapse "NÃO colapsar estes menus:">
 <!ENTITY tinymenu.optionsMsg1 "As opções só afectam novas janelas.">
 <!ENTITY tinymenu.optionsMsg2 "(Reiniciar para ver alterações)">
-<!ENTITY tinymenu.display "Mostrar">
 <!ENTITY tinymenu.text "Texto">
 <!ENTITY tinymenu.image "Imagem">
 <!ENTITY tinymenu.browse "Navegar">
+<!ENTITY tinymenu.default "Pré-definição">
+<!ENTITY tinymenu.fileNote "Nota: Não elimine nenhuma imagem que obtenha.">
 <!ENTITY tinymenu.fullscreen "Full screen">
 <!ENTITY tinymenu.menuVisible "Menu toolbar visible in full screen mode.">

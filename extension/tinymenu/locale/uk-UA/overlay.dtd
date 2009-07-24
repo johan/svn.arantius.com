@@ -4,9 +4,10 @@
 <!ENTITY tinymenu.doNotCollapse "НЕ згортати ці меню:">
 <!ENTITY tinymenu.optionsMsg1 "Вибір вплине лише на нові вікна.">
 <!ENTITY tinymenu.optionsMsg2 "(Просто перезапустіться)">
-<!ENTITY tinymenu.display "Показувати">
 <!ENTITY tinymenu.text "Текст">
 <!ENTITY tinymenu.image "Малюнок">
 <!ENTITY tinymenu.browse "Вибрати">
+<!ENTITY tinymenu.default "Default">
+<!ENTITY tinymenu.fileNote "Note: Do not delete any image file you pick.">
 <!ENTITY tinymenu.fullscreen "Full screen">
 <!ENTITY tinymenu.menuVisible "Menu toolbar visible in full screen mode.">

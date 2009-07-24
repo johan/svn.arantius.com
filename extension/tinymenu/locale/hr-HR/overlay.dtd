@@ -4,9 +4,10 @@
 <!ENTITY tinymenu.doNotCollapse "NE sažimaj ove izbornike:">
 <!ENTITY tinymenu.optionsMsg1 "Opcije utječu samo na nove prozore.">
 <!ENTITY tinymenu.optionsMsg2 "(Ponovno pokrenite da biste vidjeli promjene)">
-<!ENTITY tinymenu.display "Prikaži">
 <!ENTITY tinymenu.text "Tekst">
 <!ENTITY tinymenu.image "Slika">
 <!ENTITY tinymenu.browse "Pronađi">
+<!ENTITY tinymenu.default "Default">
+<!ENTITY tinymenu.fileNote "Note: Do not delete any image file you pick.">
 <!ENTITY tinymenu.fullscreen "Full screen">
 <!ENTITY tinymenu.menuVisible "Menu toolbar visible in full screen mode.">

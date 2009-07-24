@@ -4,9 +4,10 @@
 <!ENTITY tinymenu.doNotCollapse "Seçilen Menüler Gösterilecek">
 <!ENTITY tinymenu.optionsMsg1 "Ayarlar yeni pencerede etkili olacak">
 <!ENTITY tinymenu.optionsMsg2 "Değişikliklerin etkili olması için yeniden başlat">
-<!ENTITY tinymenu.display "Görünüm">
 <!ENTITY tinymenu.text "Yazı">
 <!ENTITY tinymenu.image "Resim">
 <!ENTITY tinymenu.browse "Araştır">
+<!ENTITY tinymenu.default "Default">
+<!ENTITY tinymenu.fileNote "Note: Do not delete any image file you pick.">
 <!ENTITY tinymenu.fullscreen "Full screen">
 <!ENTITY tinymenu.menuVisible "Menu toolbar visible in full screen mode.">

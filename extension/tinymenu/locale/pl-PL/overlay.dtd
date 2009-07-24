@@ -4,9 +4,10 @@
 <!ENTITY tinymenu.doNotCollapse "Nie zwijaj menu:">
 <!ENTITY tinymenu.optionsMsg1 "Nowe ustawienia będą działały tylko w nowo otwieranych oknach.">
 <!ENTITY tinymenu.optionsMsg2 "Aby zmiany zostały zastosowane uruchom ponownie przeglądarkę.">
-<!ENTITY tinymenu.display "Nowe menu wyświetl jako:">
 <!ENTITY tinymenu.text "Tekst">
 <!ENTITY tinymenu.image "Ikonę">
 <!ENTITY tinymenu.browse "Przeglądaj">
-<!ENTITY tinymenu.fullscreen "Full screen">
-<!ENTITY tinymenu.menuVisible "Menu toolbar visible in full screen mode.">
+<!ENTITY tinymenu.default "Domyślne">
+<!ENTITY tinymenu.fileNote "Informacja: Nie usuwa wybranego pliku obrazka.">
+<!ENTITY tinymenu.fullscreen "Pełny ekran">
+<!ENTITY tinymenu.menuVisible "Pasek menu widoczny w trybie pełnoekranowym.">

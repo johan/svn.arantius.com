@@ -4,9 +4,10 @@
 <!ENTITY tinymenu.doNotCollapse "합치지 &apos;않을&apos; 메뉴:">
 <!ENTITY tinymenu.optionsMsg1 "설정은 새창에서부터 적용됩니다.">
 <!ENTITY tinymenu.optionsMsg2 "(다시 시작해도 바뀝니다.)">
-<!ENTITY tinymenu.display "표시 방법">
 <!ENTITY tinymenu.text "글자">
 <!ENTITY tinymenu.image "이미지">
 <!ENTITY tinymenu.browse "찾아보기">
+<!ENTITY tinymenu.default "Default">
+<!ENTITY tinymenu.fileNote "Note: Do not delete any image file you pick.">
 <!ENTITY tinymenu.fullscreen "Full screen">
 <!ENTITY tinymenu.menuVisible "Menu toolbar visible in full screen mode.">

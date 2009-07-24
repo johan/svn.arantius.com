@@ -4,9 +4,10 @@
 <!ENTITY tinymenu.doNotCollapse "不隐藏下列选中的菜单项:">
 <!ENTITY tinymenu.optionsMsg1 "选项效果只能在新建窗口中体现。">
 <!ENTITY tinymenu.optionsMsg2 "(请重新启动浏览器。)">
-<!ENTITY tinymenu.display "显示">
 <!ENTITY tinymenu.text "文字">
 <!ENTITY tinymenu.image "图像">
 <!ENTITY tinymenu.browse "浏览器">
+<!ENTITY tinymenu.default "Default">
+<!ENTITY tinymenu.fileNote "Note: Do not delete any image file you pick.">
 <!ENTITY tinymenu.fullscreen "Full screen">
 <!ENTITY tinymenu.menuVisible "Menu toolbar visible in full screen mode.">

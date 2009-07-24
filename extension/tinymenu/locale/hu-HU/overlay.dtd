@@ -4,9 +4,10 @@
 <!ENTITY tinymenu.doNotCollapse "Maradjon látható:">
 <!ENTITY tinymenu.optionsMsg1 "A változtatások új ablakokban lépnek érvénybe.">
 <!ENTITY tinymenu.optionsMsg2 "A változtatások a Firefox újraindítása után lépnek érvénybe.">
-<!ENTITY tinymenu.display "Menü megjelenítése mint:">
 <!ENTITY tinymenu.text "Szöveg">
 <!ENTITY tinymenu.image "Kép">
 <!ENTITY tinymenu.browse "Tallózás...">
-<!ENTITY tinymenu.fullscreen "Full screen">
-<!ENTITY tinymenu.menuVisible "Menu toolbar visible in full screen mode.">
+<!ENTITY tinymenu.default "Alapértelmezés">
+<!ENTITY tinymenu.fileNote "Megjegyzés: Ne törölje a kijelölt képfájl egyikét sem">
+<!ENTITY tinymenu.fullscreen "Teljes képernyő">
+<!ENTITY tinymenu.menuVisible "A menü eszköztár látható a teljes képernyős módban.">

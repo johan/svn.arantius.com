@@ -4,9 +4,10 @@
 <!ENTITY tinymenu.doNotCollapse "Deze menu&apos;s NIET inklappen:">
 <!ENTITY tinymenu.optionsMsg1 "Opties hebben alleen effect op nieuwe vensters.">
 <!ENTITY tinymenu.optionsMsg2 "(Herstart Firefox om de wijzigingen te zien.)">
-<!ENTITY tinymenu.display "Weergeven">
 <!ENTITY tinymenu.text "Tekst">
 <!ENTITY tinymenu.image "Afbeelding">
 <!ENTITY tinymenu.browse "Bladeren">
+<!ENTITY tinymenu.default "Standaard">
+<!ENTITY tinymenu.fileNote "Opmerking: Geen geselecteerde afbeeldingen verwijderen.">
 <!ENTITY tinymenu.fullscreen "Full screen">
 <!ENTITY tinymenu.menuVisible "Menu toolbar visible in full screen mode.">

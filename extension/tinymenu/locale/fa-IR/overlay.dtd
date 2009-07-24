@@ -4,9 +4,10 @@
 <!ENTITY tinymenu.doNotCollapse "Do NOT collapse these menus:">
 <!ENTITY tinymenu.optionsMsg1 "Options only affect new windows.">
 <!ENTITY tinymenu.optionsMsg2 "( بارگذاری مجدد برای مشاهده تغییرات . )">
-<!ENTITY tinymenu.display "Display">
 <!ENTITY tinymenu.text "Text">
 <!ENTITY tinymenu.image "Image">
 <!ENTITY tinymenu.browse "Browse">
+<!ENTITY tinymenu.default "Default">
+<!ENTITY tinymenu.fileNote "Note: Do not delete any image file you pick.">
 <!ENTITY tinymenu.fullscreen "Full screen">
 <!ENTITY tinymenu.menuVisible "Menu toolbar visible in full screen mode.">
