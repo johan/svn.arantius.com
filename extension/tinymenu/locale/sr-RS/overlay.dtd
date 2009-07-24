@@ -1,0 +1,13 @@
+<!ENTITY tinymenu.title "Мали мени">
+<!ENTITY tinymenu.menu "Мени">
+<!ENTITY tinymenu.menuaccesskey "М">
+<!ENTITY tinymenu.doNotCollapse "НЕ смањуј ове меније:">
+<!ENTITY tinymenu.optionsMsg1 "Опције утичу само на нове прозоре.">
+<!ENTITY tinymenu.optionsMsg2 "(Поново покрените да бисте видели промене)">
+<!ENTITY tinymenu.text "Текст">
+<!ENTITY tinymenu.image "Слика">
+<!ENTITY tinymenu.browse "Прегледај">
+<!ENTITY tinymenu.default "Default">
+<!ENTITY tinymenu.fileNote "Note: Do not delete any image file you pick.">
+<!ENTITY tinymenu.fullscreen "Цео екран">
+<!ENTITY tinymenu.menuVisible "Трака са менијима видљива у режиму целог екрана.">
