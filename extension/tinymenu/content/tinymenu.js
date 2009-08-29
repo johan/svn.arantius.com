@@ -1,5 +1,9 @@
 var tinymenu={
 
+// See #329
+// Compatibility workaround, grab the title before FireSomething changes it.
+origTitle:''+document.title,
+
 prefBranch:Components.classes["@mozilla.org/preferences-service;1"]
 		.getService(Components.interfaces.nsIPrefService)
 		.getBranch("tinymenu."),
@@ -30,7 +34,7 @@ onLoad:function() {
 	var menusub=document.getElementById('tinymenu-popup');
 
 	// Save this window as "seen".
-	var winId=document.location.href+'\t'+document.title.replace(/:.*/, '');
+	var winId=document.location.href+'\t'+tinymenu.origTitle.replace(/:.*/, '');
 	if ('undefined'==typeof tinymenu.allMenus[winId]) {
 		tinymenu.allMenus[winId]={'tinymenu':{'collapse':false}};
 	}
