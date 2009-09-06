@@ -1,5 +1,5 @@
 <!ENTITY tinymenu.title "Tiny Menu">
-<!ENTITY tinymenu.menu "Tiny Menu">
+<!ENTITY tinymenu.menu "Menu">
 <!ENTITY tinymenu.menuaccesskey "n">
 <!ENTITY tinymenu.doNotCollapse "Menu da non contrarre">
 <!ENTITY tinymenu.optionsMsg1 "Le opzioni avranno effetto solo sulle nuove finestre">
@@ -8,6 +8,6 @@
 <!ENTITY tinymenu.image "Mostra immagine">
 <!ENTITY tinymenu.browse "Sfoglia…">
 <!ENTITY tinymenu.default "Ripristina predefinita">
-<!ENTITY tinymenu.fileNote "Nota: non eliminare o spostare l&apos;immagine selezionata">
+<!ENTITY tinymenu.fileNote "Nota: non eliminare o spostare l'immagine selezionata">
 <!ENTITY tinymenu.fullscreen "Modalità a tutto schermo">
 <!ENTITY tinymenu.menuVisible "Visualizza la barra dei menu quando si passa alla modalità a tutto schermo">

@@ -2,7 +2,7 @@
 <!ENTITY tinymenu.menu "Menü">
 <!ENTITY tinymenu.menuaccesskey "M">
 <!ENTITY tinymenu.doNotCollapse "Folgende Menüs NICHT ausblenden:">
-<!ENTITY tinymenu.optionsMsg1 "Änderungen wirken sich erst auf neue Fenster aus.">
+<!ENTITY tinymenu.optionsMsg1 "Änderungen werden erst in einem neuem Fenster wirksam.">
 <!ENTITY tinymenu.optionsMsg2 "(Neustarten, um diese zu übernehmen.)">
 <!ENTITY tinymenu.text "Text">
 <!ENTITY tinymenu.image "Symbol">

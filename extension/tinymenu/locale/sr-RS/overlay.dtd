@@ -7,7 +7,7 @@
 <!ENTITY tinymenu.text "Текст">
 <!ENTITY tinymenu.image "Слика">
 <!ENTITY tinymenu.browse "Прегледај">
-<!ENTITY tinymenu.default "Default">
-<!ENTITY tinymenu.fileNote "Note: Do not delete any image file you pick.">
+<!ENTITY tinymenu.default "Подразумевано">
+<!ENTITY tinymenu.fileNote "Напомена: не бришите ни једну датотеку слике коју одаберете.">
 <!ENTITY tinymenu.fullscreen "Цео екран">
 <!ENTITY tinymenu.menuVisible "Трака са менијима видљива у режиму целог екрана.">

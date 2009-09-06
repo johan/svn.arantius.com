@@ -7,7 +7,7 @@
 <!ENTITY tinymenu.text "texte">
 <!ENTITY tinymenu.image "Image">
 <!ENTITY tinymenu.browse "Parcourir">
-<!ENTITY tinymenu.default "Default">
-<!ENTITY tinymenu.fileNote "Note: Do not delete any image file you pick.">
-<!ENTITY tinymenu.fullscreen "Full screen">
-<!ENTITY tinymenu.menuVisible "Menu toolbar visible in full screen mode.">
+<!ENTITY tinymenu.default "Défaut">
+<!ENTITY tinymenu.fileNote "Note : ne pas supprimer les fichiers image que vous choisissez.">
+<!ENTITY tinymenu.fullscreen "Plein écran">
+<!ENTITY tinymenu.menuVisible "La barre de menu visible en mode plein écran">

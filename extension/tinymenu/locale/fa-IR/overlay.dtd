@@ -1,13 +1,13 @@
-<!ENTITY tinymenu.title "Tiny Menu">
+<!ENTITY tinymenu.title "فهرست کوچک">
 <!ENTITY tinymenu.menu "منو">
-<!ENTITY tinymenu.menuaccesskey "M">
-<!ENTITY tinymenu.doNotCollapse "Do NOT collapse these menus:">
-<!ENTITY tinymenu.optionsMsg1 "Options only affect new windows.">
-<!ENTITY tinymenu.optionsMsg2 "( بارگذاری مجدد برای مشاهده تغییرات . )">
-<!ENTITY tinymenu.text "Text">
-<!ENTITY tinymenu.image "Image">
-<!ENTITY tinymenu.browse "Browse">
-<!ENTITY tinymenu.default "Default">
-<!ENTITY tinymenu.fileNote "Note: Do not delete any image file you pick.">
-<!ENTITY tinymenu.fullscreen "Full screen">
-<!ENTITY tinymenu.menuVisible "Menu toolbar visible in full screen mode.">
+<!ENTITY tinymenu.menuaccesskey "م">
+<!ENTITY tinymenu.doNotCollapse "این فهرست ها (menus) را از کار نیندازید:">
+<!ENTITY tinymenu.optionsMsg1 "تنظیمات تنها روی پنجره های جدید اعمال می شوند.">
+<!ENTITY tinymenu.optionsMsg2 "(بارگذاری مجدد برای مشاهده تغییرات.)">
+<!ENTITY tinymenu.text "متن">
+<!ENTITY tinymenu.image "تصویر">
+<!ENTITY tinymenu.browse "مرور">
+<!ENTITY tinymenu.default "پیشفرض">
+<!ENTITY tinymenu.fileNote "یاداشت: پرونده ی تصاویری را که انتخاب نموده اید، پاک نکنید.">
+<!ENTITY tinymenu.fullscreen "تمام صفحه">
+<!ENTITY tinymenu.menuVisible "نوار ابزار فهرصت در حالت تمام صفحه نمایش داده خواهد شد.">
