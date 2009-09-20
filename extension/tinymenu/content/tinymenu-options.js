@@ -17,7 +17,8 @@ function optionsMemToXul() {
 	}
 
 	for (var winId in tinymenu.allMenus) {
-		var menus=tinymenu.allMenus[winId];
+		var win=tinymenu.allMenus[winId]
+		var menus=win.menus;
 
 		var winCont=document.createElement('vbox');
 		winCont.setAttribute('id', winId);
@@ -26,7 +27,7 @@ function optionsMemToXul() {
 		if (numWindows>1) {
 			var descr=document.createElement('description');
 			descr.setAttribute('class', 'window');
-			descr.textContent=winId.split('\t')[1];
+			descr.textContent=win.title;
 			winCont.appendChild(descr);
 		}
 
@@ -42,7 +43,7 @@ function optionsMemToXul() {
 				cbox.setAttribute('checked', true);
 				cbox.setAttribute('disabled', true);
 			} else {
-				cbox.setAttribute('label', menuId.split('\t')[1]);
+				cbox.setAttribute('label', menu.name);
 				cbox.setAttribute('checked', !menu.collapse);
 			}
 			cbox.addEventListener('click', collapseCheckChange, false)
@@ -80,7 +81,7 @@ function optionsXulToMem() {
 		var cboxes=win.getElementsByTagName('checkbox');
 		for (var j=0, cbox=null; cbox=cboxes[j]; j++) {
 			var menuId=cbox.getAttribute('id');
-			tinymenu.allMenus[winId][menuId].collapse=!cbox.checked;
+			tinymenu.allMenus[winId].menus[menuId].collapse=!cbox.checked;
 		}
 	}
 }
