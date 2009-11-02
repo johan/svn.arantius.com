@@ -103,7 +103,7 @@ checkUpgrade:function() {
 	var oldVer=tinymenu.prefBranch.getCharPref('version').split('.');
 	var curVer=Components
 		.classes["@mozilla.org/extensions/manager;1"]
-		.getService(Ci.nsIExtensionManager)
+		.getService(Components.interfaces.nsIExtensionManager)
 		.getItemForID('{d33c2f7c-b1e6-4d46-ab0e-be1f6d05c904}')
 		.version.split('.');
 
