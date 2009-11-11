@@ -68,6 +68,9 @@ fillwindow:function(master, win) {
 		var els=win.document.getElementsByTagName('input');
 
 		for (var j=0, el; el=els[j]; j++) {
+			// #319 Skip any element that isn't visible.
+			if (0==el.offsetWidth) continue;
+
 			var type=mpwgen.findFieldType(win, el);
 
 			if (!type) {
