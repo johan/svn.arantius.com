@@ -3,7 +3,7 @@
 	<Description about="urn:mozilla:install-manifest">
 		<em:id>{afb4d196-e762-4d4c-a74d-d5ac21475f62}</em:id>
 		<em:name>Magic Password Generator</em:name>
-		<em:version>1.5.1</em:version>
+		<em:version>1.5.2</em:version>
 		<em:description>Magically make custom passwords for each website.</em:description>
 		<em:creator>Anthony Lieuallen</em:creator>
 
@@ -15,7 +15,7 @@
 			<Description>
 				<em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
 				<em:minVersion>2.0</em:minVersion>
-				<em:maxVersion>3.5.*</em:maxVersion>
+				<em:maxVersion>3.6.*</em:maxVersion>
 			</Description>
 		</em:targetApplication>
 	</Description>
