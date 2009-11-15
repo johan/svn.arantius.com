@@ -8,6 +8,6 @@
 <!ENTITY tinymenu.image "Obrázok">
 <!ENTITY tinymenu.browse "Prehliadať">
 <!ENTITY tinymenu.default "Default">
-<!ENTITY tinymenu.fileNote "Note: Do not delete any image file you pick.">
+<!ENTITY tinymenu.fileNote "Poznámka: Nevymaže žiadny vami vybraný obrázok">
 <!ENTITY tinymenu.fullscreen "Full screen">
 <!ENTITY tinymenu.menuVisible "Menu toolbar visible in full screen mode.">
